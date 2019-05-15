@@ -1,2 +1,4 @@
 env/
 *.pyc
+*.txt
+*.DS_store
