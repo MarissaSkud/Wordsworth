@@ -58,10 +58,7 @@ def unpickle_data(filename):
     infile.close()
     return unpacked
 
+stext = remove_irrelevant_characters(open_and_read_file("full_texts/book2_full.txt"))
 
-p_and_p_text = remove_irrelevant_characters(open_and_read_file("pride and prejudice_full.txt"))
-pwords = make_unique_word_set(p_and_p_text)
-
-pickle_data('p_and_p_dict', make_bigrams_and_frequencies(p_and_p_text))
-
-unpickled = unpickle_data('p_and_p_set')
+pickle_data('book2_set.pickle', make_unique_word_set(stext))
+pickle_data('book2_dict.pickle', make_bigrams_and_frequencies(stext))
