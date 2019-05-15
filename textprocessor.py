@@ -11,7 +11,7 @@ def remove_irrelevant_characters(text_string):
     '''Removes commas, colons, semicolons, parentheses, double quotes, underscores, and
     asterisks from text. Replaces long dashes with a single space.'''
 
-    text_string = re.sub(",|;|\*|_|\"|\(|\)|:", "", text_string)
+    text_string = re.sub(",|;|\*|_|\"|\(|\)|:|\”|\“", "", text_string)
     return text_string.replace("--", " ")
 
 
@@ -58,7 +58,7 @@ def unpickle_data(filename):
     infile.close()
     return unpacked
 
-stext = remove_irrelevant_characters(open_and_read_file("full_texts/book2_full.txt"))
+text = remove_irrelevant_characters(open_and_read_file("full_texts/book3_full.txt"))
 
-pickle_data('book2_set.pickle', make_unique_word_set(stext))
-pickle_data('book2_dict.pickle', make_bigrams_and_frequencies(stext))
+pickle_data('word_sets/book3_set.pickle', make_unique_word_set(text))
+pickle_data('bigram_dicts/book3_dict.pickle', make_bigrams_and_frequencies(text))
