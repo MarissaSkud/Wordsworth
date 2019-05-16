@@ -58,7 +58,7 @@ def unpickle_data(filename):
     infile.close()
     return unpacked
 
-text = remove_irrelevant_characters(open_and_read_file("full_texts/book3_full.txt"))
+text = remove_irrelevant_characters(open_and_read_file("full_texts/book6_full.txt"))
 
-pickle_data('word_sets/book3_set.pickle', make_unique_word_set(text))
-pickle_data('bigram_dicts/book3_dict.pickle', make_bigrams_and_frequencies(text))
+pickle_data('word_sets/book6_set.pickle', make_unique_word_set(text))
+pickle_data('bigram_dicts/book6_dict.pickle', make_bigrams_and_frequencies(text))

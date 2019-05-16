@@ -10,7 +10,7 @@ from server import app
 def load_decades():
     Decade.query.delete()
 
-    for row in open("sql.data/u.decades"):
+    for row in open("sql_data/u.decades"):
         decade = row.rstrip()
         new_decade = Decade(decade=decade)
         db.session.add(new_decade)
@@ -21,7 +21,7 @@ def load_decades():
 def load_countries():
     Country.query.delete()
 
-    for row in open("sql.data/u.countries"):
+    for row in open("sql_data/u.countries"):
         country = row.rstrip()
         new_country = Country(country=country)
         db.session.add(new_country)
@@ -32,7 +32,7 @@ def load_countries():
 def load_books():
     Book.query.delete()
 
-    for row in open("sql.data/u.books"):
+    for row in open("sql_data/u.books"):
         row = row.rstrip()
         title, pub_year, country, decade, word_set, bigram_dict = row.split("|")
 

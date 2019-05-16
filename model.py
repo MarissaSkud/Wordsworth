@@ -5,41 +5,38 @@ db = SQLAlchemy()
 class Decade(db.Model):
     '''Decade class for data integrity purposes.'''
 
-    __tablename__ = "Decades"
-
-    decade_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    decade = db.Column(db.String(5), nullable=False, unique=True)
+    __tablename__ = "decades"
+    decade = db.Column(db.String(5), primary_key=True)
 
     books = db.relationship("Book")
 
     def __repr__(self):
-        return f"<Decade {self.decade}, id={self.decade_id}>"
+        return f"<Decade {self.decade}>"
 
 
 class Country(db.Model):
     '''Country class for data integrity purposes.'''
 
-    __tablename__ = "Countries"
+    __tablename__ = "countries"
 
-    country_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    country = db.Column(db.String(20), nullable=False, unique=True)
+    country = db.Column(db.String(20), primary_key=True)
 
     books = db.relationship("Book")
 
     def __repr__(self):
-        return f"<Country {self.country}, id={self.country_id}>"
+        return f"<Country {self.country}>"
 
 
 class Book(db.Model):
     '''Book class.'''
 
-    __tablename__ = "Books"
+    __tablename__ = "books"
 
     book_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(50), nullable=False, unique=True)
     pub_year = db.Column(db.Integer, nullable=False)
-    country = db.Column(db.Integer, db.ForeignKey('Countries.country'), nullable=False)
-    decade = db.Column(db.Integer, db.ForeignKey('Decades.decade'), nullable=False)
+    country = db.Column(db.String(20), db.ForeignKey('countries.country'), nullable=False)
+    decade = db.Column(db.String(5), db.ForeignKey('decades.decade'), nullable=False)
     word_set = db.Column(db.String, nullable=False)
     bigram_dict = db.Column(db.String, nullable=False)
 
@@ -55,7 +52,6 @@ def connect_to_db(app):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app
     db.init_app(app)
-    db.create_all()
 
 
 if __name__ == "__main__":

@@ -1,3 +1,6 @@
 Pride & Prejudice|1813|UK|1810s|word_sets/book1_set.pickle|bigram_dicts/book1_dict.pickle
 Sense & Sensibility|1811|UK|1810s|word_sets/book2_set.pickle|bigram_dicts/book2_dict.pickle
-Northanger Abbey|1818|UK|1810s||word_sets/book3_set.pickle|bigram_dicts/book3_dict.pickle
+Northanger Abbey|1818|UK|1810s|word_sets/book3_set.pickle|bigram_dicts/book3_dict.pickle
+Persuasion|1818|UK|1810s|word_sets/book4_set.pickle|bigram_dicts/book4_dict.pickle
+Emma|1815|UK|1810s|word_sets/book5_set.pickle|bigram_dicts/book5_dict.pickle
+Mansfield Park|1814|UK|1810s|word_sets/book6_set.pickle|bigram_dicts/book6_dict.pickle
