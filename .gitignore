@@ -2,4 +2,5 @@ env/
 *.pyc
 *.DS_store
 full_texts/
+test_passages/
 __pycache__
