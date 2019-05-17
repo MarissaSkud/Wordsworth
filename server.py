@@ -19,13 +19,14 @@ def remove_irrelevant_characters(text_string):
     asterisks from text. Replaces long dashes with a single space.'''
 
     text_string = re.sub(",|;|\*|_|\"|\(|\)|:|\”|\“", "", text_string)
+    text_string = text_string.replace("—", " ")
     return text_string.replace("--", " ")
 
 
 def make_unique_word_set(text_string):
     '''Removes all other punctuation and capitalization from string and returns set of unique words.'''
 
-    text_string = re.sub("\.|\?|\!", "", text_string)
+    text_string = re.sub("\.|\?|\!|…", "", text_string)
     text_string = text_string.lower()
     split_string = text_string.split()
 
@@ -45,14 +46,7 @@ def unpickle_data(filename):
 def index():
     """Homepage."""
     decades = db.session.query(Decade.decade).all()
-
-     #Is there a less clunky way to write this?
-     #try a list comprehension just to be shorter
-
-    formatted_decades = []
-    for decade in decades:
-        formatted = decade[0]
-        formatted_decades.append(formatted)
+    formatted_decades = [decade[0] for decade in decades]
 
     return render_template("index.html", decades=formatted_decades)
 
@@ -72,7 +66,7 @@ def analyze_text():
         return render_template("no-corpus.html", decade=decade)
 
     else:
-            
+
         if request.args["analysis-type"] == "words":
             word_set = make_unique_word_set(textstring)
 
@@ -85,7 +79,12 @@ def analyze_text():
 
             anachronistic_words = word_set - comparison_set
             anachronistic_words = sorted(list(anachronistic_words))
-            return render_template("results.html", anachronistic_words=anachronistic_words, decade=decade)
+
+            if anachronistic_words == []:
+                return render_template("results.html", decade=decade)
+
+            else:
+                return render_template("results.html", anachronistic_words=anachronistic_words, decade=decade)
 
         else:
             pass

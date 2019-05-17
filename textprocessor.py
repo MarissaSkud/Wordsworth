@@ -1,31 +1,12 @@
 import re
 import pickle
 
+from server import make_unique_word_set, remove_irrelevant_characters, unpickle_data
+
 def open_and_read_file(file_path):
 
     with open(file_path) as data_file:
         return data_file.read()
-
-
-def remove_irrelevant_characters(text_string):
-    '''Removes commas, colons, semicolons, parentheses, double quotes, underscores, and
-    asterisks from text. Replaces long dashes with a single space.'''
-
-    text_string = re.sub(",|;|\*|_|\"|\(|\)|:|\”|\“", "", text_string)
-    return text_string.replace("--", " ")
-
-
-def make_unique_word_set(text_string):
-    '''Removes all other punctuation and capitalization from string and returns set of unique words.'''
-
-    text_string = re.sub("\.|\?|\!", "", text_string)
-    text_string = text_string.lower()
-    split_string = text_string.split()
-
-    word_set = set(split_string)
-
-    return word_set
-
 
 def make_bigrams_and_frequencies(text_string):
     '''Returns dictionary of bigrams and their frequencies.'''
@@ -51,14 +32,7 @@ def pickle_data(filename, dataset):
     pickle.dump(dataset, outfile)
     outfile.close()
 
+text = remove_irrelevant_characters(open_and_read_file("full_texts/book7_full.txt"))
 
-def unpickle_data(filename):
-    infile = open(filename, 'rb')
-    unpacked = pickle.load(infile)
-    infile.close()
-    return unpacked
-
-text = remove_irrelevant_characters(open_and_read_file("full_texts/book6_full.txt"))
-
-pickle_data('word_sets/book6_set.pickle', make_unique_word_set(text))
-pickle_data('bigram_dicts/book6_dict.pickle', make_bigrams_and_frequencies(text))
+pickle_data('word_sets/book7_set.pickle', make_unique_word_set(text))
+pickle_data('bigram_dicts/book7_dict.pickle', make_bigrams_and_frequencies(text))
