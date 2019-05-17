@@ -1,19 +1,34 @@
-{% extends 'base.html' %}
-{% block content %}
+<!doctype html>
+<html>
+<head>
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+</head>
+<body>
 
-<table>
+<table class="sortable">
+    <thead>
     <tr>
     <th>Bigram</th>
     <th>Appearances in Your Passage</th>
     <th>Appearances in {{ decade }} Corpus</th>
-  </tr>
-  {% for bigram in bigrams_in_passage %}
+    <th>Frequency in Your Passage</th>
+    <th>Frequency in {{ decade }} Corpus </th>
+    <th>Ratio, Modern:Corpus</th>
+</tr>
+  </thead>
+  {% for bigram in comparison_results %}
     <tr>
     <td>{{ bigram }}</td>
-    <td>{{ bigrams_in_passage[bigram] }}</td>
-    <td>{{ comparison_results[bigram] }}</td>
+    <td>{{ comparison_results[bigram][0] }}</td>
+    <td>{{ comparison_results[bigram][1] }}</td>
+    <td>{{ comparison_results[bigram][2] }}</td>
+    <td>{{ comparison_results[bigram][3] }}</td>
+    <td>{{ comparison_results[bigram][4] }}</td>
   </tr>
   {% endfor %}
 </table>
 
-{% endblock %}
+<a href="/">Analyze another passage</a> 
+
+</body>
+</html>

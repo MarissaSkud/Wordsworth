@@ -57,7 +57,6 @@ def make_bigrams_and_frequencies(textstring):
     return bigram_frequencies
 
 
-
 def unpickle_data(filename):
     infile = open(filename, "rb")
     unpacked = pickle.load(infile)
@@ -72,6 +71,7 @@ def index():
     formatted_decades = [decade[0] for decade in decades]
 
     return render_template("index.html", decades=formatted_decades)
+
 
 @app.route("/methodology")
 def show_methodology():
@@ -113,6 +113,7 @@ def analyze_text():
             
             if request.args["analysis-type"] == "bigrams":
                 bigrams_in_passage = make_bigrams_and_frequencies(textstring)
+                passage_denominator = sum(bigrams_in_passage.values())
 
                 comparison_dict = Counter({})
 
@@ -121,14 +122,27 @@ def analyze_text():
                     book_bigrams = Counter(unpickle_data(dict_file))
                     comparison_dict += book_bigrams
 
+                corpus_denominator = sum(comparison_dict.values())
+
                 comparison_results = {}
 
                 for bigram in bigrams_in_passage:
-                    appearances = comparison_dict.get(bigram, 0)
-                    comparison_results[bigram] = appearances
+                    passage_appearances = bigrams_in_passage[bigram]
+                    passage_frequency = round((bigrams_in_passage[bigram] / passage_denominator *100), 4)
+                    corpus_appearances = comparison_dict.get(bigram, 0)
+                    corpus_frequency = round((corpus_appearances / corpus_denominator * 100), 4)
 
-                return render_template("bigrams_results.html", bigrams_in_passage=bigrams_in_passage, 
-                    comparison_results=comparison_results, decade=decade)
+                    try:
+                        ratio = passage_frequency / corpus_frequency
+
+                    except ZeroDivisionError:
+                        ratio = "Bigram not in corpus"
+
+                    comparison_results[bigram] = (passage_appearances, corpus_appearances, 
+                        passage_frequency, corpus_frequency, ratio)
+                        
+
+                return render_template("bigrams_results.html", comparison_results=comparison_results, decade=decade)
 
 
 if __name__ == "__main__":
