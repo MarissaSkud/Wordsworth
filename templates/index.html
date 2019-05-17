@@ -16,9 +16,9 @@ Please input a sample (2500 characters or less) of the text you want to analyze
     <input type="radio" name="analysis-type" value="bigrams">Bigrams
     <br>
     Which decade would you like to compare this text to? <br>
-    <select>
+    <select name="decade">
         {% for decade in decades %}
-        <option name="decade" value="{{} decade }}">{{ decade }}</option>
+        <option name="{{ decade }}" value="{{ decade }}">{{ decade }}</option>
         {% endfor %}
     </select>
     <input type="submit" name="submit">

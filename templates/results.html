@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-RESULTS GO HERE
+The following words in your text do not appear in our corpus of texts from the {{ decade }}:
+
+<ul>
+{% for word in anachronistic_words %}
+<li>{{word}}</li>
+{% endfor %}
+</ul>
 
 {% endblock %}
