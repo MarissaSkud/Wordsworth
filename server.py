@@ -8,31 +8,54 @@ from model import Decade, Country, Book, connect_to_db, db
 import re
 import pickle
 
+from collections import Counter
+
+
 app = Flask(__name__)
 
 app.secret_key = "ABC"
 app.jinja_env.undefined = StrictUndefined
 
 
-def remove_irrelevant_characters(text_string):
+def remove_irrelevant_characters(textstring):
     '''Removes commas, colons, semicolons, parentheses, double quotes, underscores, and
     asterisks from text. Replaces long dashes with a single space.'''
 
-    text_string = re.sub(",|;|\*|_|\"|\(|\)|:|\”|\“", "", text_string)
-    text_string = text_string.replace("—", " ")
-    return text_string.replace("--", " ")
+    textstring = re.sub(",|;|\*|_|\"|\(|\)|:|\”|\“", "", textstring)
+    textstring = textstring.replace("—", " ")
+    return textstring.replace("--", " ")
 
 
-def make_unique_word_set(text_string):
+def make_unique_word_set(textstring):
     '''Removes all other punctuation and capitalization from string and returns set of unique words.'''
 
-    text_string = re.sub("\.|\?|\!|…", "", text_string)
-    text_string = text_string.lower()
-    split_string = text_string.split()
+    textstring = re.sub("\.|\?|\!|…", "", text_string)
+    textstring = text_string.lower()
+    split_string = textstring.split()
 
     word_set = set(split_string)
 
     return word_set
+
+
+def make_bigrams_and_frequencies(textstring):
+    '''Returns dictionary of bigrams and their frequencies.'''
+
+    split_string = textstring.split()
+
+    bigram_frequencies = {}
+
+    for i in range(0, (len(split_string)-1)):
+        bigram = (split_string[i], split_string[i+1])
+
+        if bigram in bigram_frequencies:
+            bigram_frequencies[bigram] += 1
+
+        else:
+            bigram_frequencies[bigram] = 1
+
+    return bigram_frequencies
+
 
 
 def unpickle_data(filename):
@@ -55,11 +78,6 @@ def show_methodology():
     return render_template("methodology.html")
 
 
-# @app.route('/results')
-# def see_results():
-#     return render_template("results.html", anachronistic_words=anachronistic_words, decade=decade)
-
-
 @app.route('/process-text')
 def analyze_text():
     textstring = remove_irrelevant_characters(request.args["textstring"])
@@ -72,7 +90,7 @@ def analyze_text():
     else:
 
         if request.args["analysis-type"] == "words":
-            word_set = make_unique_word_set(textstring)
+            words_in_passage = make_unique_word_set(textstring)
 
             comparison_set = set()
 
@@ -81,19 +99,36 @@ def analyze_text():
                 book_words = unpickle_data(wordset_file)
                 comparison_set.update(book_words)
 
-            anachronistic_words = word_set - comparison_set
+            anachronistic_words = words_in_passage - comparison_set
             anachronistic_words = sorted(list(anachronistic_words))
 
             if anachronistic_words == []:
-                return render_template("results.html", decade=decade)
+                return render_template("words_results.html", decade=decade)
 
             else:
-                return render_template("results.html", anachronistic_words=anachronistic_words, decade=decade)
+                return render_template("words_results.html", anachronistic_words=anachronistic_words, 
+                    decade=decade)
 
         else:
-            pass
+            
+            if request.args["analysis-type"] == "bigrams":
+                bigrams_in_passage = make_bigrams_and_frequencies(textstring)
 
-        return redirect("/results")
+                comparison_dict = Counter({})
+
+                for book in books_from_decade:
+                    dict_file = book.bigram_dict
+                    book_bigrams = Counter(unpickle_data(dict_file))
+                    comparison_dict += book_bigrams
+
+                comparison_results = {}
+
+                for bigram in bigrams_in_passage:
+                    appearances = comparison_dict.get(bigram, 0)
+                    comparison_results[bigram] = appearances
+
+                return render_template("bigrams_results.html", bigrams_in_passage=bigrams_in_passage, 
+                    comparison_results=comparison_results, decade=decade)
 
 
 if __name__ == "__main__":

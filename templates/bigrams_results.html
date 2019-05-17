@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<table>
+    <tr>
+    <th>Bigram</th>
+    <th>Appearances in Your Passage</th>
+    <th>Appearances in {{ decade }} Corpus</th>
+  </tr>
+  {% for bigram in bigrams_in_passage %}
+    <tr>
+    <td>{{ bigram }}</td>
+    <td>{{ bigrams_in_passage[bigram] }}</td>
+    <td>{{ comparison_results[bigram] }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}
