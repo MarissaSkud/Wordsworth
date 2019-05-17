@@ -8,3 +8,4 @@ North & South|1854|UK|1850s|word_sets/book7_set.pickle|bigram_dicts/book7_dict.p
 A Room With a View|1908|UK|1900s|word_sets/book8_set.pickle|bigram_dicts/book8_dict.pickle
 Howards End|1910|UK|1910s|word_sets/book9_set.pickle|bigram_dicts/book9_dict.pickle
 Jane Eyre|1848|UK|1840s|word_sets/book10_set.pickle|bigram_dicts/book10_dict.pickle
+The House of Mirth|1905|USA|1900s|word_sets/book11_set.pickle|bigram_dicts/book11_dict.pickle

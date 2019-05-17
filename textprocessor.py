@@ -15,7 +15,7 @@ def pickle_data(filename, dataset):
     pickle.dump(dataset, outfile)
     outfile.close()
 
-text = remove_irrelevant_characters(open_and_read_file("full_texts/book10_full.txt"))
+text = remove_irrelevant_characters(open_and_read_file("full_texts/book11_full.txt"))
 
-pickle_data("word_sets/book10_set.pickle", make_unique_word_set(text))
-pickle_data("bigram_dicts/book10_dict.pickle", make_bigrams_and_frequencies(text))
+pickle_data("word_sets/book11_set.pickle", make_unique_word_set(text))
+pickle_data("bigram_dicts/book11_dict.pickle", make_bigrams_and_frequencies(text))
