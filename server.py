@@ -50,6 +50,10 @@ def index():
 
     return render_template("index.html", decades=formatted_decades)
 
+@app.route("/methodology")
+def show_methodology():
+    return render_template("methodology.html")
+
 
 # @app.route('/results')
 # def see_results():
