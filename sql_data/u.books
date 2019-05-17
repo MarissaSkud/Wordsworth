@@ -6,3 +6,4 @@ Emma|1815|UK|1810s|word_sets/book5_set.pickle|bigram_dicts/book5_dict.pickle
 Mansfield Park|1814|UK|1810s|word_sets/book6_set.pickle|bigram_dicts/book6_dict.pickle
 North & South|1854|UK|1850s|word_sets/book7_set.pickle|bigram_dicts/book7_dict.pickle
 A Room With a View|1908|UK|1900s|word_sets/book8_set.pickle|bigram_dicts/book8_dict.pickle
+Howards End|1910|UK|1910sword_sets/book9_set.pickle|bigram_dicts/book9_dict.pickle

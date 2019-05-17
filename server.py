@@ -29,8 +29,8 @@ def remove_irrelevant_characters(textstring):
 def make_unique_word_set(textstring):
     '''Removes all other punctuation and capitalization from string and returns set of unique words.'''
 
-    textstring = re.sub("\.|\?|\!|…", "", text_string)
-    textstring = text_string.lower()
+    textstring = re.sub("\.|\?|\!|…", "", textstring)
+    textstring = textstring.lower()
     split_string = textstring.split()
 
     word_set = set(split_string)
@@ -59,7 +59,7 @@ def make_bigrams_and_frequencies(textstring):
 
 
 def unpickle_data(filename):
-    infile = open(filename, 'rb')
+    infile = open(filename, "rb")
     unpacked = pickle.load(infile)
     infile.close()
     return unpacked
@@ -138,4 +138,4 @@ if __name__ == "__main__":
     connect_to_db(app)
     DebugToolbarExtension(app)
 
-    app.run(port=5000, host='0.0.0.0')
+    app.run(port=5000, host="0.0.0.0")

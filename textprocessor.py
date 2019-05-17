@@ -11,11 +11,11 @@ def open_and_read_file(file_path):
 
 
 def pickle_data(filename, dataset):
-    outfile = open(filename, 'wb')
+    outfile = open(filename, "wb")
     pickle.dump(dataset, outfile)
     outfile.close()
 
-text = remove_irrelevant_characters(open_and_read_file("full_texts/book8_full.txt"))
+text = remove_irrelevant_characters(open_and_read_file("full_texts/book9_full.txt"))
 
-pickle_data('word_sets/book8_set.pickle', make_unique_word_set(text))
-pickle_data('bigram_dicts/book8_dict.pickle', make_bigrams_and_frequencies(text))
+pickle_data("word_sets/book9_set.pickle", make_unique_word_set(text))
+pickle_data("bigram_dicts/book9_dict.pickle", make_bigrams_and_frequencies(text))
