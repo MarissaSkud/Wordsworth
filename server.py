@@ -78,6 +78,12 @@ def show_methodology():
     return render_template("methodology.html")
 
 
+@app.route("/corpus")
+def show_corpus():
+    books = db.session.query(Book.title, Book.country, Book.pub_year).order_by(Book.pub_year).all()
+    return render_template("our_corpus.html", books=books)
+
+
 @app.route('/process-text')
 def analyze_text():
     textstring = remove_irrelevant_characters(request.args["textstring"])

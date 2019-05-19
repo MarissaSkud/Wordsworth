@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+Currently, our corpus consists of the following texts:
+<br>
+<br>
+<table>
+    <thead>
+    <tr>
+    <th>Title</th>
+    <th>Country</th>
+    <th>Published</th>
+</tr>
+  </thead>
+  {% for book in books %}
+    <tr>
+    <td>{{ book[0] }}</td>
+    <td>{{ book[1] }}</td>
+    <td>{{ book[2] }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+{% endblock %}
