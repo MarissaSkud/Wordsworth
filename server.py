@@ -64,6 +64,20 @@ def unpickle_data(filename):
     return unpacked
 
 
+def compare_single_words(passage, books_from_decade):
+    words_in_passage = make_unique_word_set(passage)
+
+    comparison_set = set()
+
+    for book in books_from_decade:
+        wordset_file = book.word_set
+        book_words = unpickle_data(wordset_file)
+        comparison_set.update(book_words)
+
+    anachronistic_words = words_in_passage - comparison_set
+    return sorted(list(anachronistic_words))
+
+
 @app.route('/')
 def index():
     """Homepage."""
@@ -96,17 +110,8 @@ def analyze_text():
     else:
 
         if request.args["analysis-type"] == "words":
-            words_in_passage = make_unique_word_set(textstring)
 
-            comparison_set = set()
-
-            for book in books_from_decade:
-                wordset_file = book.word_set
-                book_words = unpickle_data(wordset_file)
-                comparison_set.update(book_words)
-
-            anachronistic_words = words_in_passage - comparison_set
-            anachronistic_words = sorted(list(anachronistic_words))
+            anachronistic_words = compare_single_words(textstring, books_from_decade)
 
             if anachronistic_words == []:
                 return render_template("words_results.html", decade=decade)
