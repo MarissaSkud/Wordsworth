@@ -63,7 +63,7 @@ def unpickle_data(filename):
     return unpacked
 
 
-def compare_single_words(passage, books_from_decade):
+def compare_single_words(passage, books_from_decade, words_to_ignore):
     words_in_passage = make_unique_word_set(passage)
 
     comparison_set = set()
@@ -73,7 +73,7 @@ def compare_single_words(passage, books_from_decade):
         book_words = unpickle_data(wordset_file)
         comparison_set.update(book_words)
 
-    anachronistic_words = words_in_passage - comparison_set
+    anachronistic_words = words_in_passage - words_to_ignore - comparison_set
     return sorted(list(anachronistic_words))
 
 
@@ -133,6 +133,8 @@ def show_corpus():
 @app.route('/process-text')
 def analyze_text():
     textstring = remove_irrelevant_characters(request.args["textstring"])
+    words_to_ignore = make_unique_word_set(remove_irrelevant_characters(request.args["ignore"]))
+
     decade = request.args["decade"]
     books_from_decade = Book.query.filter_by(decade=decade).all()
 
@@ -143,7 +145,7 @@ def analyze_text():
 
         if request.args["analysis-type"] == "words":
 
-            anachronistic_words = compare_single_words(textstring, books_from_decade)
+            anachronistic_words = compare_single_words(textstring, books_from_decade, words_to_ignore)
 
             if anachronistic_words == []:
                 return render_template("words_results.html", decade=decade)
@@ -155,7 +157,6 @@ def analyze_text():
         if request.args["analysis-type"] == "bigrams":
 
             comparison_results = compare_bigrams(textstring, books_from_decade)
-            
             return render_template("bigrams_results.html", comparison_results=comparison_results, decade=decade)
 
 

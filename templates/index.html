@@ -3,12 +3,16 @@
 
 Welcome to the anachronism finder
 <br>
-Please input a sample (2500 characters or less) of the text you want to analyze
+Please input a sample (2500 characters or less) of the text you want to analyze.
 <br>
 
 <form action="/process-text" method="GET">
     <textarea maxlength="2500" rows="7" cols="50" name="textstring">
     </textarea>
+    <br>
+    Are there any words you want the app to ignore? (e.g., character names). List them here.
+    <br>
+    <textarea name="ignore" maxlength="300" rows="3" cols="50"> </textarea> 
     <br>
     Would you like to analyze words or bigrams?
     <br>
