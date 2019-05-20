@@ -50,7 +50,6 @@ def make_bigrams_and_frequencies(textstring):
 
         if bigram in bigram_frequencies:
             bigram_frequencies[bigram] += 1
-
         else:
             bigram_frequencies[bigram] = 1
 
@@ -76,6 +75,39 @@ def compare_single_words(passage, books_from_decade):
 
     anachronistic_words = words_in_passage - comparison_set
     return sorted(list(anachronistic_words))
+
+
+def compare_bigrams(passage, books_from_decade):
+    bigrams_in_passage = make_bigrams_and_frequencies(passage)
+    passage_denominator = sum(bigrams_in_passage.values())
+
+    comparison_dict = Counter({})
+
+    for book in books_from_decade:
+        dict_file = book.bigram_dict
+        book_bigrams = Counter(unpickle_data(dict_file))
+        comparison_dict += book_bigrams
+
+    corpus_denominator = sum(comparison_dict.values())
+
+    comparison_results = {}
+
+    for bigram in bigrams_in_passage:
+        passage_appearances = bigrams_in_passage[bigram]
+        passage_frequency = round((bigrams_in_passage[bigram] / passage_denominator *100), 4)
+        corpus_appearances = comparison_dict.get(bigram, 0)
+        corpus_frequency = round((corpus_appearances / corpus_denominator * 100), 4)
+
+        try:
+            ratio = passage_frequency / corpus_frequency
+
+        except ZeroDivisionError:
+            ratio = "Bigram not in corpus"
+
+        comparison_results[bigram] = (passage_appearances, corpus_appearances, 
+            passage_frequency, corpus_frequency, ratio)
+
+    return comparison_results
 
 
 @app.route('/')
@@ -120,40 +152,11 @@ def analyze_text():
                 return render_template("words_results.html", anachronistic_words=anachronistic_words, 
                     decade=decade)
 
-        else:
+        if request.args["analysis-type"] == "bigrams":
+
+            comparison_results = compare_bigrams(textstring, books_from_decade)
             
-            if request.args["analysis-type"] == "bigrams":
-                bigrams_in_passage = make_bigrams_and_frequencies(textstring)
-                passage_denominator = sum(bigrams_in_passage.values())
-
-                comparison_dict = Counter({})
-
-                for book in books_from_decade:
-                    dict_file = book.bigram_dict
-                    book_bigrams = Counter(unpickle_data(dict_file))
-                    comparison_dict += book_bigrams
-
-                corpus_denominator = sum(comparison_dict.values())
-
-                comparison_results = {}
-
-                for bigram in bigrams_in_passage:
-                    passage_appearances = bigrams_in_passage[bigram]
-                    passage_frequency = round((bigrams_in_passage[bigram] / passage_denominator *100), 4)
-                    corpus_appearances = comparison_dict.get(bigram, 0)
-                    corpus_frequency = round((corpus_appearances / corpus_denominator * 100), 4)
-
-                    try:
-                        ratio = passage_frequency / corpus_frequency
-
-                    except ZeroDivisionError:
-                        ratio = "Bigram not in corpus"
-
-                    comparison_results[bigram] = (passage_appearances, corpus_appearances, 
-                        passage_frequency, corpus_frequency, ratio)
-                        
-
-                return render_template("bigrams_results.html", comparison_results=comparison_results, decade=decade)
+            return render_template("bigrams_results.html", comparison_results=comparison_results, decade=decade)
 
 
 if __name__ == "__main__":
