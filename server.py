@@ -77,46 +77,28 @@ def compare_single_words(passage, books_from_decade, words_to_ignore):
     return sorted(list(anachronistic_words))
 
 
-def compare_bigrams(passage, books_from_decade):
-    bigrams_in_passage = make_bigrams_and_frequencies(passage)
-    passage_denominator = sum(bigrams_in_passage.values())
+def format_decades():
 
-    comparison_dict = Counter({})
-
-    for book in books_from_decade:
-        dict_file = book.bigram_dict
-        book_bigrams = Counter(unpickle_data(dict_file))
-        comparison_dict += book_bigrams
-
-    corpus_denominator = sum(comparison_dict.values())
-
-    comparison_results = {}
-
-    for bigram in bigrams_in_passage:
-        passage_appearances = bigrams_in_passage[bigram]
-        passage_frequency = round((bigrams_in_passage[bigram] / passage_denominator *100), 4)
-        corpus_appearances = comparison_dict.get(bigram, 0)
-        corpus_frequency = round((corpus_appearances / corpus_denominator * 100), 4)
-
-        try:
-            ratio = passage_frequency / corpus_frequency
-
-        except ZeroDivisionError:
-            ratio = "Bigram not in corpus"
-
-        comparison_results[bigram] = (passage_appearances, corpus_appearances, 
-            passage_frequency, corpus_frequency, ratio)
-
-    return comparison_results
+    decades = db.session.query(Decade.decade).all()
+    return [decade[0] for decade in decades]
 
 
 @app.route('/')
 def index():
     """Homepage."""
-    decades = db.session.query(Decade.decade).all()
-    formatted_decades = [decade[0] for decade in decades]
+    return render_template("index.html")
 
-    return render_template("index.html", decades=formatted_decades)
+
+@app.route("/word-search")
+def search_for_words():
+
+    return render_template("word_search.html", decades=format_decades())
+
+
+@app.route("/bigram-search")
+def search_for_bigrams():
+
+    return render_template("bigram_search.html", decades=format_decades())
 
 
 @app.route("/methodology")
@@ -130,8 +112,8 @@ def show_corpus():
     return render_template("our_corpus.html", books=books)
 
 
-@app.route('/process-text')
-def analyze_text():
+@app.route('/words-results')
+def analyze_words():
     textstring = remove_irrelevant_characters(request.args["textstring"])
     words_to_ignore = make_unique_word_set(remove_irrelevant_characters(request.args["ignore"]))
 
@@ -143,21 +125,44 @@ def analyze_text():
 
     else:
 
-        if request.args["analysis-type"] == "words":
+        anachronistic_words = compare_single_words(textstring, books_from_decade, words_to_ignore)
 
-            anachronistic_words = compare_single_words(textstring, books_from_decade, words_to_ignore)
+        if anachronistic_words == []:
+            return render_template("words_results.html", decade=decade)
 
-            if anachronistic_words == []:
-                return render_template("words_results.html", decade=decade)
-
-            else:
-                return render_template("words_results.html", anachronistic_words=anachronistic_words, 
+        else:
+            return render_template("words_results.html", anachronistic_words=anachronistic_words, 
                     decade=decade)
 
-        if request.args["analysis-type"] == "bigrams":
 
-            comparison_results = compare_bigrams(textstring, books_from_decade)
-            return render_template("bigrams_results.html", comparison_results=comparison_results, decade=decade)
+@app.route('/bigram-results')
+def analyze_bigram():
+    bigram = remove_irrelevant_characters(request.args["bigram"]).split()
+    bigram = (bigram[0], bigram[1])
+    decade = request.args["decade"]
+
+    books_from_decade = Book.query.filter_by(decade=decade).all()
+
+    if books_from_decade == []:
+        return render_template("no-corpus.html", decade=decade)
+
+    else:
+
+        comparison_dict = Counter({})
+
+        for book in books_from_decade:
+            dict_file = book.bigram_dict
+            book_bigrams = Counter(unpickle_data(dict_file))
+            comparison_dict += book_bigrams
+
+        corpus_total = sum(comparison_dict.values())
+
+        corpus_appearances = comparison_dict.get(bigram, 0)
+
+        return render_template("bigrams_results.html", decade=decade, 
+            corpus_appearances=corpus_appearances, corpus_total=corpus_total,
+            bigram=bigram)
+
 
 
 if __name__ == "__main__":

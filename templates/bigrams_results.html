@@ -1,34 +1,14 @@
-<!doctype html>
-<html>
-<head>
-    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
 
-<table class="sortable">
-    <thead>
-    <tr>
-    <th>Bigram</th>
-    <th>Appearances in Your Passage</th>
-    <th>Appearances in {{ decade }} Corpus</th>
-    <th>Frequency in Your Passage</th>
-    <th>Frequency in {{ decade }} Corpus </th>
-    <th>Ratio, Modern:Corpus</th>
-</tr>
-  </thead>
-  {% for bigram in comparison_results %}
-    <tr>
-    <td>{{ bigram }}</td>
-    <td>{{ comparison_results[bigram][0] }}</td>
-    <td>{{ comparison_results[bigram][1] }}</td>
-    <td>{{ comparison_results[bigram][2] }}</td>
-    <td>{{ comparison_results[bigram][3] }}</td>
-    <td>{{ comparison_results[bigram][4] }}</td>
-  </tr>
-  {% endfor %}
-</table>
+{% if corpus_appearances == 0 %}
 
-<a href="/">Analyze another passage</a> 
+Possible anachronism alert! The phrase "{{ bigram }}" does not appear at all in our corpus of texts from the {{ decade }}.
 
-</body>
-</html>
+{% else %}
+
+The phrase "{{ bigram }}" appears {{ corpus_appearances }} times in our corpus of texts from the {{ decade }}, out of {{ corpus_total }} total bigrams in corpus.
+
+{% endif %}
+
+{% endblock %}

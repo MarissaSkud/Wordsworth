@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+This is intended to show you the number of times a single bigram (two-word phrase) appears in the corpus of the selected decade.
+<br>
+<br>
+
+<form action="/bigram-results" method="GET">
+    Please input a bigram (two-word phrase)
+    <br>
+    <input type="text" name="bigram" maxlength="100">
+    <br>
+    Which decade would you like to search for this phrase in? <br>
+    <select name="decade">
+        {% for decade in decades %}
+        <option name="{{ decade }}" value="{{ decade }}">{{ decade }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <input type="submit" name="submit">
+</form>
+<br>
+
+{% endblock %}
