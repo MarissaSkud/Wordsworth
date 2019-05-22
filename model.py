@@ -47,7 +47,7 @@ class Book(db.Model):
 def connect_to_db(app):
     """Connect the database to our Flask app."""
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///source_texts'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///source_texts'
     app.config['SQLALCHEMY_ECHO'] = False
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app
