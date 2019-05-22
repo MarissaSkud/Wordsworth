@@ -1,8 +1,9 @@
 import re
 import pickle
 
-from server import (make_unique_word_set, remove_irrelevant_characters, 
-    make_bigrams_and_frequencies, unpickle_data)
+from datetime import datetime
+
+from server import (make_unique_word_set, make_bigram_freq_dict, unpickle_data)
 
 def open_and_read_file(file_path):
 
@@ -15,7 +16,8 @@ def pickle_data(filename, dataset):
     pickle.dump(dataset, outfile)
     outfile.close()
 
-text = remove_irrelevant_characters(open_and_read_file("full_texts/book11_full.txt"))
 
-pickle_data("word_sets/book11_set.pickle", make_unique_word_set(text))
-pickle_data("bigram_dicts/book11_dict.pickle", make_bigrams_and_frequencies(text))
+text = open_and_read_file("full_texts/book1_full.txt")
+
+pickle_data("word_sets/book1_set.pickle", make_unique_word_set(text))
+pickle_data("bigram_dicts/book1_dict.pickle", make_bigram_freq_dict(text))

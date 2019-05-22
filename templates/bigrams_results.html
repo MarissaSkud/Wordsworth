@@ -7,7 +7,7 @@ Possible anachronism alert! The phrase "{{ bigram }}" does not appear at all in 
 
 {% else %}
 
-The phrase "{{ bigram }}" appears {{ corpus_appearances }} times in our corpus of texts from the {{ decade }}, out of {{ corpus_total }} total bigrams in corpus.
+The phrase "{{ bigram }}" appears {{ corpus_appearances }} times in our corpus of texts from the {{ decade }}, out of  {{ corpus_unique_bigrams}} unique bigrams and {{ corpus_total }} total bigrams in that decade's corpus.
 
 {% endif %}
 

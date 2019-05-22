@@ -8,6 +8,8 @@ from model import Decade, Country, Book, connect_to_db, db
 import re
 import pickle
 
+import nltk
+
 from collections import Counter
 
 
@@ -17,19 +19,11 @@ app.secret_key = "ABC"
 app.jinja_env.undefined = StrictUndefined
 
 
-def remove_irrelevant_characters(textstring):
-    '''Removes commas, colons, semicolons, parentheses, double quotes, underscores, and
-    asterisks from text. Replaces long dashes with a single space.'''
-
-    textstring = re.sub(",|;|\*|_|\"|\(|\)|:|\”|\“", "", textstring)
-    textstring = textstring.replace("—", " ")
-    return textstring.replace("--", " ")
-
-
 def make_unique_word_set(textstring):
-    '''Removes all other punctuation and capitalization from string and returns set of unique words.'''
+    '''Remove all punctuation & capitalization from string and return set of unique words.'''
 
-    textstring = re.sub("\.|\?|\!|…", "", textstring)
+    textstring = re.sub("\.|\?|\!|…|,|;|\*|_|\"|\(|\)|:|\”|\“", "", textstring)
+    textstring = re.sub("--|—", " ", textstring)
     textstring = textstring.lower()
     split_string = textstring.split()
 
@@ -38,20 +32,24 @@ def make_unique_word_set(textstring):
     return word_set
 
 
-def make_bigrams_and_frequencies(textstring):
-    '''Returns dictionary of bigrams and their frequencies.'''
+def make_bigram_freq_dict(textstring):
+    '''Create punctuation-aware dictionary of bigrams and their frequencies'''
 
-    split_string = textstring.split()
+    textstring = re.sub('_|\*|\”|\“|\"', "", textstring)
+    textstring = re.sub("--|—", " ", textstring)
+    text_tokens = nltk.word_tokenize(textstring)
+    text_bigrams = list(nltk.bigrams(text_tokens))
 
     bigram_frequencies = {}
 
-    for i in range(0, (len(split_string)-1)):
-        bigram = (split_string[i], split_string[i+1])
-
-        if bigram in bigram_frequencies:
-            bigram_frequencies[bigram] += 1
+    for bigram in text_bigrams:
+        if not bigram[0].isalpha() or not bigram[1].isalpha():
+            text_bigrams.remove(bigram)
         else:
-            bigram_frequencies[bigram] = 1
+            if bigram in bigram_frequencies:
+                bigram_frequencies[bigram] += 1
+            else:
+                bigram_frequencies[bigram] = 1
 
     return bigram_frequencies
 
@@ -64,6 +62,8 @@ def unpickle_data(filename):
 
 
 def compare_single_words(passage, books_from_decade, words_to_ignore):
+    '''Find words in user's passage that are not in comparison set of words'''
+
     words_in_passage = make_unique_word_set(passage)
 
     comparison_set = set()
@@ -114,8 +114,8 @@ def show_corpus():
 
 @app.route('/words-results')
 def analyze_words():
-    textstring = remove_irrelevant_characters(request.args["textstring"])
-    words_to_ignore = make_unique_word_set(remove_irrelevant_characters(request.args["ignore"]))
+    textstring = request.args["textstring"]
+    words_to_ignore = make_unique_word_set(request.args["ignore"])
 
     decade = request.args["decade"]
     books_from_decade = Book.query.filter_by(decade=decade).all()
@@ -137,7 +137,7 @@ def analyze_words():
 
 @app.route('/bigram-results')
 def analyze_bigram():
-    bigram = remove_irrelevant_characters(request.args["bigram"]).split()
+    bigram = request.args["bigram"].split()
     bigram = (bigram[0], bigram[1])
     decade = request.args["decade"]
 
@@ -155,13 +155,14 @@ def analyze_bigram():
             book_bigrams = Counter(unpickle_data(dict_file))
             comparison_dict += book_bigrams
 
+        corpus_unique_bigrams = len(comparison_dict)
         corpus_total = sum(comparison_dict.values())
 
         corpus_appearances = comparison_dict.get(bigram, 0)
 
         return render_template("bigrams_results.html", decade=decade, 
             corpus_appearances=corpus_appearances, corpus_total=corpus_total,
-            bigram=bigram)
+            bigram=bigram, corpus_unique_bigrams=corpus_unique_bigrams)
 
 
 
