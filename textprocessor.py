@@ -17,7 +17,7 @@ def pickle_data(filename, dataset):
     outfile.close()
 
 
-text = open_and_read_file("full_texts/book11_full.txt")
+text = open_and_read_file("full_texts/book2_full.txt")
 
-pickle_data("word_sets/book11_set.pickle", make_unique_word_set(text))
-pickle_data("bigram_dicts/book11_dict.pickle", make_bigram_freq_dict(text))
+pickle_data("word_sets/book2_set.pickle", make_unique_word_set(text))
+pickle_data("bigram_dicts/book2_dict.pickle", make_bigram_freq_dict(text))
