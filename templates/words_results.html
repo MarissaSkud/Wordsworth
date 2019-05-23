@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% if anachronistic_words is defined %}
+{% if anachronistic_words == [] %}
+
+No anachronisms found. All words in your text appear in our corpus of texts from the {{ decade }}.
+
+{% else %}
 
 The following words in your text do not appear in our corpus of texts from the {{ decade }}:
 
@@ -11,9 +15,6 @@ The following words in your text do not appear in our corpus of texts from the {
 {% endfor %}
 </ul>
 
-{% else %}
-
-No anachronisms found. All words in your text appear in our corpus of texts from the {{ decade }}.
 
 {% endif %}
 

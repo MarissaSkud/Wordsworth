@@ -8,28 +8,15 @@ from model import Decade, Country, Book, connect_to_db, db
 import re
 import pickle
 
-import nltk
-
 from collections import Counter
+
+from textprocessor import make_unique_word_set
 
 
 app = Flask(__name__)
 
 app.secret_key = "ABC"
 app.jinja_env.undefined = StrictUndefined
-
-
-def make_unique_word_set(textstring):
-    '''Remove all punctuation & capitalization from string and return set of unique words.'''
-
-    textstring = re.sub("\.|\?|\!|…|,|;|\*|_|\"|\(|\)|:|\”|\“|\‘", "", textstring)
-    textstring = re.sub("--|—", " ", textstring)
-    textstring = textstring.lower()
-    split_string = textstring.split()
-
-    word_set = set(split_string)
-
-    return word_set
 
 
 def unpickle_data(filename):
@@ -39,6 +26,8 @@ def unpickle_data(filename):
     unpacked = pickle.load(infile)
     infile.close()
     return unpacked
+
+    #add try/except for things like if filename is wrong
 
 
 def compare_single_words(passage, books_from_decade, words_to_ignore):
@@ -55,6 +44,8 @@ def compare_single_words(passage, books_from_decade, words_to_ignore):
 
     anachronistic_words = words_in_passage - words_to_ignore - comparison_set
     return sorted(list(anachronistic_words))
+
+    #look into mocking the results from make_unique_word_set & unpickle_data
 
 
 def format_decades():
@@ -104,16 +95,18 @@ def analyze_words():
         return render_template("no-corpus.html", decade=decade)
 
     else:
+        anachronistic_words = compare_single_words(textstring, books_from_decade, 
+                                words_to_ignore)
+        return render_template("words_results.html", 
+                anachronistic_words=anachronistic_words,  decade=decade)
 
-        anachronistic_words = compare_single_words(textstring, books_from_decade, words_to_ignore)
+#needs exception handling -- what if textstring is empty & ignore is not?
+#libraries for logging exceptions & also usage stats. or does Flask have a logfile it's creating?
+#needs server-side validation to make sure that the textstring is <2500 chars
+#needs handling to avoid SQL injection on the decades table
+#server-side validation to make sure people can't hack my API
 
-        if anachronistic_words == []:
-            return render_template("words_results.html", decade=decade)
-
-        else:
-            return render_template("words_results.html", anachronistic_words=anachronistic_words, 
-                    decade=decade)
-
+#try Pycharm
 
 @app.route('/bigram-results')
 def analyze_bigram():
@@ -139,12 +132,15 @@ def analyze_bigram():
         corpus_total = sum(comparison_dict.values())
 
         corpus_appearances = comparison_dict.get(bigram, 0)
+        #default to 0 if bigram does not appear in corpus
 
         return render_template("bigrams_results.html", decade=decade, 
             corpus_appearances=corpus_appearances, corpus_total=corpus_total,
             bigram=bigram, corpus_unique_bigrams=corpus_unique_bigrams)
 
-
+#also need some try-excepts or if-elses to make sure that request.args["bigram"] was given and throw error if not (and log it!)
+#add comments for "magical" things like the default to 0 in above function
+#size of my data -- if it gets really large & I do web scraping or something, good to talk about with employers
 
 if __name__ == "__main__":
     app.debug = True

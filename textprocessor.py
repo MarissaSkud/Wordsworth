@@ -1,9 +1,9 @@
 import re
 import pickle
+import nltk
 
 from datetime import datetime
 
-from server import make_unique_word_set, unpickle_data
 
 def open_and_read_file(file_path):
 
@@ -15,6 +15,23 @@ def pickle_data(filename, dataset):
     outfile = open(filename, "wb")
     pickle.dump(dataset, outfile)
     outfile.close()
+
+
+def make_unique_word_set(textstring):
+    '''Remove all punctuation & capitalization from string and return set of unique words.'''
+
+    textstring = re.sub("\.|\?|\!|…|,|;|\*|_|\"|\(|\)|:|\”|\“|\‘", "", textstring)
+    textstring = re.sub("--|—", " ", textstring)
+    textstring = textstring.lower()
+    split_string = textstring.split()
+
+    word_set = set(split_string)
+
+    return word_set
+
+    #suggest putting the regexes in their own function for purposes of testing
+    #or is there a function to just remove punctuation? (but maybe regex is quicker--more performant)
+    #what if there is no input?
 
 
 def make_bigram_freq_dict(textstring):
@@ -39,7 +56,9 @@ def make_bigram_freq_dict(textstring):
     return bigram_frequencies
 
 
-text = open_and_read_file("full_texts/book2_full.txt")
+def prepare_texts():
+    for i in range(12, 13):
+        text = open_and_read_file(f"full_texts/book{i}_full.txt")
+        pickle_data(f"word_sets/book{i}_set.pickle", make_unique_word_set(text))
+        pickle_data(f"bigram_dicts/book{i}_dict.pickle", make_bigram_freq_dict(text))
 
-pickle_data("word_sets/book2_set.pickle", make_unique_word_set(text))
-pickle_data("bigram_dicts/book2_dict.pickle", make_bigram_freq_dict(text))

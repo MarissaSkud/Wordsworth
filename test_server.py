@@ -7,6 +7,7 @@ class TestFlaskRoutes(unittest.TestCase):
     """Test Flask routes."""
 
     def setUp(self):
+        
         self.client = server.app.test_client()
         connect_to_db(server.app)
 
@@ -31,11 +32,13 @@ class TestFlaskRoutes(unittest.TestCase):
 
 
     def test_show_corpus(self):
+
         result = self.client.get('/corpus')
         self.assertIn(b'Currently, our corpus', result.data)
 
 
     def test_show_methodology(self):
+
         result = self.client.get('/methodology')
         self.assertIn(b'Kowal', result.data)
 
