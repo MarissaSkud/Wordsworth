@@ -30,6 +30,16 @@ class TestFlaskRoutes(unittest.TestCase):
         self.assertIn(b'input a bigram', result.data)
 
 
+    def test_show_corpus(self):
+        result = self.client.get('/corpus')
+        self.assertIn(b'Currently, our corpus', result.data)
+
+
+    def test_show_methodology(self):
+        result = self.client.get('/methodology')
+        self.assertIn(b'Kowal', result.data)
+
+
 if __name__ == '__main__':
     unittest.main()
 

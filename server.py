@@ -22,7 +22,7 @@ app.jinja_env.undefined = StrictUndefined
 def make_unique_word_set(textstring):
     '''Remove all punctuation & capitalization from string and return set of unique words.'''
 
-    textstring = re.sub("\.|\?|\!|…|,|;|\*|_|\"|\(|\)|:|\”|\“", "", textstring)
+    textstring = re.sub("\.|\?|\!|…|,|;|\*|_|\"|\(|\)|:|\”|\“|\‘", "", textstring)
     textstring = re.sub("--|—", " ", textstring)
     textstring = textstring.lower()
     split_string = textstring.split()
@@ -32,29 +32,9 @@ def make_unique_word_set(textstring):
     return word_set
 
 
-def make_bigram_freq_dict(textstring):
-    '''Create punctuation-aware dictionary of bigrams and their frequencies'''
-
-    textstring = re.sub('_|\*|\”|\“|\"', "", textstring)
-    textstring = re.sub("--|—", " ", textstring)
-    text_tokens = nltk.word_tokenize(textstring)
-    text_bigrams = list(nltk.bigrams(text_tokens))
-
-    bigram_frequencies = {}
-
-    for bigram in text_bigrams:
-        if not bigram[0].isalpha() or not bigram[1].isalpha():
-            text_bigrams.remove(bigram)
-        else:
-            if bigram in bigram_frequencies:
-                bigram_frequencies[bigram] += 1
-            else:
-                bigram_frequencies[bigram] = 1
-
-    return bigram_frequencies
-
-
 def unpickle_data(filename):
+    '''Unpickle a file of a book's word data.'''
+
     infile = open(filename, "rb")
     unpacked = pickle.load(infile)
     infile.close()
