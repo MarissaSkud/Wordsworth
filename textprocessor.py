@@ -2,11 +2,7 @@ import re
 import pickle
 import nltk
 
-from datetime import datetime
-
-
 def open_and_read_file(file_path):
-
     with open(file_path) as data_file:
         return data_file.read()
 
