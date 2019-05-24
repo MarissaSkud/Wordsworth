@@ -85,24 +85,33 @@ def show_corpus():
 
 @app.route('/words-results')
 def analyze_words():
+    '''Compare user input to set of words from chosen decade & return anachronistic words.'''
+
     textstring = request.args["textstring"]
+
+    if textstring == "":
+        flash("REDIRECT: Input cannot be empty")
+        return redirect("/word-search")
+
     words_to_ignore = make_unique_word_set(request.args["ignore"])
+
+    if len(textstring) > 3000:
+        flash("REDIRECT: Input too long")
+        return redirect("/word-search")
 
     decade = request.args["decade"]
     books_from_decade = Book.query.filter_by(decade=decade).all()
 
     if books_from_decade == []:
-        return render_template("no-corpus.html", decade=decade)
+        return render_template("no_corpus.html", decade=decade)
 
     else:
         anachronistic_words = compare_single_words(textstring, books_from_decade, 
                                 words_to_ignore)
-        return render_template("words_results.html", 
+        return render_template("word_results.html", 
                 anachronistic_words=anachronistic_words,  decade=decade)
 
-#needs exception handling -- what if textstring is empty & ignore is not?
 #libraries for logging exceptions & also usage stats. or does Flask have a logfile it's creating?
-#needs server-side validation to make sure that the textstring is <2500 chars
 #needs handling to avoid SQL injection on the decades table
 #server-side validation to make sure people can't hack my API
 
@@ -111,13 +120,22 @@ def analyze_words():
 @app.route('/bigram-results')
 def analyze_bigram():
     bigram = request.args["bigram"].split()
+
+    if bigram == "":
+        flash("REDIRECT: Input cannot be empty")
+        return redirect("/bigram-search")
+
+    if len(bigram) > 100:
+        flash("REDIRECT: Input too long")
+        return redirect("/word-search")
+
     bigram = (bigram[0], bigram[1])
     decade = request.args["decade"]
 
     books_from_decade = Book.query.filter_by(decade=decade).all()
 
     if books_from_decade == []:
-        return render_template("no-corpus.html", decade=decade)
+        return render_template("no_corpus.html", decade=decade)
 
     else:
 
@@ -132,9 +150,8 @@ def analyze_bigram():
         corpus_total = sum(comparison_dict.values())
 
         corpus_appearances = comparison_dict.get(bigram, 0)
-        #default to 0 if bigram does not appear in corpus
 
-        return render_template("bigrams_results.html", decade=decade, 
+        return render_template("bigram_results.html", decade=decade, 
             corpus_appearances=corpus_appearances, corpus_total=corpus_total,
             bigram=bigram, corpus_unique_bigrams=corpus_unique_bigrams)
 
