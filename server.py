@@ -95,13 +95,20 @@ def analyze_words():
 
     words_to_ignore = make_unique_word_set(request.args["ignore"])
 
-    if len(textstring) > 3000:
+    if len(textstring) > 10000:
+        #10000 = 4 times 2500, the length limit on the text box in the HTML form.
+        #Textstring becomes > 2500 chars due to HTML encoding but is unlikely to
+        #ever expand to 4 times its size, hence 10000-char limit on URL.
+
         flash("REDIRECT: Input too long")
         return redirect("/word-search")
 
     decade = request.args["decade"]
-    books_from_decade = Book.query.filter_by(decade=decade).all()
+    if not decade.isalnum():
+        flash("REDIRECT: Invalid decade input")
+        return redirect("/word-search")
 
+    books_from_decade = Book.query.filter_by(decade=decade).all()
     if books_from_decade == []:
         return render_template("no_corpus.html", decade=decade)
 
@@ -124,13 +131,16 @@ def analyze_bigram():
     if bigram == "":
         flash("REDIRECT: Input cannot be empty")
         return redirect("/bigram-search")
-
-    if len(bigram) > 100:
+    elif len(bigram) > 200:
         flash("REDIRECT: Input too long")
-        return redirect("/word-search")
+        return redirect("/bigram-search")
+    else:
+        bigram = (bigram[0], bigram[1])
 
-    bigram = (bigram[0], bigram[1])
     decade = request.args["decade"]
+    if not decade.isalnum():
+        flash("REDIRECT: Invalid decade input")
+        return redirect("/bigram-search")
 
     books_from_decade = Book.query.filter_by(decade=decade).all()
 
@@ -146,17 +156,17 @@ def analyze_bigram():
             book_bigrams = Counter(unpickle_data(dict_file))
             comparison_dict += book_bigrams
 
-        corpus_unique_bigrams = len(comparison_dict)
-        corpus_total = sum(comparison_dict.values())
+        corpus_unique_bigrams = "{:,}".format(len(comparison_dict))
+        corpus_total = "{:,}".format(sum(comparison_dict.values()))
 
         corpus_appearances = comparison_dict.get(bigram, 0)
+        #Will set corpus_appearances to 0 if bigram not in dictionary
 
         return render_template("bigram_results.html", decade=decade, 
             corpus_appearances=corpus_appearances, corpus_total=corpus_total,
             bigram=bigram, corpus_unique_bigrams=corpus_unique_bigrams)
 
 #also need some try-excepts or if-elses to make sure that request.args["bigram"] was given and throw error if not (and log it!)
-#add comments for "magical" things like the default to 0 in above function
 #size of my data -- if it gets really large & I do web scraping or something, good to talk about with employers
 
 if __name__ == "__main__":
