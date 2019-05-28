@@ -9,3 +9,6 @@ A Room With a View|1908|UK|1900s|word_sets/book8_set.pickle|bigram_dicts/book8_d
 Howards End|1910|UK|1910s|word_sets/book9_set.pickle|bigram_dicts/book9_dict.pickle
 Jane Eyre|1848|UK|1840s|word_sets/book10_set.pickle|bigram_dicts/book10_dict.pickle
 The House of Mirth|1905|USA|1900s|word_sets/book11_set.pickle|bigram_dicts/book11_dict.pickle
+The Awakening|1899|USA|1890s|word_sets/book12_set.pickle|bigram_dicts/book12_dict.pickle
+Wuthering Heights|1848|UK|1840s|word_sets/book13_set.pickle|bigram_dicts/book13_dict.pickle
+Little Women|1869|USA|1860s|word_sets/book14_set.pickle|bigram_dicts/book14_dict.pickle

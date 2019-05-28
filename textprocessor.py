@@ -68,4 +68,6 @@ def prepare_texts(startrange, endrange):
         pickle_data(f"bigram_dicts/book{i}_dict.pickle", make_bigram_freq_dict(make_bigrams(text)))
         print(f"Made dict for book {i}")
 
-prepare_texts(1, 12)
+
+if __name__ == "__main__":
+    prepare_texts(14, 15)
