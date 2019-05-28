@@ -19,17 +19,17 @@ class TestPythonFunctions(unittest.TestCase):
 
     def test_make_bigrams(self):
         self.assertEqual(make_bigrams("Hey, you. Yes--you! You are great. You are awesome."), 
-            [('Hey', ','), (',', 'you'), ('you', '.'), ('.', 'Yes'), ('Yes', 'you'), 
-            ('you', '!'), ('!', 'You'), ('You', 'are'), ('are', 'great'), ('great', '.'), 
-            ('.', 'You'), ('You', 'are'), ('are', 'awesome'), ('awesome', '.')])
+           [('Hey', ','), (',', 'you'), ('you', '.'), ('.', 'Yes'), ('Yes', '--'), 
+           ('--', 'you'), ('you', '!'), ('!', 'You'), ('You', 'are'), ('are', 'great'), 
+           ('great', '.'), ('.', 'You'), ('You', 'are'), ('are', 'awesome'), ('awesome', '.')])
 
 
     def test_make_bigram_freq_dict(self):
         self.assertEqual(make_bigram_freq_dict([('Hey', ','), (',', 'you'), ('you', '.'), 
-            ('.', 'Yes'), ('Yes', 'you'), ('you', '!'), ('!', 'You'), ('You', 'are'), 
-            ('are', 'great'), ('great', '.'), ('.', 'You'), ('You', 'are'), 
-            ('are', 'awesome'), ('awesome', '.')]), 
-            {('Yes', 'you'): 1, ('You', 'are'): 2, ('are', 'great'): 1, ('are', 'awesome'): 1})
+            ('.', 'Yes'), ('Yes', '--'), ('--', 'you'), ('you', '!'), ('!', 'You'), 
+            ('You', 'are'), ('are', 'great'), ('great', '.'), ('.', 'You'), 
+            ('You', 'are'), ('are', 'awesome'), ('awesome', '.')]), 
+            {('You', 'are'): 2, ('are', 'great'): 1, ('are', 'awesome'): 1})
 
 
 class TestFlaskRoutes(unittest.TestCase):
