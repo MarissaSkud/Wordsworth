@@ -36,8 +36,8 @@ def make_unique_word_set(textstring):
 def make_bigrams(textstring):
     '''Use NLTK to divide text into bigrams'''
 
-    textstring = re.sub('_|\*|\”|\“|\"', "", textstring)
-    textstring = re.sub("--|—", " ", textstring)
+    textstring = re.sub('_', "", textstring)
+    textstring = re.sub("—|–", "--", textstring)
     text_tokens = nltk.word_tokenize(textstring)
     return list(nltk.bigrams(text_tokens))
 
@@ -60,9 +60,12 @@ def make_bigram_freq_dict(text_bigrams):
     return bigram_frequencies
 
 
-def prepare_texts():
-    for i in range(12, 13):
+def prepare_texts(startrange, endrange):
+    for i in range(startrange, endrange):
         text = open_and_read_file(f"full_texts/book{i}_full.txt")
         pickle_data(f"word_sets/book{i}_set.pickle", make_unique_word_set(text))
+        print(f"Made set for book {i}")
         pickle_data(f"bigram_dicts/book{i}_dict.pickle", make_bigram_freq_dict(make_bigrams(text)))
+        print(f"Made dict for book {i}")
 
+prepare_texts(1, 12)
