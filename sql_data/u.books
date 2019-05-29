@@ -12,3 +12,5 @@ The House of Mirth|1905|USA|1900s|word_sets/book11_set.pickle|bigram_dicts/book1
 The Awakening|1899|USA|1890s|word_sets/book12_set.pickle|bigram_dicts/book12_dict.pickle
 Wuthering Heights|1848|UK|1840s|word_sets/book13_set.pickle|bigram_dicts/book13_dict.pickle
 Little Women|1869|USA|1860s|word_sets/book14_set.pickle|bigram_dicts/book14_dict.pickle
+The Way We Live Now|1875|UK|1870s|word_sets/book15_set.pickle|bigram_dicts/book15_dict.pickle
+Great Expectations|1861|UK|1860s|word_sets/book16_set.pickle|bigram_dicts/book16_dict.pickle
