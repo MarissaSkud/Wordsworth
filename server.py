@@ -3,7 +3,7 @@ from flask import (Flask, render_template, redirect, request, flash,
                    session)
 from flask_debugtoolbar import DebugToolbarExtension
 
-from model import Decade, Country, Book, connect_to_db, db
+from model import Decade, Country, Book, User, connect_to_db, db
 
 import re
 import pickle
@@ -15,9 +15,8 @@ from textprocessor import make_unique_word_set
 
 app = Flask(__name__)
 
-app.secret_key = "ABC"
+app.secret_key = "P12f79xcearx8f"
 app.jinja_env.undefined = StrictUndefined
-
 
 def unpickle_data(filename):
     '''Unpickle a file of a book's word data.'''
@@ -49,7 +48,6 @@ def compare_single_words(passage, books_from_decade, words_to_ignore):
 
 
 def format_decades():
-
     decades = db.session.query(Decade.decade).all()
     return [decade[0] for decade in decades]
 
@@ -58,6 +56,46 @@ def format_decades():
 def index():
     """Homepage."""
     return render_template("index.html")
+
+
+@app.route('/registration-form')
+def show_registration():
+    return render_template("registration-form.html")
+
+
+@app.route('/sign-up', methods=["POST"])
+def register():
+    """Check if user email exists in database and add them as new user if not"""
+
+    email = request.form['email']
+    password = request.form['password']
+
+    match = User.query.filter_by(email=email).all()
+
+    if not match:
+        new_user = User(email=email, password=password)
+        db.session.add(new_user)
+        db.session.commit()
+        return render_template("registration-submitted.html", status="added",
+            email=email)
+
+    else:
+        return render_template("registration-submitted.html", status="preexisting", 
+        email=email)
+
+
+@app.route('/login')
+def login():
+    email = request.args['email']
+    password = request.args['password']
+    user = User.query.filter_by(email=email).first()
+
+    if password == user.password:
+        session['logged_in'] = True
+
+        flash("Login successful")
+    
+    return redirect("/")
 
 
 @app.route("/word-search")
