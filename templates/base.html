@@ -3,6 +3,12 @@
 <head>
   <title>Anachronism Finder</title>
   <link rel="stylesheet" type="text/css" href="/static/styles.css">
+
+  <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -15,6 +21,28 @@
     {% endfor %}
   {% endif %}
 {% endwith %}
+
+{% if session.get('logged_in') == True %}
+
+<script>
+  "use strict"
+
+  function updateURL() {
+    var currentURL = window.location.href;
+    $("#current-url").attr("value", currentURL);
+  }
+
+  $(window).load(updateURL())
+
+</script>
+
+<form action="/logout" method="POST">
+  <input type="hidden" name="current-url" value="">
+  <input type="submit" name="logout" value="Logout">
+</form>
+
+<br>
+{% endif %}
 
   {% block content %} 
   {% endblock %}

@@ -60,7 +60,7 @@ def index():
 
 @app.route('/registration-form')
 def show_registration():
-    return render_template("registration-form.html")
+    return render_template("registration_form.html")
 
 
 @app.route('/sign-up', methods=["POST"])
@@ -76,26 +76,49 @@ def register():
         new_user = User(email=email, password=password)
         db.session.add(new_user)
         db.session.commit()
-        return render_template("registration-submitted.html", status="added",
+        return render_template("registration_submitted.html", status="added",
             email=email)
 
     else:
-        return render_template("registration-submitted.html", status="preexisting", 
+        return render_template("registration_submitted.html", status="preexisting", 
         email=email)
 
 
-@app.route('/login')
-def login():
+@app.route("/login")
+def show_login_form():
+    return render_template("login_form.html")
+
+
+@app.route("/logout", methods=["POST"])
+def log_out():
+    session['logged_in'] = False 
+    flash("Logged out successfully")
+    return redirect("/")
+
+    #I want it to redirect to the current page, which will mean passing in the current URL
+    #using Javascript and a hidden form field on base.html, but no matter what I do, I can't
+    #get that to work
+
+
+@app.route("/login-process")
+def validate_login():
     email = request.args['email']
     password = request.args['password']
     user = User.query.filter_by(email=email).first()
 
     if password == user.password:
         session['logged_in'] = True
+        return redirect("/user-page")
 
-        flash("Login successful")
-    
-    return redirect("/")
+    else:
+        flash("Invalid password")
+        return redirect("/login")
+
+
+@app.route("/user-page")
+def show_user_page():
+    #ignore_words = db.session.query(User.ignore_words).filter_by(User=session['user']).one()
+    return render_template("user_page.html")
 
 
 @app.route("/word-search")

@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<form action='/login' method="GET">
+<form action='/login-process' method="GET">
     Email : <input type="text" name="email">
-    Password : <input type="text" name="password">
+    Password : <input type="password" name="password">
     <input type="submit" name="submit">
 </form>
 {% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if session.get('logged_in') == True %}
+
+LOGGED IN YAY
+<br>
+Your ignore words are:
+<br>
+
+{% else %}
+
+Please <a href="/sign-up">sign up</a> or <a href="login">log in</a> to view this page.
+
+{% endif %}
+
+
+{% endblock %}

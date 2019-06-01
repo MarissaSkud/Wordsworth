@@ -9,6 +9,14 @@ Do you want to analyze <a href="/word-search">words</a> or <a href="/bigram-sear
 <br>
 <br>
 
+{% if session.get('logged_in') == False %}
+
+<a href="/sign-up">Sign up</a> or <a href="login">log in</a> for access to additional features, including the ability to save your list of words to ignore
+
+{% endif %}
+<br>
+<br>
+
 To learn more about this app: <a href="/methodology">An explanation of our methodology</a>
 <br>
 To view our corpus: <a href="/corpus">Corpus</a>

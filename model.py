@@ -50,8 +50,7 @@ class User(db.Model):
     __tablename__ = "users"
 
     email = db.Column(db.String, primary_key=True)
-    password = db.Column(db.String)
-    authenticated = db.Column(db.Boolean, default=False)
+    password = db.Column(db.String, nullable=False)
     ignore_words = db.Column(db.ARRAY(db.String, dimensions=1))
 
 
