@@ -1,6 +1,6 @@
 from jinja2 import StrictUndefined
 from flask import (Flask, render_template, redirect, request, flash,
-                   session)
+                   session, jsonify)
 from flask_debugtoolbar import DebugToolbarExtension
 
 from model import Decade, Country, Book, User, connect_to_db, db
@@ -10,23 +10,13 @@ import pickle
 
 from collections import Counter
 
-from textprocessor import make_unique_word_set
+from textprocessor import make_unique_word_set, unpickle_data
 
 
 app = Flask(__name__)
 
 app.secret_key = "P12f79xcearx8f"
 app.jinja_env.undefined = StrictUndefined
-
-def unpickle_data(filename):
-    '''Unpickle a file of a book's word data.'''
-
-    infile = open(filename, "rb")
-    unpacked = pickle.load(infile)
-    infile.close()
-    return unpacked
-
-    #add try/except for things like if filename is wrong
 
 
 def compare_single_words(passage, books_from_decade, words_to_ignore):
@@ -43,8 +33,6 @@ def compare_single_words(passage, books_from_decade, words_to_ignore):
 
     anachronistic_words = words_in_passage - words_to_ignore - comparison_set
     return sorted(list(anachronistic_words))
-
-    #look into mocking the results from make_unique_word_set & unpickle_data
 
 
 def format_decades():
@@ -89,25 +77,21 @@ def show_login_form():
     return render_template("login_form.html")
 
 
-@app.route("/logout", methods=["POST"])
-def log_out():
-    session['logged_in'] = False 
-    flash("Logged out successfully")
-    return redirect("/")
+@app.route("/logout")
+def reset_logged_in():
+    session["logged_in"] = False 
+    return jsonify("False")
+    
 
-    #I want it to redirect to the current page, which will mean passing in the current URL
-    #using Javascript and a hidden form field on base.html, but no matter what I do, I can't
-    #get that to work
-
-
-@app.route("/login-process")
+@app.route("/login-process", methods=["POST"])
 def validate_login():
-    email = request.args['email']
-    password = request.args['password']
+    email = request.form['email']
+    password = request.form['password']
     user = User.query.filter_by(email=email).first()
 
     if password == user.password:
-        session['logged_in'] = True
+        session["logged_in"] = True
+        session["user_id"] = email
         return redirect("/user-page")
 
     else:

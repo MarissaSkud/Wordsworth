@@ -13,6 +13,15 @@ def pickle_data(filename, dataset):
     outfile.close()
 
 
+def unpickle_data(filename):
+    '''Unpickle a file of a book's word data.'''
+
+    infile = open(filename, "rb")
+    unpacked = pickle.load(infile)
+    infile.close()
+    return unpacked
+    
+
 def remove_irrelevant_characters(textstring):
     '''Regular expressions to remove punctuation from string'''
     

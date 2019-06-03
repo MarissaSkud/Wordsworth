@@ -4,11 +4,6 @@
   <title>Anachronism Finder</title>
   <link rel="stylesheet" type="text/css" href="/static/styles.css">
 
-  <script
-        src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-        crossorigin="anonymous"></script>
-
 </head>
 
 <body>
@@ -24,24 +19,40 @@
 
 {% if session.get('logged_in') == True %}
 
-<script>
-  "use strict"
+  <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
 
-  function updateURL() {
-    var currentURL = window.location.href;
-    $("#current-url").attr("value", currentURL);
+<button id="logoutin">Logout</button>
+
+<script>
+  function confirmLogOut(result) {
+    console.log("Second function");
+    console.log(result);
+    $("#logoutin").value = "Log in";
+    console.log($("#logoutin").value)
   }
 
-  $(window).load(updateURL())
+  function handleLogOut() {
+    console.log("First function");
+    $.get("/logout", confirmLogOut);
+    console.log("Moving on");
+  }
+
+  $("#logoutin").on("click", handleLogOut)
 
 </script>
 
-<form action="/logout" method="POST">
-  <input type="hidden" name="current-url" value="">
-  <input type="submit" name="logout" value="Logout">
-</form>
+  <!-- send ajax request to take it out of the session and update the DOM using javascript -->
 
 <br>
+{% else %}
+
+<a href="/sign-up">Sign up</a> or <a href="login">log in</a> for access to additional features
+<br> 
+<br>
+
 {% endif %}
 
   {% block content %} 
