@@ -24,27 +24,25 @@
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
 
-<button id="logoutin">Logout</button>
+<div id="logout-div">
+<button id="logout">Logout</button>
+</div>
+
+<div id="logout-successful"></div>
 
 <script>
   function confirmLogOut(result) {
-    console.log("Second function");
-    console.log(result);
-    $("#logoutin").value = "Log in";
-    console.log($("#logoutin").value)
+    $("#logout-div").hide()
+    $("#logout-successful").html(result);
   }
 
   function handleLogOut() {
-    console.log("First function");
     $.get("/logout", confirmLogOut);
-    console.log("Moving on");
   }
 
-  $("#logoutin").on("click", handleLogOut)
+  $("#logout").on("click", handleLogOut)
 
 </script>
-
-  <!-- send ajax request to take it out of the session and update the DOM using javascript -->
 
 <br>
 {% else %}

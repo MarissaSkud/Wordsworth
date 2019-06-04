@@ -2,11 +2,35 @@
 {% block content %}
 
 {% if session.get("logged_in") == True %}
+<br>
+Welcome back, {{ session["user_id"] }}.
+<br>
+<br>
 
-LOGGED IN YAY
+    {% if ignore_words == [] %}
+    Your list of words to ignore is currently empty.
+
+    <br>
+
+    {% else %}
+    Your ignore words are:
 <br>
-Your ignore words are:
-<br>
+<ul>
+    {% for word in ignore_words %}
+    <li>{{ word }}</li>
+
+    {% endfor %}
+</ul>
+
+    {% endif %}
+
+If you wish to add words to your list of Ignore Words, enter them below.
+
+<form action="/ignore-words" method="POST">
+    <textarea maxlength="2500" rows="7" cols="50" name="to-ignore"></textarea>
+    <input type="submit" name="submit">
+</form>
+
 
 {% else %}
 

@@ -9,17 +9,15 @@ No anachronisms found. All words in your text appear in our corpus of texts from
 
 {% else %}
 
-The following words in your text do not appear in our corpus of texts from the {{ decade }}.
+The following words in your text do not appear in our corpus of texts from the {{ decade }}:
 <br>
-<br>
-Clicking a word will load its Google Ngram chart so you can learn more about its usage between 1800 and 2000.
-
 <ul>
 {% for word in anachronistic_words %}
 <li> <a href="https://books.google.com/ngrams/interactive_chart?content={{word}}&year_start=1800&year_end=2000&corpus=15&smoothing=3" target="ngram-chart">{{word}}</a></li>
 {% endfor %}
 </ul>
-
+Clicking a word will load its Google Ngram chart so you can learn more about its usage between 1800 and 2000.
+<br>
 <iframe name="ngram-chart" src="" width="600" height="300"></iframe>
 
 {% endif %}

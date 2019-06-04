@@ -80,7 +80,7 @@ def show_login_form():
 @app.route("/logout")
 def reset_logged_in():
     session["logged_in"] = False 
-    return jsonify("False")
+    return jsonify("Logout confirmed")
     
 
 @app.route("/login-process", methods=["POST"])
@@ -89,7 +89,11 @@ def validate_login():
     password = request.form['password']
     user = User.query.filter_by(email=email).first()
 
-    if password == user.password:
+    if user == None:
+        flash("Username not found in our system")
+        return redirect("/registration-form")
+
+    elif password == user.password:
         session["logged_in"] = True
         session["user_id"] = email
         return redirect("/user-page")
@@ -101,8 +105,9 @@ def validate_login():
 
 @app.route("/user-page")
 def show_user_page():
-    #ignore_words = db.session.query(User.ignore_words).filter_by(User=session['user']).one()
-    return render_template("user_page.html")
+    current_user = User.query.filter_by(email=session["user_id"]).one()
+    ignore_words = current_user.ignore_words
+    return render_template("user_page.html", ignore_words=ignore_words)
 
 
 @app.route("/word-search")
@@ -128,7 +133,31 @@ def show_corpus():
     return render_template("our_corpus.html", books=books)
 
 
-@app.route('/words-results')
+@app.route("/ignore-words", methods=["POST"])
+def add_ignore_words():
+
+    print(request.form["to-ignore"])
+    new_ignore_words = make_unique_word_set(request.form["to-ignore"])
+    print(new_ignore_words)
+
+    current_user = User.query.filter_by(email=session["user_id"]).one()
+    print(current_user)
+
+    current_ignore_words = current_user.ignore_words[:]
+    print(current_ignore_words)
+
+    for word in new_ignore_words:
+        print(word)
+        current_ignore_words.append(word)
+        print(current_ignore_words)
+
+    current_user.ignore_words = current_ignore_words
+    db.session.commit()
+
+    return redirect("/user-page")
+
+
+@app.route('/word-results')
 def analyze_words():
     '''Compare user input to set of words from chosen decade & return anachronistic words.'''
 

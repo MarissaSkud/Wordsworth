@@ -46,7 +46,7 @@ def load_users():
         row = row.rstrip()
         email, password = row.split("|")
 
-        new_user = User(email=email, password=password)
+        new_user = User(email=email, password=password, ignore_words=[])
         db.session.add(new_user)
 
     db.session.commit()
