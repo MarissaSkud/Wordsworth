@@ -136,15 +136,11 @@ def show_corpus():
 @app.route("/ignore-words", methods=["POST"])
 def add_ignore_words():
 
-    print(request.form["to-ignore"])
     new_ignore_words = make_unique_word_set(request.form["to-ignore"])
-    print(new_ignore_words)
-
     current_user = User.query.filter_by(email=session["user_id"]).one()
-    print(current_user)
-
     current_ignore_words = current_user.ignore_words[:]
-    print(current_ignore_words)
+        #This is a list slice because otherwise SQLAlchemy will not be able to detect
+        #the changes that we make to the list
 
     for word in new_ignore_words:
         print(word)
