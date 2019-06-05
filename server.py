@@ -19,7 +19,7 @@ app.secret_key = "P12f79xcearx8f"
 app.jinja_env.undefined = StrictUndefined
 
 
-def compare_single_words(passage, books_from_decade, words_to_ignore):
+def compare_single_words(passage, books_from_decade, words_to_ignore, user_ignore_words):
     '''Find words in user's passage that are not in comparison set of words'''
 
     words_in_passage = make_unique_word_set(passage)
@@ -31,7 +31,7 @@ def compare_single_words(passage, books_from_decade, words_to_ignore):
         book_words = unpickle_data(wordset_file)
         comparison_set.update(book_words)
 
-    anachronistic_words = words_in_passage - words_to_ignore - comparison_set
+    anachronistic_words = words_in_passage - user_ignore_words - words_to_ignore - comparison_set
     return sorted(list(anachronistic_words))
 
 
@@ -165,6 +165,12 @@ def analyze_words():
 
     words_to_ignore = make_unique_word_set(request.args["ignore"])
 
+    if session["logged_in"] == True:
+        current_user = User.query.filter_by(email=session["user_id"]).one()
+        user_ignore_words = set(current_user.ignore_words)
+    else:
+        user_ignore_words = set()
+
     if len(textstring) > 10000:
         #10000 = 4 times 2500, the length limit on the text box in the HTML form.
         #Textstring becomes > 2500 chars due to HTML encoding but is unlikely to
@@ -184,7 +190,7 @@ def analyze_words():
 
     else:
         anachronistic_words = compare_single_words(textstring, books_from_decade, 
-                                words_to_ignore)
+                                words_to_ignore, user_ignore_words)
         return render_template("word_results.html", 
                 anachronistic_words=anachronistic_words,  decade=decade)
 
