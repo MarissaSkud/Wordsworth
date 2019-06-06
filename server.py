@@ -44,28 +44,30 @@ def format_decades():
 
 def get_ignore_words():
     current_user = User.query.filter_by(email=session["user_id"]).one()
-    return current_user.ignore_words[:]
+    try:
+        return current_user.ignore_words[:]
         #This is a list slice because otherwise SQLAlchemy will not be able to detect
         #the changes that we make to the list
+    except TypeError:
+        return []
 
 
-@app.route('/')
+@app.route("/")
 def index():
-    """Homepage."""
     return render_template("index.html")
 
 
-@app.route('/registration-form')
+@app.route("/register")
 def show_registration():
     return render_template("registration_form.html")
 
 
-@app.route('/sign-up', methods=["POST"])
+@app.route("/sign-up", methods=["POST"])
 def register():
     """Check if user email exists in database and add them as new user if not"""
 
-    email = request.form['email']
-    password = request.form['password']
+    email = request.form["email"]
+    password = request.form["password"]
 
     match = User.query.filter_by(email=email).all()
 
@@ -174,7 +176,7 @@ def delete_ignore_words():
     return redirect("/user-page")
 
 
-@app.route('/word-results')
+@app.route("/word-results")
 def analyze_words():
     '''Compare user input to set of words from chosen decade & return anachronistic words.'''
 
@@ -186,7 +188,7 @@ def analyze_words():
 
     words_to_ignore = make_unique_word_set(request.args["ignore"])
 
-    if session.get('logged_in') == True:
+    if session.get("logged_in") == True:
         user_ignore_words = set(get_ignore_words())
     else:
         user_ignore_words = set()
@@ -220,18 +222,27 @@ def analyze_words():
 
 #try Pycharm
 
-@app.route('/bigram-results')
+@app.route("/bigram-results")
 def analyze_bigram():
-    bigram = request.args["bigram"].split()
 
-    if bigram == "":
-        flash("REDIRECT: Input cannot be empty")
+    bigram = request.args["bigram"]
+
+    #Check if bigram input contains < 100 characters
+    if len(bigram) > 100:
+        flash("Redirect: Input too long")
         return redirect("/bigram-search")
-    elif len(bigram) > 200:
-        flash("REDIRECT: Input too long")
+
+    bigram = bigram.split()
+
+    #Check if bigram input contains exactly 2 words
+    if len(bigram) > 2:
+        flash("REDIRECT: Bigrams must contain exactly 2 words")
         return redirect("/bigram-search")
-    else:
+    try:
         bigram = (bigram[0], bigram[1])
+    except IndexError:
+        flash("REDIRECT: Bigrams must contain exactly 2 words")
+        return redirect("/bigram-search")
 
     decade = request.args["decade"]
     if not decade.isalnum():
@@ -262,7 +273,6 @@ def analyze_bigram():
             corpus_appearances=corpus_appearances, corpus_total=corpus_total,
             bigram=bigram, corpus_unique_bigrams=corpus_unique_bigrams)
 
-#still need some try-excepts or if-elses to make sure bigram is exactly 2 words
 
 if __name__ == "__main__":
     app.debug = True

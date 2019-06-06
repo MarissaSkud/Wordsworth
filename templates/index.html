@@ -9,7 +9,7 @@ Do you want to analyze <a href="/word-search">words</a> or <a href="/bigram-sear
 <br>
 <br>
 
-{% if session.get('logged_in') == False %}
+{% if session.get('logged_in') != True %}
 
 <a href="login">Log in</a> for access to additional features
 <br> 
@@ -18,8 +18,8 @@ Do you want to analyze <a href="/word-search">words</a> or <a href="/bigram-sear
 <br>
 <br>
 
-To learn more about this app: <a href="/methodology">An explanation of our methodology</a>
+<a href="/methodology">Learn more about this app and our methodology</a>
 <br>
-To view our corpus: <a href="/corpus">Corpus</a>
+<a href="/corpus">View our corpus</a>
 
 {% endblock %}
