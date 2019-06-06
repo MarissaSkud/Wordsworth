@@ -73,12 +73,14 @@ def register():
         new_user = User(email=email, password=password)
         db.session.add(new_user)
         db.session.commit()
-        return render_template("registration_submitted.html", status="added",
-            email=email)
+
+        session["logged_in"] = True
+        session["user_id"] = email
+        return redirect("/user-page")
 
     else:
-        return render_template("registration_submitted.html", status="preexisting", 
-        email=email)
+        flash(f"The email address {email} already exists in our database. Please log in here.")
+        return redirect("/login")
 
 
 @app.route("/login")
@@ -260,8 +262,7 @@ def analyze_bigram():
             corpus_appearances=corpus_appearances, corpus_total=corpus_total,
             bigram=bigram, corpus_unique_bigrams=corpus_unique_bigrams)
 
-#also need some try-excepts or if-elses to make sure that request.args["bigram"] was given and throw error if not (and log it!)
-#size of my data -- if it gets really large & I do web scraping or something, good to talk about with employers
+#still need some try-excepts or if-elses to make sure bigram is exactly 2 words
 
 if __name__ == "__main__":
     app.debug = True

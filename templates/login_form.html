@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
+Log in for access to your saved words.
+
+Don't have an account? <a href="/sign-up">Sign up here.</a>
+
 <form action='/login-process' method="POST">
     Email : <input type="text" name="email">
     Password : <input type="password" name="password">
