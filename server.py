@@ -44,12 +44,8 @@ def format_decades():
 
 def get_ignore_words():
     current_user = User.query.filter_by(email=session["user_id"]).one()
-    try:
-        return current_user.ignore_words[:]
-        #This is a list slice because otherwise SQLAlchemy will not be able to detect
-        #the changes that we make to the list
-    except TypeError:
-        return []
+    return current_user.ignore_words[:]
+        #This is a slice because otherwise SQLAlchemy can't detect changes that we make to the list
 
 
 @app.route("/")
@@ -66,13 +62,13 @@ def show_registration():
 def register():
     """Check if user email exists in database and add them as new user if not"""
 
-    email = request.form["email"]
+this    email = request.form["email"]
     password = request.form["password"]
 
     match = User.query.filter_by(email=email).all()
 
     if not match:
-        new_user = User(email=email, password=password)
+        new_user = User(email=email, password=password, ignore_words=[])
         db.session.add(new_user)
         db.session.commit()
 
@@ -134,9 +130,9 @@ def search_for_bigrams():
     return render_template("bigram_search.html", decades=format_decades())
 
 
-@app.route("/methodology")
-def show_methodology():
-    return render_template("methodology.html")
+@app.route("/faqs")
+def show_faqs():
+    return render_template("faqs.html")
 
 
 @app.route("/corpus")

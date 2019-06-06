@@ -14,3 +14,5 @@ Wuthering Heights|1848|UK|1840s|word_sets/book13_set.pickle|bigram_dicts/book13_
 Little Women|1869|USA|1860s|word_sets/book14_set.pickle|bigram_dicts/book14_dict.pickle
 The Way We Live Now|1875|UK|1870s|word_sets/book15_set.pickle|bigram_dicts/book15_dict.pickle
 Great Expectations|1861|UK|1860s|word_sets/book16_set.pickle|bigram_dicts/book16_dict.pickle
+Belinda|1801|Ireland|1800s|word_sets/book17_set.pickle|bigram_dicts/book17_dict.pickle
+This Side of Paradise|1920|USA|1920s|word_sets/book18_set.pickle|bigram_dicts/book18_dict.pickle
