@@ -15,20 +15,25 @@ Welcome back, {{ session["user_id"] }}.
     {% else %}
     Your ignore words are:
 <br>
+<form action="/delete-ignore-words" method="POST">
 <ul>
     {% for word in ignore_words %}
-    <li>{{ word }}</li>
+    <input type="checkbox" id="ignore-word" name="ignore-word" value="{{ word }}">
+        <label for="ignore-word">{{ word }}</label><br>
 
     {% endfor %}
 </ul>
-
+<input type="submit" value="Stop ignoring selected words">
+</form>
+<br>
+<br>
     {% endif %}
 
 If you wish to add words to your list of Ignore Words, enter them below.
 
-<form action="/ignore-words" method="POST">
+<form action="/add-ignore-words" method="POST">
     <textarea maxlength="2500" rows="7" cols="50" name="to-ignore"></textarea>
-    <input type="submit" name="submit">
+    <input type="submit" name="submit" value="Add these words to ignore list">
 </form>
 
 

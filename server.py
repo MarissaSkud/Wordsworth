@@ -19,11 +19,11 @@ app.secret_key = "P12f79xcearx8f"
 app.jinja_env.undefined = StrictUndefined
 
 
-def compare_single_words(passage, books_from_decade, words_to_ignore, user_ignore_words):
+def compare_single_words(passage, books_from_decade, 
+                        words_to_ignore, user_ignore_words):
     '''Find words in user's passage that are not in comparison set of words'''
 
     words_in_passage = make_unique_word_set(passage)
-
     comparison_set = set()
 
     for book in books_from_decade:
@@ -31,13 +31,22 @@ def compare_single_words(passage, books_from_decade, words_to_ignore, user_ignor
         book_words = unpickle_data(wordset_file)
         comparison_set.update(book_words)
 
-    anachronistic_words = words_in_passage - user_ignore_words - words_to_ignore - comparison_set
+    anachronistic_words = (words_in_passage - user_ignore_words - 
+                            words_to_ignore - comparison_set)
+
     return sorted(list(anachronistic_words))
 
 
 def format_decades():
     decades = db.session.query(Decade.decade).all()
     return [decade[0] for decade in decades]
+
+
+def get_ignore_words():
+    current_user = User.query.filter_by(email=session["user_id"]).one()
+    return current_user.ignore_words[:]
+        #This is a list slice because otherwise SQLAlchemy will not be able to detect
+        #the changes that we make to the list
 
 
 @app.route('/')
@@ -105,8 +114,7 @@ def validate_login():
 
 @app.route("/user-page")
 def show_user_page():
-    current_user = User.query.filter_by(email=session["user_id"]).one()
-    ignore_words = current_user.ignore_words
+    ignore_words = sorted(get_ignore_words())
     return render_template("user_page.html", ignore_words=ignore_words)
 
 
@@ -133,21 +141,32 @@ def show_corpus():
     return render_template("our_corpus.html", books=books)
 
 
-@app.route("/ignore-words", methods=["POST"])
+@app.route("/add-ignore-words", methods=["POST"])
 def add_ignore_words():
 
     new_ignore_words = make_unique_word_set(request.form["to-ignore"])
-    current_user = User.query.filter_by(email=session["user_id"]).one()
-    current_ignore_words = current_user.ignore_words[:]
-        #This is a list slice because otherwise SQLAlchemy will not be able to detect
-        #the changes that we make to the list
+    current_ignore_words = get_ignore_words()
 
     for word in new_ignore_words:
-        print(word)
         current_ignore_words.append(word)
-        print(current_ignore_words)
 
+    current_user = User.query.filter_by(email=session["user_id"]).one()
     current_user.ignore_words = current_ignore_words
+    db.session.commit()
+
+    return redirect("/user-page")
+
+
+@app.route("/delete-ignore-words", methods=["POST"])
+def delete_ignore_words():
+
+    words_to_remove = set(request.form.getlist("ignore-word"))
+    current_ignore_words = set(get_ignore_words())
+
+    current_ignore_words -= words_to_remove
+
+    current_user = User.query.filter_by(email=session["user_id"]).one()
+    current_user.ignore_words = list(current_ignore_words)
     db.session.commit()
 
     return redirect("/user-page")
@@ -165,9 +184,8 @@ def analyze_words():
 
     words_to_ignore = make_unique_word_set(request.args["ignore"])
 
-    if session["logged_in"] == True:
-        current_user = User.query.filter_by(email=session["user_id"]).one()
-        user_ignore_words = set(current_user.ignore_words)
+    if session.get('logged_in') == True:
+        user_ignore_words = set(get_ignore_words())
     else:
         user_ignore_words = set()
 
