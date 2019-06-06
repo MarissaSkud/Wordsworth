@@ -101,7 +101,7 @@ def validate_login():
     user = User.query.filter_by(email=email).first()
 
     if user == None:
-        flash("Username not found in our system")
+        flash("Username not found in our system. Please sign up here.")
         return redirect("/registration-form")
 
     elif password == user.password:
