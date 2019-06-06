@@ -16,3 +16,6 @@ The Way We Live Now|1875|UK|1870s|word_sets/book15_set.pickle|bigram_dicts/book1
 Great Expectations|1861|UK|1860s|word_sets/book16_set.pickle|bigram_dicts/book16_dict.pickle
 Belinda|1801|Ireland|1800s|word_sets/book17_set.pickle|bigram_dicts/book17_dict.pickle
 This Side of Paradise|1920|USA|1920s|word_sets/book18_set.pickle|bigram_dicts/book18_dict.pickle
+The Tenant of Wildfell Hall|1848|UK|1840s|word_sets/book19_set.pickle|bigram_dicts/book19_dict.pickle
+The Man Who Was Thursday|1908|UK|1900s|word_sets/book20_set.pickle|bigram_dicts/book20_dict.pickle
+Frankenstein|1818|UK|1810s|word_sets/book21_set.pickle|bigram_dicts/book21_dict.pickle
