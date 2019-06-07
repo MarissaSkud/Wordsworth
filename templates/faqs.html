@@ -131,7 +131,6 @@ Wordsworth is a tool to help historical fiction authors avoid linguistic anachro
     </div>
     </div>
 <br>
-<br>
 <div class="toggle">
     <div class="toggle-title">
         <h4>
@@ -143,13 +142,24 @@ Wordsworth is a tool to help historical fiction authors avoid linguistic anachro
     </div>
     </div>
 <br>
+<div class="toggle">
+    <div class="toggle-title">
+        <h4>
+        <span class="title-name">Where did you come up with the idea for this app?</span>
+        </h4>
+    </div>
+    <div class="toggle-inner">
+        <p>It is very much inspired by the work of Ben Schmidt, a digital-humanities professor who, in the early 2010s, wrote about his work trying to find linguistic anachronisms in historical fiction screenplays by comparing it to literature from the time period. Schmidt's program and corpus is not publicly available, so we decided to try to create an approximation of it.</p>
+    </div>
+    </div>
+<br>
+
 <script>
 if ($(".toggle-title").hasClass("active")) {
     $(".toggle-title.active").closest(".toggle").find(".toggle-inner").show();
 }
 
 $(".toggle-title").on("click", function() {
-    console.log("1")
     if ($(this).hasClass("active")) {
         $(this).removeClass("active").closest(".toggle").find(".toggle-inner").slideUp(200);
     }

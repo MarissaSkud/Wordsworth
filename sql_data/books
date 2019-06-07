@@ -26,3 +26,9 @@ The Custom of the Country|1913|USA|1910s|word_sets/book25_set.pickle|bigram_dict
 Tess of the d'Urbervilles|1891|UK|1890s|word_sets/book26_set.pickle|bigram_dicts/book26_dict.pickle
 The Return of the Soldier|1918|UK|1910s|word_sets/book27_set.pickle|bigram_dicts/book27_dict.pickle
 The Autobiography of an Ex-Colored Man|1912|USA|1910s|word_sets/book28_set.pickle|bigram_dicts/book28_dict.pickle
+The Picture of Dorian Gray|1891|Ireland|1890s|word_sets/book29_set.pickle|bigram_dicts/book29_dict.pickle
+A Study in Scarlet|1887|UK|1880s|word_sets/book30_set.pickle|bigram_dicts/book30_dict.pickle
+Oliver Twist|1839|UK|1830s|word_sets/book31_set.pickle|bigram_dicts/book31_dict.pickle
+The Portrait of a Lady|1881|USA|1880s|word_sets/book32_set.pickle|bigram_dicts/book32_dict.pickle
+Precaution|1820|USA|1820s|word_sets/book33_set.pickle|bigram_dicts/book33_dict.pickle
+Vivian Grey|1827|UK|1820s|word_sets/book34_set.pickle|bigram_dicts/book34_dict.pickle
