@@ -41,7 +41,6 @@ def format_decades():
     decades = db.session.query(Decade.decade).all()
     return [decade[0] for decade in decades]
 
-
 def get_ignore_words():
     current_user = User.query.filter_by(email=session["user_id"]).one()
     return current_user.ignore_words[:]
@@ -62,7 +61,7 @@ def show_registration():
 def register():
     """Check if user email exists in database and add them as new user if not"""
 
-this    email = request.form["email"]
+    email = request.form["email"]
     password = request.form["password"]
 
     match = User.query.filter_by(email=email).all()
@@ -198,19 +197,13 @@ def analyze_words():
         return redirect("/word-search")
 
     decade = request.args["decade"]
-    if not decade.isalnum():
-        flash("REDIRECT: Invalid decade input")
-        return redirect("/word-search")
-
     books_from_decade = Book.query.filter_by(decade=decade).all()
-    if books_from_decade == []:
-        return render_template("no_corpus.html", decade=decade)
 
-    else:
-        anachronistic_words = compare_single_words(textstring, books_from_decade, 
+    anachronistic_words = compare_single_words(textstring, books_from_decade, 
                                 words_to_ignore, user_ignore_words)
-        return render_template("word_results.html", 
-                anachronistic_words=anachronistic_words,  decade=decade)
+
+    return render_template("word_results.html", anachronistic_words=anachronistic_words, 
+                books_from_decade=books_from_decade, decade=decade)
 
 #libraries for logging exceptions & also usage stats. or does Flask have a logfile it's creating?
 #needs handling to avoid SQL injection on the decades table
@@ -241,33 +234,24 @@ def analyze_bigram():
         return redirect("/bigram-search")
 
     decade = request.args["decade"]
-    if not decade.isalnum():
-        flash("REDIRECT: Invalid decade input")
-        return redirect("/bigram-search")
-
     books_from_decade = Book.query.filter_by(decade=decade).all()
 
-    if books_from_decade == []:
-        return render_template("no_corpus.html", decade=decade)
+    comparison_dict = Counter({})
 
-    else:
+    for book in books_from_decade:
+        dict_file = book.bigram_dict
+        book_bigrams = Counter(unpickle_data(dict_file))
+        comparison_dict += book_bigrams
 
-        comparison_dict = Counter({})
+    corpus_unique_bigrams = "{:,}".format(len(comparison_dict))
+    corpus_total = "{:,}".format(sum(comparison_dict.values()))
 
-        for book in books_from_decade:
-            dict_file = book.bigram_dict
-            book_bigrams = Counter(unpickle_data(dict_file))
-            comparison_dict += book_bigrams
+    corpus_appearances = comparison_dict.get(bigram, 0)
+    #Will set corpus_appearances to 0 if bigram not in dictionary
 
-        corpus_unique_bigrams = "{:,}".format(len(comparison_dict))
-        corpus_total = "{:,}".format(sum(comparison_dict.values()))
-
-        corpus_appearances = comparison_dict.get(bigram, 0)
-        #Will set corpus_appearances to 0 if bigram not in dictionary
-
-        return render_template("bigram_results.html", decade=decade, 
-            corpus_appearances=corpus_appearances, corpus_total=corpus_total,
-            bigram=bigram, corpus_unique_bigrams=corpus_unique_bigrams)
+    return render_template("bigram_results.html", decade=decade, 
+        corpus_appearances=corpus_appearances, corpus_total=corpus_total,
+        bigram=bigram, corpus_unique_bigrams=corpus_unique_bigrams)
 
 
 if __name__ == "__main__":

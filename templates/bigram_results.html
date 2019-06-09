@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% if corpus_appearances == 0 %}
+{% if corpus_total == 0 %}
+
+We could not find any books in our corpus from the {{ decade }}. Please check to make sure you have entered a valid decade and try again.
+
+{% elif corpus_appearances == 0 %}
 
 Possible anachronism alert! The phrase "{{ bigram[0] }} {{ bigram[1] }}" does not appear at all in our corpus of texts from the {{ decade }}.
 
