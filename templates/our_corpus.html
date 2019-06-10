@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-Currently, our corpus consists of the following texts:
+Currently, Wordsworth's corpus includes the following novels:
 <br>
 <br>
 <table>
@@ -14,7 +14,7 @@ Currently, our corpus consists of the following texts:
   </thead>
   {% for book in books %}
     <tr>
-    <td><i>{{ book[0] }}</i></td>
+    <td class="book-title">{{ book[0] }}</td>
     <td>{{ book[1] }}</td>
     <td>{{ book[2] }}</td>
   </tr>

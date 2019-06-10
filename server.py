@@ -41,6 +41,7 @@ def format_decades():
     decades = db.session.query(Decade.decade).all()
     return [decade[0] for decade in decades]
 
+
 def get_ignore_words():
     current_user = User.query.filter_by(email=session["user_id"]).one()
     return current_user.ignore_words[:]
@@ -209,7 +210,6 @@ def analyze_words():
 #needs handling to avoid SQL injection on the decades table
 #server-side validation to make sure people can't hack my API
 
-#try Pycharm
 
 @app.route("/bigram-results")
 def analyze_bigram():

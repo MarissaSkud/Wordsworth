@@ -2,7 +2,40 @@ iframe {
     border:none;
 }
 
-.toggle-inner {
+body {
+    background-color:#F5F2DE;
+    color: #453C04;
+    padding-bottom:60px;
+}
+
+a {
+    color: #391BA6;
+}
+
+a:hover {
+    color: #7964C4; 
+}
+
+footer {
+    background-color: #7964C4;
+    color: #F5F2DE;
+    position: relative;
+    margin-top: -50px; /* negative value of footer height */
+    height: 50px;
+    clear:both;
+    padding-top:20px;
+}
+
+.answer {
 display: none;
 }
- 
+
+.book-title{
+    font-style: italic;
+}
+
+dk brown: #453C04
+cream: #F5F2DE
+dk purple: #391BA6
+med purple: #7964C4
+goldenrod: #BFB134

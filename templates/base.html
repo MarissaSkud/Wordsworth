@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>Wordsworth</title>
-  <link rel="stylesheet" type="text/css" href="/static/styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/styles.css">
 
 </head>
 
@@ -18,11 +19,6 @@
 {% endwith %}
 
 {% if session.get('logged_in') == True %}
-
-  <script
-        src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-        crossorigin="anonymous"></script>
 
 <div id="logout-div">
 <button id="logout">Logout</button>
@@ -49,6 +45,21 @@
 
   {% block content %} 
   {% endblock %}
+
+  {% block footer %}
+
+<footer class="page-footer fixed-bottom font-small">
+<div class="footer-copyright text-center">Wordsworth © 2019 Marissa Skudlarek
+   </div>
+</footer>
+  {% endblock %}
+
+<script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>
