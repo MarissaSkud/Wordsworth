@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% if session["logged_in"] == True %}
+
+You are already logged in.
+
+{% else %}
+
 Log in for access to your saved words.
 <br>
 <br>
@@ -11,4 +17,6 @@ Don't have an account? <a href="/register">Sign up here.</a>
     Password : <input type="password" name="password">
     <input type="submit" name="submit" value="Log in">
 </form>
+{% endif %}
+
 {% endblock %}

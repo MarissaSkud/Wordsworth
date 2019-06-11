@@ -34,6 +34,7 @@ class Book(db.Model):
 
     book_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(50), nullable=False, unique=True)
+    author = db.Column(db.String(50), nullable=False)
     pub_year = db.Column(db.Integer, nullable=False)
     country = db.Column(db.String(20), db.ForeignKey("countries.country"), nullable=False)
     decade = db.Column(db.String(5), db.ForeignKey("decades.decade"), nullable=False)

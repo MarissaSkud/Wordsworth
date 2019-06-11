@@ -1,34 +1,35 @@
-Pride & Prejudice|1813|UK|1810s|word_sets/book1_set.pickle|bigram_dicts/book1_dict.pickle
-Sense & Sensibility|1811|UK|1810s|word_sets/book2_set.pickle|bigram_dicts/book2_dict.pickle
-Northanger Abbey|1818|UK|1810s|word_sets/book3_set.pickle|bigram_dicts/book3_dict.pickle
-Persuasion|1818|UK|1810s|word_sets/book4_set.pickle|bigram_dicts/book4_dict.pickle
-Emma|1815|UK|1810s|word_sets/book5_set.pickle|bigram_dicts/book5_dict.pickle
-Mansfield Park|1814|UK|1810s|word_sets/book6_set.pickle|bigram_dicts/book6_dict.pickle
-North & South|1854|UK|1850s|word_sets/book7_set.pickle|bigram_dicts/book7_dict.pickle
-A Room With a View|1908|UK|1900s|word_sets/book8_set.pickle|bigram_dicts/book8_dict.pickle
-Howards End|1910|UK|1910s|word_sets/book9_set.pickle|bigram_dicts/book9_dict.pickle
-Jane Eyre|1848|UK|1840s|word_sets/book10_set.pickle|bigram_dicts/book10_dict.pickle
-The House of Mirth|1905|USA|1900s|word_sets/book11_set.pickle|bigram_dicts/book11_dict.pickle
-The Awakening|1899|USA|1890s|word_sets/book12_set.pickle|bigram_dicts/book12_dict.pickle
-Wuthering Heights|1848|UK|1840s|word_sets/book13_set.pickle|bigram_dicts/book13_dict.pickle
-Little Women|1869|USA|1860s|word_sets/book14_set.pickle|bigram_dicts/book14_dict.pickle
-The Way We Live Now|1875|UK|1870s|word_sets/book15_set.pickle|bigram_dicts/book15_dict.pickle
-Great Expectations|1861|UK|1860s|word_sets/book16_set.pickle|bigram_dicts/book16_dict.pickle
-Belinda|1801|Ireland|1800s|word_sets/book17_set.pickle|bigram_dicts/book17_dict.pickle
-This Side of Paradise|1920|USA|1920s|word_sets/book18_set.pickle|bigram_dicts/book18_dict.pickle
-The Tenant of Wildfell Hall|1848|UK|1840s|word_sets/book19_set.pickle|bigram_dicts/book19_dict.pickle
-The Man Who Was Thursday|1908|UK|1900s|word_sets/book20_set.pickle|bigram_dicts/book20_dict.pickle
-Frankenstein|1818|UK|1810s|word_sets/book21_set.pickle|bigram_dicts/book21_dict.pickle
-The Woman in White|1859|UK|1850s|word_sets/book22_set.pickle|bigram_dicts/book22_dict.pickle
-The Moonstone|1868|UK|1860s|word_sets/book23_set.pickle|bigram_dicts/book23_dict.pickle
-Dracula|1897|Ireland|1890s|word_sets/book24_set.pickle|bigram_dicts/book24_dict.pickle
-The Custom of the Country|1913|USA|1910s|word_sets/book25_set.pickle|bigram_dicts/book25_dict.pickle
-Tess of the d'Urbervilles|1891|UK|1890s|word_sets/book26_set.pickle|bigram_dicts/book26_dict.pickle
-The Return of the Soldier|1918|UK|1910s|word_sets/book27_set.pickle|bigram_dicts/book27_dict.pickle
-The Autobiography of an Ex-Colored Man|1912|USA|1910s|word_sets/book28_set.pickle|bigram_dicts/book28_dict.pickle
-The Picture of Dorian Gray|1891|Ireland|1890s|word_sets/book29_set.pickle|bigram_dicts/book29_dict.pickle
-A Study in Scarlet|1887|UK|1880s|word_sets/book30_set.pickle|bigram_dicts/book30_dict.pickle
-Oliver Twist|1839|UK|1830s|word_sets/book31_set.pickle|bigram_dicts/book31_dict.pickle
-The Portrait of a Lady|1881|USA|1880s|word_sets/book32_set.pickle|bigram_dicts/book32_dict.pickle
-Precaution|1820|USA|1820s|word_sets/book33_set.pickle|bigram_dicts/book33_dict.pickle
-Vivian Grey|1827|UK|1820s|word_sets/book34_set.pickle|bigram_dicts/book34_dict.pickle
+Pride & Prejudice|Jane Austen|1813|UK|1810s|word_sets/book1_set.pickle|bigram_dicts/book1_dict.pickle
+Sense & Sensibility|Jane Austen|1811|UK|1810s|word_sets/book2_set.pickle|bigram_dicts/book2_dict.pickle
+Northanger Abbey|Jane Austen|1818|UK|1810s|word_sets/book3_set.pickle|bigram_dicts/book3_dict.pickle
+Persuasion|Jane Austen|1818|UK|1810s|word_sets/book4_set.pickle|bigram_dicts/book4_dict.pickle
+Emma|Jane Austen|1815|UK|1810s|word_sets/book5_set.pickle|bigram_dicts/book5_dict.pickle
+Mansfield Park|Jane Austen|1814|UK|1810s|word_sets/book6_set.pickle|bigram_dicts/book6_dict.pickle
+North & South|Elizabeth Gaskell|1854|UK|1850s|word_sets/book7_set.pickle|bigram_dicts/book7_dict.pickle
+A Room With a View|E.M. Forster|1908|UK|1900s|word_sets/book8_set.pickle|bigram_dicts/book8_dict.pickle
+Howards End|E.M. Forster|1910|UK|1910s|word_sets/book9_set.pickle|bigram_dicts/book9_dict.pickle
+Jane Eyre|Charlotte Brontë|1848|UK|1840s|word_sets/book10_set.pickle|bigram_dicts/book10_dict.pickle
+The House of Mirth|Edith Wharton|1905|USA|1900s|word_sets/book11_set.pickle|bigram_dicts/book11_dict.pickle
+The Awakening|Kate Chopin|1899|USA|1890s|word_sets/book12_set.pickle|bigram_dicts/book12_dict.pickle
+Wuthering Heights|Emily Brontë|1848|UK|1840s|word_sets/book13_set.pickle|bigram_dicts/book13_dict.pickle
+Little Women|Louisa May Alcott|1869|USA|1860s|word_sets/book14_set.pickle|bigram_dicts/book14_dict.pickle
+The Way We Live Now|Anthony Trollope|1875|UK|1870s|word_sets/book15_set.pickle|bigram_dicts/book15_dict.pickle
+Great Expectations|Charles Dickens|1861|UK|1860s|word_sets/book16_set.pickle|bigram_dicts/book16_dict.pickle
+Belinda|Maria Edgeworth|1801|Ireland|1800s|word_sets/book17_set.pickle|bigram_dicts/book17_dict.pickle
+This Side of Paradise|F. Scott Fitzgerald|1920|USA|1920s|word_sets/book18_set.pickle|bigram_dicts/book18_dict.pickle
+The Tenant of Wildfell Hall|Anne Brontë|1848|UK|1840s|word_sets/book19_set.pickle|bigram_dicts/book19_dict.pickle
+The Man Who Was Thursday|G.K. Chesterton|1908|UK|1900s|word_sets/book20_set.pickle|bigram_dicts/book20_dict.pickle
+Frankenstein|Mary Shelley|1818|UK|1810s|word_sets/book21_set.pickle|bigram_dicts/book21_dict.pickle
+The Woman in White|Wilkie Collins|1859|UK|1850s|word_sets/book22_set.pickle|bigram_dicts/book22_dict.pickle
+The Moonstone|Wilkie Collins|1868|UK|1860s|word_sets/book23_set.pickle|bigram_dicts/book23_dict.pickle
+Dracula|Bram Stoker|1897|Ireland|1890s|word_sets/book24_set.pickle|bigram_dicts/book24_dict.pickle
+The Custom of the Country|Edith Wharton|1913|USA|1910s|word_sets/book25_set.pickle|bigram_dicts/book25_dict.pickle
+Tess of the d'Urbervilles|Thomas Hardy|1891|UK|1890s|word_sets/book26_set.pickle|bigram_dicts/book26_dict.pickle
+The Return of the Soldier|Rebecca West|1918|UK|1910s|word_sets/book27_set.pickle|bigram_dicts/book27_dict.pickle
+The Autobiography of an Ex-Colored Man|James Weldon Johnson|1912|USA|1910s|word_sets/book28_set.pickle|bigram_dicts/book28_dict.pickle
+The Picture of Dorian Gray|Oscar Wilde|1891|Ireland|1890s|word_sets/book29_set.pickle|bigram_dicts/book29_dict.pickle
+A Study in Scarlet|Arthur Conan Doyle|1887|UK|1880s|word_sets/book30_set.pickle|bigram_dicts/book30_dict.pickle
+Oliver Twist|Charles Dickens|1839|UK|1830s|word_sets/book31_set.pickle|bigram_dicts/book31_dict.pickle
+The Portrait of a Lady|Henry James|1881|USA|1880s|word_sets/book32_set.pickle|bigram_dicts/book32_dict.pickle
+Precaution|James Fenimore Cooper|1820|USA|1820s|word_sets/book33_set.pickle|bigram_dicts/book33_dict.pickle
+Vivian Grey|Benjamin Disraeli|1827|UK|1820s|word_sets/book34_set.pickle|bigram_dicts/book34_dict.pickle
+The Glimpses of the Moon|Edith Wharton|1922|USA|1920s|word_sets/book35_set.pickle|bigram_dicts/book35_dict.pickle

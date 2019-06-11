@@ -30,9 +30,9 @@ def load_books():
 
     for row in open("sql_data/books"):
         row = row.rstrip()
-        title, pub_year, country, decade, word_set, bigram_dict = row.split("|")
+        title, author, pub_year, country, decade, word_set, bigram_dict = row.split("|")
 
-        new_book = Book(title=title, pub_year=pub_year, country=country, decade=decade,
+        new_book = Book(title=title, author=author, pub_year=pub_year, country=country, decade=decade,
             word_set=word_set, bigram_dict=bigram_dict)
         db.session.add(new_book)
 

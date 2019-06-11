@@ -43,7 +43,9 @@ def format_decades():
 
 
 def get_ignore_words():
-    if not session.get("user_id"):
+    if not session.get("logged_in"):
+        return []
+    elif session["logged_in"]==False:
         return []
     else:
         current_user = User.query.filter_by(email=session["user_id"]).one()
@@ -140,7 +142,7 @@ def show_faqs():
 
 @app.route("/corpus")
 def show_corpus():
-    books = db.session.query(Book.title, Book.country, Book.pub_year).order_by(Book.pub_year).all()
+    books = db.session.query(Book.title, Book.author, Book.country, Book.pub_year).order_by(Book.pub_year).all()
     return render_template("our_corpus.html", books=books)
 
 
