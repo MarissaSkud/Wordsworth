@@ -42,6 +42,10 @@ nav a:hover {
     color: #7964C4;
 }
 
+thead {
+    background-color: #BFB134;
+}
+
 .dropdown-menu a:hover {
     color: #7964C4;
 }

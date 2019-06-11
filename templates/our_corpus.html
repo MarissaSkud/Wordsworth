@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-Currently, Wordsworth's corpus includes the following novels:
+Wordsworth's corpus currently contains the full text of the following novels.
 <br>
 <br>
-<table>
+<div class="container">
+<table class="table table-hover table-sm">
     <thead>
     <tr>
     <th>Title</th>
@@ -20,6 +21,6 @@ Currently, Wordsworth's corpus includes the following novels:
   </tr>
   {% endfor %}
 </table>
-
+</div>
 
 {% endblock %}
