@@ -43,8 +43,11 @@ def format_decades():
 
 
 def get_ignore_words():
-    current_user = User.query.filter_by(email=session["user_id"]).one()
-    return current_user.ignore_words[:]
+    if not session.get("user_id"):
+        return []
+    else:
+        current_user = User.query.filter_by(email=session["user_id"]).one()
+        return current_user.ignore_words[:]
         #This is a slice because otherwise SQLAlchemy can't detect changes that we make to the list
 
 

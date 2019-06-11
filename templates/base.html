@@ -18,6 +18,19 @@
   {% endif %}
 {% endwith %}
 
+{% block navbar %}
+
+<nav class="navbar">
+  <a class="nav-link" href="/">Home</a>
+  <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/word-search">Words</a>
+          <a class="dropdown-item" href="/bigram-search">Bigrams</a>
+        </div>
+      </li>
+</nav>
+
 {% if session.get('logged_in') == True %}
 
 <div id="logout-div">
@@ -42,6 +55,7 @@
 
 <br>
 {% endif %}
+{% endblock %}
 
   {% block content %} 
   {% endblock %}

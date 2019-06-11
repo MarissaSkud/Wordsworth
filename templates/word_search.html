@@ -6,10 +6,11 @@ This will compare a text sample to our corpus of texts from the selected decade 
 <br>
 
 <form action="/word-results" method="GET">
-    Please input a sample (2500 characters or less) of the text you want to analyze.
+    Please input a sample of the text you want to analyze.
     <br>
     <textarea maxlength="2500" rows="7" cols="50" name="textstring"></textarea>
     <br>
+    <small class="form-text text-muted">Sample must be 2500 characters or less.</small>
     <br>
     Are there any words you want the app to ignore? (e.g., character names). List them here, separated by spaces.
     <br>
@@ -23,7 +24,7 @@ This will compare a text sample to our corpus of texts from the selected decade 
         {% endfor %}
     </select>
     <br>
-    <input type="submit" name="submit">
+    <input type="submit" value="Submit">
 </form>
 <br>
 <br>

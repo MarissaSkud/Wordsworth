@@ -26,6 +26,26 @@ footer {
     padding-top:20px;
 }
 
+select {
+    color: #453C04;
+}
+
+nav {
+    background-color: #453C04;
+}
+
+nav a {
+    color: #BFB134;
+}
+
+nav a:hover {
+    color: #7964C4;
+}
+
+.dropdown-menu a:hover {
+    color: #7964C4;
+}
+
 .answer {
 display: none;
 }
@@ -34,8 +54,8 @@ display: none;
     font-style: italic;
 }
 
-dk brown: #453C04
+/*dk brown: #453C04
 cream: #F5F2DE
 dk purple: #391BA6
 med purple: #7964C4
-goldenrod: #BFB134
+goldenrod: #BFB134*/

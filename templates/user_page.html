@@ -15,16 +15,17 @@ Welcome, {{ session["user_id"] }}.
     {% else %}
     Your ignore words are:
 <br>
-<form action="/delete-ignore-words" method="POST">
-<ul>
-    {% for word in ignore_words %}
-    <input type="checkbox" id="ignore-word" name="ignore-word" value="{{ word }}">
-        <label for="ignore-word">{{ word }}</label><br>
 
+<form action="/delete-ignore-words" method="POST">
+<div class="form-check">
+    {% for word in ignore_words %}
+    <input class="form-check-input" type="checkbox" id="ignore-word" name="ignore-word" value="{{ word }}">
+        <label for="ignore-word" class="form-check-label">{{ word }}</label>
     {% endfor %}
-</ul>
+</div>
 <input type="submit" value="Stop ignoring selected words">
 </form>
+
 <br>
 <br>
     {% endif %}
