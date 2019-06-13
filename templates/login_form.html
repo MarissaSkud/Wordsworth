@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% if session["logged_in"] == True %}
+{% if session.get("logged_in") == True %}
 
 You are already logged in.
 
@@ -13,9 +13,9 @@ Log in for access to your saved words.
 Don't have an account? <a href="/register">Sign up here.</a>
 
 <form action='/login-process' method="POST">
-    Email : <input type="text" name="email">
-    Password : <input type="password" name="password">
-    <input type="submit" name="submit" value="Log in">
+    Email : <input class="form-control" type="text" name="email">
+    Password : <input class="form-control" type="password" name="password">
+    <input class="btn btn-light" type="submit" name="submit" value="Log in">
 </form>
 {% endif %}
 

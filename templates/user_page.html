@@ -8,12 +8,12 @@ Welcome, {{ session["user_id"] }}.
 <br>
 
     {% if ignore_words == [] %}
-    Your list of words to ignore is currently empty.
+    You do not currently have any words saved in your Words to Discount.
 
     <br>
 
     {% else %}
-    Your ignore words are:
+    Your Words to Discount are:
 <br>
 
 <form action="/delete-ignore-words" method="POST">
@@ -23,18 +23,18 @@ Welcome, {{ session["user_id"] }}.
         <label for="ignore-word" class="form-check-label">{{ word }}</label>
     {% endfor %}
 </div>
-<input type="submit" value="Stop ignoring selected words">
+<input class="btn btn-light" type="submit" value="Stop ignoring selected words">
 </form>
 
 <br>
 <br>
     {% endif %}
 
-If you wish to add words to your list of Ignore Words, enter them below.
+If you wish to add words to your list of Words to Discount, enter them below.
 
 <form action="/add-ignore-words" method="POST">
-    <textarea maxlength="2500" rows="7" cols="50" name="to-ignore"></textarea>
-    <input type="submit" name="submit" value="Add these words to ignore list">
+    <textarea class="form-control" maxlength="2500" rows="7" cols="50" name="to-ignore"></textarea>
+    <input class="btn btn-light" type="submit" name="submit" value="Add these words to ignore list">
 </form>
 
 

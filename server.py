@@ -142,7 +142,8 @@ def show_faqs():
 
 @app.route("/corpus")
 def show_corpus():
-    books = db.session.query(Book.title, Book.author, Book.country, Book.pub_year).order_by(Book.pub_year).all()
+    books = db.session.query(Book.title, Book.author, Book.country, 
+        Book.pub_year).order_by(Book.pub_year).all()
     return render_template("our_corpus.html", books=books)
 
 

@@ -50,8 +50,8 @@ class User(db.Model):
 
     __tablename__ = "users"
 
-    email = db.Column(db.String, primary_key=True)
-    password = db.Column(db.String, nullable=False)
+    email = db.Column(db.String(100), primary_key=True)
+    password = db.Column(db.String(50), nullable=False)
     ignore_words = db.Column(db.ARRAY(db.String, dimensions=1))
 
 

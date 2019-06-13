@@ -4,7 +4,6 @@
   <title>Wordsworth</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/styles.css">
-
 </head>
 
 <body>
@@ -19,28 +18,57 @@
 {% endwith %}
 
 {% block navbar %}
-
 <nav class="navbar">
   <a class="nav-link" href="/">Home</a>
   <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</a>
-  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="search-options" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</a>
+      <div class="dropdown-menu" aria-labelledby="search-options">
           <a class="dropdown-item" href="/word-search">Words</a>
           <a class="dropdown-item" href="/bigram-search">Bigrams</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="about-pages" role="button" data-toggle="dropdown" 
+    aria-haspopup="true" aria-expanded="false">About Wordsworth</a>
+        <div class="dropdown-menu" aria-labelledby="about-pages">
+          <a class="dropdown-item" href="/faqs">FAQs</a>
+          <a class="dropdown-item" href="/corpus">Our corpus</a>
         </div>
-      </li>
-  {% if session.get("logged_in") == True %}
+    </li>
+{% if session.get("logged_in") == True %}
   <div id="logout-div">
-<button id="logout">Logout</button>
-</div>
-
+    <a class="nav-link" href="/user-page">Your profile</a>
+    <button class="btn btn-light" id="logout">Logout</button>
+  </div>
+{% else %}
+  <div id="login-div">
+    <button class="btn btn-light" id="login" onclick="window.location.href='/login';">Login</button>
+{% endif %}
 </nav>
-
-
 
 <div id="logout-successful"></div>
 
-<script>
+<br>
+{% endblock %}
+
+  {% block content %} 
+  {% endblock %}
+
+  {% block footer %}
+<footer class="page-footer fixed-bottom font-small">
+    <div class="footer-copyright text-center">Wordsworth © 2019 Marissa Skudlarek
+    </div>
+</footer>
+  {% endblock %}
+
+<script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <script>
   function confirmLogOut(result) {
     $("#logout-div").hide()
     $("#logout-successful").html(result);
@@ -53,28 +81,6 @@
   $("#logout").on("click", handleLogOut)
 
 </script>
-
-<br>
-{% endif %}
-{% endblock %}
-
-  {% block content %} 
-  {% endblock %}
-
-  {% block footer %}
-
-<footer class="page-footer fixed-bottom font-small">
-<div class="footer-copyright text-center">Wordsworth © 2019 Marissa Skudlarek
-   </div>
-</footer>
-  {% endblock %}
-
-<script
-        src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-        crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>
