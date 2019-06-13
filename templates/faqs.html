@@ -6,10 +6,10 @@
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
 
-Wordsworth is a tool to help historical fiction authors avoid linguistic anachronisms. You can compare a passage from your story to a corpus of fiction from the decade you're writing about, or look up whether a specific bigram (two-word phrase) is found in fiction from that decade.
+<div class="container">
+<h2><span class="cormorant">FAQs</span></h2>
 
-<h2>FAQs</h2>
-
+Wordsworth is a tool to help historical fiction authors avoid linguistic anachronisms. You can compare a passage from your story to a corpus of fiction from the decade you're writing about, or look up whether a specific bigram is found in fiction from that decade.
 
 <h3>About Wordsworth in General</h3>
 <div class="faq">
@@ -17,10 +17,10 @@ Wordsworth is a tool to help historical fiction authors avoid linguistic anachro
         <h5>Where did you come up with the idea for this app?</h5>
     </div>
     <div class="answer">
-        <p>Wordsworth is very much inspired by the work of Ben Schmidt, a digital-humanities professor who, in the early 2010s, wrote about his work trying to find linguistic anachronisms in historical fiction screenplays by comparing it to literature from the time period. Schmidt's program and corpus is not publicly available, so we decided to try to create an approximation of it.</p>
+        <p>Wordsworth is inspired by the work of <a href="http://benschmidt.org/">Ben Schmidt</a>, a digital-humanities professor who, in the early 2010s, <a href="https://www.theatlantic.com/entertainment/archive/2013/01/did-anyone-say-racial-equality-in-1865-the-language-of-i-lincoln-i/266990/">wrote about</a> trying to identify linguistic anachronisms in historical fiction screenplays by comparing them to texts written in the period they were set. Schmidt's program and corpus is not publicly available, so we decided to try to create an approximation of it.</p>
     </div>
-    </div>
-    
+</div>
+<br>
 <div class="faq">
     <div class="question">
         <h5>Your app is meant for fiction writers, not for poets, and your corpus does not include poetry. So why is it called Wordsworth?</h5>
@@ -30,15 +30,37 @@ Wordsworth is a tool to help historical fiction authors avoid linguistic anachro
     </div>
     </div>
 <br>
-
+<div class="faq">
+    <div class="question">
+        <h5>I have a question that isn't answered on this page / I think I've discovered a bug on Wordsworth. How can I get in touch with you?</h5>
+    </div>
+    <div class="answer">
+        <p>Email the app's creator at marissa (dot) skudlarek (at) gmail.com, or submit an Issue on <a href="https://github.com/MarissaSkud/Wordsworth">Wordsworth's GitHub page</a>.</p>
+    </div>
+    </div>
 <br>
 
 <h3>About Wordsworth's Features</h3>
 <br>
 <div class="faq">
-    <div class="question"><h5>How does the "discount words" feature work?</h5></div>
+    <div class="question"><h5>What is a bigram?</h5></div>
     <div class="answer">
-        <p>It allows you to tell the system to ignore certain words in your passage (words you may already know are anachronistic) before analyzing it. For instance, Mary Robinette Kowal's fantasy novel <span class="book-title">Shades of Milk and Honey</span> is heavily influenced by the works of Jane Austen, but it features a hero named "Mr. Vincent" and a magic system known as "glamour". Neither the words "vincent" or "glamour" appear in our 1810s corpus, so it would make sense for Kowal to tell the system to ignore those words if she ran her text through the app.</p>
+        <p>A bigram (pronounced "BY-gram") is a linguistic term for a phrase of two words.</p>
+    </div>
+    </div>
+<br>
+<div class="faq">
+    <div class="question"><h5>What are the Google Ngram charts and where do they come from?</h5></div>
+    <div class="answer">
+        <p>The <a href="https://books.google.com/ngrams">Google Books Ngram Viewer</a> is a Google feature that uses the Google Books corpus to graph word and phrase frequencies over time. These graphs can be embedded in other websites using iframes. Wordsworth's Google Ngram charts default to pulling from Google's "English Fiction" corpus.
+        </p>
+    </div>
+    </div>
+<br>
+<div class="faq">
+    <div class="question"><h5>How does the Discount Words feature work?</h5></div>
+    <div class="answer">
+        <p>The Discount Words feature allows you to tell the system to ignore certain words in your passage (words you may already know are anachronistic) before analyzing it. For instance, Mary Robinette Kowal's fantasy novel <span class="book-title">Shades of Milk and Honey</span> is heavily influenced by the works of Jane Austen, but it features a hero named "Mr. Vincent" and a magic system known as "glamour". Neither the words "vincent" or "glamour" appear in our 1810s corpus, so it would make sense for Kowal to tell the system to ignore those words if she ran her text through the app.</p>
     </div>
     </div>
 <br>
@@ -132,6 +154,7 @@ Wordsworth is a tool to help historical fiction authors avoid linguistic anachro
     </div>
 <br>
 
+</div>
 
 <script>
 if ($(".question").hasClass("active")) {

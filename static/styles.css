@@ -2,10 +2,16 @@ iframe {
     border:none;
 }
 
+img {
+    filter: sepia(.5);
+}
+
 body {
     background-color:#F5F2DE;
     color: #453C04;
     padding-bottom:60px;
+    font-family: 'Alegreya Sans', sans-serif;
+    font-size: large;
 }
 
 a {
@@ -80,8 +86,12 @@ h5 {
     border-color: #BFB134;
 }
 
+.cormorant {
+    font-family: 'Cormorant Upright', serif;
+}
+
 #logout-div {
-    display:inline-block;
+    display: inline-block;
 }
 
 

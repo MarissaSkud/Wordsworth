@@ -1,26 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
 
-This is intended to show you the number of times a single bigram (two-word phrase) appears in the corpus of the selected decade.
-<br>
-<br>
+<div class="container">
 
-<form action="/bigram-results" method="GET">
-    Please input a bigram
-    <br>
-    <input class="form-control" type="text" name="bigram" maxlength="50">
-    <br>
-    Which decade would you like to search for this phrase in? <br>
-    <select class="form-control" name="decade">
-        {% for decade in decades %}
-        <option name="{{ decade }}" value="{{ decade }}">{{ decade }}</option>
-        {% endfor %}
-    </select>
-    <br>
-    <input class="btn btn-light" type="submit" value="Submit">
-</form>
+<h2><span class="cormorant">Bigram Search</span></h2>
+
+This will show you the number of times a single bigram (two-word phrase) appears in the corpus of the selected decade.
+<br>
+<br>
+    <form action="/bigram-results" method="GET">
+        <div class="form-group">
+                <label for="bigram">Input a bigram</label>
+                <input class="form-control" type="text" name="bigram" maxlength="50">
+            </div>
+        <div class="row align-items-end">
+            <div class="form-group col">
+                <label for="decade">Which decade would you like to search for this phrase in?</label>
+                <select class="form-control" name="decade">
+                    {% for decade in decades %}
+                    <option name="{{ decade }}" value="{{ decade }}">{{ decade }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        <div class="form-group col">
+                <input class="btn btn-light" type="submit" value="Submit">
+            </div>
+        </form>
 <br>
 <br>
 Note: Bigram search IS case-sensitive. You may therefore get different search results when searching for "divine providence," "divine Providence", and "Divine Providence."
+</div>
 
 {% endblock %}

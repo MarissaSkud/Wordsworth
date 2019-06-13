@@ -1,28 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>WORDSWORTH</h1>
-<h3>Measure the language of historical fiction
-    <br>
-    against fiction written in that era</h3>
-
-Analyze <a href="/word-search">a passage of text</a> 
+<div class="container">
+    <h1><div class="row cormorant justify-content-center">Wordsworth</div></h1>
+    <h3><div class="row justify-content-center"> Measure the language of historical fiction against fiction written in that era</div></h3>
+    <div class="row justify-content-center"><img src="/static/c19th_novel.jpg"></div>
+</div>
 <br>
-Search for <a href="/bigram-search">a specific two-word phrase</a>
-<br>
-<br>
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            Analyze <a href="/word-search">a passage of text</a>
+        </div>
+        <div class="col text-center">
+            Search for <a href="/bigram-search">a specific two-word phrase</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            Learn <a href="/faqs">more about Wordsworth</a>
+        </div>
+        <div class="col text-center">
+            View <a href="/corpus">our corpus</a>
+        </div>
+    </div>
+</div>
 
 {% if session.get('logged_in') != True %}
-
-<a href="login">Log in</a> for access to additional features
-<br> 
-
+<div class="container">
+    <div class="row justify-content-center">
+        <a href="login">Log in for access to additional features</a>
+    </div>
+</div>
 {% endif %}
-<br>
-<br>
 
-<a href="/faqs">Learn more about Wordsworth's methodology</a>
-<br>
-<a href="/corpus">View our corpus</a>
 
 {% endblock %}

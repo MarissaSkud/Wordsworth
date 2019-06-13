@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Wordsworth</title>
+  <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Cormorant+Upright:600&display=swap" rel="stylesheet"> 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/styles.css">
 </head>
@@ -19,32 +20,35 @@
 
 {% block navbar %}
 <nav class="navbar">
-  <a class="nav-link" href="/">Home</a>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="search-options" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</a>
-      <div class="dropdown-menu" aria-labelledby="search-options">
-          <a class="dropdown-item" href="/word-search">Words</a>
-          <a class="dropdown-item" href="/bigram-search">Bigrams</a>
-      </div>
-    </li>
+  <div class="container">
+    <a class="nav-link navbar-left" href="/">Home</a>
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="about-pages" role="button" data-toggle="dropdown" 
-    aria-haspopup="true" aria-expanded="false">About Wordsworth</a>
-        <div class="dropdown-menu" aria-labelledby="about-pages">
-          <a class="dropdown-item" href="/faqs">FAQs</a>
-          <a class="dropdown-item" href="/corpus">Our corpus</a>
+      <a class="nav-link dropdown-toggle navbar-left" href="#" id="search-options" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</a>
+        <div class="dropdown-menu" aria-labelledby="search-options">
+            <a class="dropdown-item" href="/word-search">Words</a>
+            <a class="dropdown-item" href="/bigram-search">Bigrams</a>
         </div>
-    </li>
-{% if session.get("logged_in") == True %}
-  <div id="logout-div">
-    <a class="nav-link" href="/user-page">Your profile</a>
-    <button class="btn btn-light" id="logout">Logout</button>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle navbar-left" href="#" id="about-pages" role="button" data-toggle="dropdown" 
+      aria-haspopup="true" aria-expanded="false">About Wordsworth</a>
+          <div class="dropdown-menu" aria-labelledby="about-pages">
+            <a class="dropdown-item" href="/faqs">FAQs</a>
+            <a class="dropdown-item" href="/corpus">Our corpus</a>
+          </div>
+      </li>
+  {% if session.get("logged_in") == True %}
+    <div id="logout-div">
+      <a class="nav-link navbar-right" href="/user-page">Your profile</a>
+      <button class="btn btn-light navbar-right" id="logout">Logout</button>
+    </div>
+  {% else %}
+    <div id="login-div">
+      <button class="btn btn-light navbar-right" id="login" onclick="window.location.href='/login';">Login</button>
+  {% endif %}
   </div>
-{% else %}
-  <div id="login-div">
-    <button class="btn btn-light" id="login" onclick="window.location.href='/login';">Login</button>
-{% endif %}
 </nav>
+
 
 <div id="logout-successful"></div>
 
