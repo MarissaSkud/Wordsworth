@@ -1,28 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% if corpus_appearances == 0 %}
-
 <div class="container">
-    Possible anachronism alert! The phrase "{{ bigram[0] }} {{ bigram[1] }}" does not appear at all in our corpus of texts from the {{ decade }}.
-</div>
 
-{% else %}
+    {% if corpus_appearances == 0 %}
 
-<div class="container">
+    <div class="row" id="alert">Possible anachronism alert!</div>
+    <div class="row">The phrase "{{ bigram[0] }} {{ bigram[1] }}" does not appear in our corpus of texts from the {{ decade }}.</div>
+
+    {% else %}
+    <div class="row cormorant"><h4>Bigram found!</h4></div>
+    <div class="row">The phrase "{{ bigram[0] }} {{ bigram[1] }}" appears {{ corpus_appearances }} times in our corpus of texts from the {{ decade }}, out of {{ corpus_unique_bigrams}} unique bigrams and {{ corpus_total }} total bigrams in that decade's corpus.</div>
+
+    {% endif %}
+    <br>
     <div class="row">
-        The bigram "{{ bigram[0] }} {{ bigram[1] }}" appears {{ corpus_appearances }} times in our corpus of texts from the {{ decade }}, out of {{ corpus_unique_bigrams}} unique bigrams and {{ corpus_total }} total bigrams in that decade's corpus.
-    </div>
-
-{% endif %}
-
-<div class="container">
+        <p><a href="https://books.google.com/ngrams/interactive_chart?content={{ bigram[0] }}+{{ bigram[1] }} &year_start=1800&year_end=2000&corpus=16&smoothing=3" target="bigram-chart">Click here</a> to see more about this phrase's use from 1800 to 2000, according to Google Ngram data.</p></div>
     <div class="row">
-        <a href="https://books.google.com/ngrams/interactive_chart?content={{ bigram[0] }}+{{ bigram[1] }} &year_start=1800&year_end=2000&corpus=16&smoothing=3" target="bigram-chart">Click here</a> to see more about this phrase's use from 1800 to 2000, according to Google Ngram data.
-    </div>
-    <div class="row">
-        <iframe name="bigram-chart" src="" width="900" height="400"></iframe>
-    </div>
+        <iframe name="bigram-chart" src="" width="900" height="400"></iframe></div>
 </div>
 
 {% endblock %}
