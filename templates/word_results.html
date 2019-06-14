@@ -10,16 +10,15 @@
         <p>The following words in your text do not appear in our corpus of texts from the {{ decade }}:</p>
     </div>
     <div class="row">
-        <div class="col">
-            <br>
+        <div class="col-3">
             <ul>
                 {% for word in anachronistic_words %}
                     <li> <a href="https://books.google.com/ngrams/interactive_chart?content={{word}}&year_start=1800&year_end=2000&corpus=16&smoothing=3" target="ngram-chart">{{word}}</a></li>
                 {% endfor %}
             </ul>
         </div>
-        <div class="col">
-            <iframe name="ngram-chart" src="" width="600" height="300"></iframe>
+        <div class="col-9">
+            <iframe name="ngram-chart" src="" width="900" height="400"></iframe>
         </div>
     </div>
     <div class="row">
