@@ -1,28 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
 
-Wordsworth's corpus currently contains the full text of the following novels.
-<br>
+<div class="container">
+    <div class="row">
+        <h2><span class="cormorant">Corpus</span></h2>
+    </div>
+    <div class="row">
+        Wordsworth's corpus currently contains the full text of the following novels.
+    </div>
+</div>
 <br>
 <div class="container">
-<table class="table table-hover table-sm">
-    <thead>
-    <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Country</th>
-    <th>Published</th>
-</tr>
-  </thead>
-  {% for book in books %}
-    <tr>
-    <td class="book-title">{{ book[0] }}</td>
-    <td>{{ book[1] }}</td>
-    <td>{{ book[2] }}</td>
-    <td>{{ book[3] }}</td>
-  </tr>
-  {% endfor %}
-</table>
+    <table class="table table-hover table-sm">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Country</th>
+                <th>Published</th>
+            </tr>
+        </thead>
+        {% for book in books %}
+            <tr>
+                <td class="book-title">{{ book[0] }}</td>
+                <td>{{ book[1] }}</td>
+                <td>{{ book[2] }}</td>
+                <td>{{ book[3] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 </div>
 
 {% endblock %}

@@ -1,36 +1,40 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class=container>
-
-<h2><span class="cormorant">Single-Word Search</span></h2>
-
-Compare a passage of your writing to our corpus of texts from the selected decade and learn what words appear in your text, but not the corpus.
-<br>
-<br>
-
 <div class="container">
-    <form action="/word-results" method="GET">
-        Please input a sample of the text you want to analyze.
-        <br>
-        <textarea class="form-control" maxlength="2500" name="textstring"></textarea>
-        <small class="form-text text-muted">Sample must be 2500 characters or less.</small>
-        <br>
-        Are there any words you want the app to ignore? (e.g., character names). List them here, separated by spaces.
-        <br>
+
+<h2><span class="cormorant">Analyze a Passage</span></h2>
+
+Compare a passage of your writing to a corpus of fiction from your selected decade and learn what words appear in your text, but not in the corpus.
+<br>
+<br>
+<form action="/word-results" method="GET">
+     <div class="form-group">
+        <label for="textstring">Input the text you want to analyze.</label>
+        <textarea class="form-control" maxlength="2500" rows="7" name="textstring"></textarea>
+        <small class="form-text text-muted" for="textstring">Passage must be 2500 characters or less.</small>
+    </div>
+    <div class="form-group">
+        <label for="ignore">Do you want Wordsworth to ignore certain words in this passage? If so, list them here.</label>
         <textarea class="form-control" name="ignore" maxlength="300"></textarea> 
-        <br>
-        Which decade would you like to compare this text to? 
-        <br>
-        <select class="form-control" name="decade">
-            {% for decade in decades %}
-            <option name="{{ decade }}" value="{{ decade }}">{{ decade }}</option>
-            {% endfor %}
-        </select>
-        <br>
-        <input class="btn btn-light" type="submit" value="Submit">
-    </form>
-</div>
+        {% if session.get("logged_in") == True %}
+        <small class="form-text text-muted" for="ignore">Since you are logged in, Wordsworth will automatically ignore the words you have saved in your <a href="/user-page">Discount Words</a>.</small>
+        {% endif %}
+    </div>
+    <div class="row align-items-end">
+        <div class="form-group col">
+            <label for="decade">Which decade would you like to compare this text to?</label>
+            <select class="form-control" name="decade">
+                {% for decade in decades %}
+                <option name="{{ decade }}" value="{{ decade }}">{{ decade }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group col">
+            <input class="btn btn-light" type="submit" value="Submit">
+        </div>
+    </div>
+</form>
 <br>
 <br>
 Note: Word search is not case-sensitive. Your text will be converted to all lower-case and compared to a corpus of lower-cased words.

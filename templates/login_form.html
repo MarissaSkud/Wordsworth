@@ -3,21 +3,31 @@
 
 {% if session.get("logged_in") == True %}
 
-You are already logged in.
+<div class="container">
+    You are already logged in.
+    <br>
+    Would you like to visit your <a href="/user-page">profile</a>?
+</div>
 
 {% else %}
 
 <div class="container">
+    <h2><span class="cormorant">Log In</span></h2>
 
 Log in for access to your saved words.
 <br>
-<br>
 Don't have an account? <a href="/register">Sign up here.</a>
-
-<form action='/login-process' method="POST">
-    Email : <input class="form-control" type="text" name="email">
-    Password : <input class="form-control" type="password" name="password">
-    <input class="btn btn-light" type="submit" name="submit" value="Log in">
+<br>
+<br>
+<form action="/login-process" method="POST">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" type="text" name="email">
+        <label for="password">Password</label>
+        <input class="form-control" type="password" name="password">
+        <br>
+        <input class="btn btn-light" type="submit" name="submit" value="Log in">
+    </div>
 </form>
 
 </div>

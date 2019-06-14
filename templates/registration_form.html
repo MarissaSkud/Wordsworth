@@ -1,20 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Sign Up</h2>
+<div class=container>
+    <h2><span class="cormorant">Sign Up</span></h2>
 
-Most of Wordsworth's features are free to use without signing in, but if you would like to save your list of Words to Discount and have the system automatically ignore them, you will need to register an account.
+    Most of Wordsworth's features are free to use without signing in, but if you would like to save your list of Words to Discount and have the system automatically ignore them, you will need to register an account.
 
-<form action="/sign-up" method="POST">
-    Email Address: <input class="form-control" type="text" name="email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-    <br>
-    Password: <input class="form-control" type="password" name="password">
-    <br>
-    <input class="btn btn-light" type="submit" value="Submit">
-
-</form>
-
+    <form action="/sign-up" method="POST">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" type="text" name="email">
+            <small id="emailHelp" class="form-text text-muted" for="email">We'll never share your email with anyone else.</small>
+            <label for="password">Password</label>
+            <input class="form-control" type="password" name="password">
+            <br>
+            <input class="btn btn-light" type="submit" value="Submit">
+        </div>
+    </form>
+</div>
 
 {% endblock %}

@@ -2,41 +2,44 @@
 {% block content %}
 
 {% if session.get("logged_in") == True %}
-<br>
-Welcome, {{ session["user_id"] }}.
-<br>
-<br>
+    <div class="container">
+        <h2><span class="cormorant">Your Profile</span></h2>
+        <br>
+        Welcome, {{ session["user_id"] }}.
+        <br>
+        <br>
+        {% if ignore_words == [] %}
+            You do not currently have any words saved in your Words to Discount.
+            <br>
+            <br>
+        {% else %}
+            <h3>Words to Discount</h3>
 
-    {% if ignore_words == [] %}
-    You do not currently have any words saved in your Words to Discount.
+            The following words are currently in your Words to Discount.
+            <br>
+            <form action="/delete-ignore-words" method="POST">
+                <div class="form-check">
+                    {% for word in ignore_words %}
+                    <input class="form-check-input" type="checkbox" id="ignore-word" name="ignore-word" value="{{ word }}">
+                        <label for="ignore-word">{{ word }}</label>
+                        <br>
+                    {% endfor %}
+                </div>
+                <input class="btn btn-light" type="submit" value="Stop ignoring selected words">
+            </form>
+            <br>
+            <br>
+        {% endif %}
 
-    <br>
+        To add words to your list of Words to Discount, enter them below.
 
-    {% else %}
-    Your Words to Discount are:
-<br>
-
-<form action="/delete-ignore-words" method="POST">
-<div class="form-check">
-    {% for word in ignore_words %}
-    <input class="form-check-input" type="checkbox" id="ignore-word" name="ignore-word" value="{{ word }}">
-        <label for="ignore-word" class="form-check-label">{{ word }}</label>
-    {% endfor %}
-</div>
-<input class="btn btn-light" type="submit" value="Stop ignoring selected words">
-</form>
-
-<br>
-<br>
-    {% endif %}
-
-To add more words to your list of Words to Discount, enter them below.
-
-<form action="/add-ignore-words" method="POST">
-    <textarea class="form-control" maxlength="2500" rows="7" cols="50" name="to-ignore"></textarea>
-    <input class="btn btn-light" type="submit" name="submit" value="Add these words to ignore list">
-</form>
-
+        <form action="/add-ignore-words" method="POST">
+            <div class="form-group">
+                <textarea class="form-control" maxlength="2500" rows="7" name="to-ignore"></textarea>
+                <input class="btn btn-light" type="submit" name="submit" value="Start ignoring these words">
+            </div>
+        </form>
+    </div>
 
 {% else %}
 

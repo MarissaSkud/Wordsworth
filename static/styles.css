@@ -56,14 +56,6 @@ h5 {
     color: #391BA6;
 }
 
-.dropdown-menu a {
-    color: #453C04;
-}
-
-.dropdown-menu a:hover {
-    color: #7964C4;
-}
-
 .answer {
     display: none;
 }
@@ -81,6 +73,10 @@ h5 {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #7964C4;
 }
 
+input[type="checkbox"]:checked {
+    color: #391BA6;
+}
+
 .btn-light {
     color: #453C04;
     border-color: #BFB134;
@@ -88,10 +84,6 @@ h5 {
 
 .cormorant {
     font-family: 'Cormorant Upright', serif;
-}
-
-#logout-div {
-    display: inline-block;
 }
 
 

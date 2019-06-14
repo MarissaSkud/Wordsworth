@@ -1,89 +1,88 @@
 <!doctype html>
 <html>
 <head>
-  <title>Wordsworth</title>
-  <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Cormorant+Upright:600&display=swap" rel="stylesheet"> 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/static/styles.css">
+	<title>Wordsworth</title>
+	<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Cormorant+Upright:600&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/styles.css">
 </head>
 
 <body>
-
 {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-    {{ message }}
-    <br>
-    {% endfor %}
-  {% endif %}
+	{% if messages %}
+		{% for message in messages %}
+			{{ message }}
+			<br>
+		{% endfor %}
+	{% endif %}
 {% endwith %}
 
 {% block navbar %}
-<nav class="navbar">
-  <div class="container">
-    <a class="nav-link navbar-left" href="/">Home</a>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle navbar-left" href="#" id="search-options" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</a>
-        <div class="dropdown-menu" aria-labelledby="search-options">
-            <a class="dropdown-item" href="/word-search">Words</a>
-            <a class="dropdown-item" href="/bigram-search">Bigrams</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle navbar-left" href="#" id="about-pages" role="button" data-toggle="dropdown" 
-      aria-haspopup="true" aria-expanded="false">About Wordsworth</a>
-          <div class="dropdown-menu" aria-labelledby="about-pages">
-            <a class="dropdown-item" href="/faqs">FAQs</a>
-            <a class="dropdown-item" href="/corpus">Our corpus</a>
-          </div>
-      </li>
-  {% if session.get("logged_in") == True %}
-    <div id="logout-div">
-      <a class="nav-link navbar-right" href="/user-page">Your profile</a>
-      <button class="btn btn-light navbar-right" id="logout">Logout</button>
-    </div>
-  {% else %}
-    <div id="login-div">
-      <button class="btn btn-light navbar-right" id="login" onclick="window.location.href='/login';">Login</button>
-  {% endif %}
-  </div>
+<nav class="navbar navbar-expand-sm">
+	<ul class="nav navbar-nav">
+		<li><a class="nav-link" href="/">Home</a></li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="search-options" role="button" data-toggle="dropdown">Search</a>
+			<div class="dropdown-menu" aria-labelledby="search-options">
+				<a class="dropdown-item" href="/word-search">Words</a>
+				<a class="dropdown-item" href="/bigram-search">Bigrams</a>
+			</div>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="about-pages" role="button" data-toggle="dropdown">About Wordsworth</a>
+			<div class="dropdown-menu" aria-labelledby="about-pages">
+				<a class="dropdown-item" href="/faqs">FAQs</a>
+				<a class="dropdown-item" href="/corpus">Our corpus</a>
+			</div>
+		</li>
+	</ul>
+	{% if session.get("logged_in") == True %}
+	<ul class="nav navbar-nav ml-auto">
+		<div class="row" id="logout-div">
+			<li><a class="nav-link" href="/user-page">Your profile</a></li>
+			<li><button class="nav-item btn btn-light" id="logout">Logout</button></li>
+		</div>
+	</ul>
+	{% else %}
+	<ul class="nav navbar-nav ml-auto">
+		<div id="login-div">
+			<button class="btn btn-light" id="login" onclick="window.location.href='/login';">Login</button>
+		</div>
+	</ul>
+	{% endif %}
 </nav>
-
 
 <div id="logout-successful"></div>
 
 <br>
 {% endblock %}
 
-  {% block content %} 
-  {% endblock %}
+{% block content %} 
+{% endblock %}
 
-  {% block footer %}
+{% block footer %}
 <footer class="page-footer fixed-bottom font-small">
-    <div class="footer-copyright text-center">Wordsworth © 2019 Marissa Skudlarek
-    </div>
+		<div class="footer-copyright text-center">Wordsworth © 2019 Marissa Skudlarek</div>
 </footer>
-  {% endblock %}
+{% endblock %}
 
-<script
-        src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-        crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-  <script>
-  function confirmLogOut(result) {
-    $("#logout-div").hide()
-    $("#logout-successful").html(result);
-  }
+<script>
+		function confirmLogOut(result) {
+			$("#logout-div").hide()
+			$("#logout-successful").html(result);
+		}
 
-  function handleLogOut() {
-    $.get("/logout", confirmLogOut);
-  }
+		function handleLogOut() {
+			$.get("/logout", confirmLogOut);
+		}
 
-  $("#logout").on("click", handleLogOut)
-
+		$("#logout").on("click", handleLogOut)
 </script>
 
 </body>
