@@ -39,19 +39,6 @@ def load_books():
     db.session.commit()
 
 
-def load_users():
-    User.query.delete()
-
-    for row in open("sql_data/users"):
-        row = row.rstrip()
-        email, password = row.split("|")
-
-        new_user = User(email=email, password=password, ignore_words=[])
-        db.session.add(new_user)
-
-    db.session.commit()
-
-
 if __name__ == "__main__":
     connect_to_db(app)
 
@@ -62,4 +49,3 @@ if __name__ == "__main__":
     load_decades()
     load_countries()
     load_books()
-    load_users()

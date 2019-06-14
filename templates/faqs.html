@@ -1,137 +1,135 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <script
-        src="https://code.jquery.com/jquery-3.4.1.js"
+<script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
 
 <div class="container">
-<h2><span class="cormorant">FAQs</span></h2>
+    <h2><span class="cormorant">FAQs</span></h2>
+    <h3>Wordsworth is a tool to help historical fiction authors avoid linguistic anachronisms. You can compare a passage from your story to a corpus of fiction from the decade you're writing about, or look up whether a specific phrase is found in fiction from that decade.</h3>
+</div>
 
-Wordsworth is a tool to help historical fiction authors avoid linguistic anachronisms. You can compare a passage from your story to a corpus of fiction from the decade you're writing about, or look up whether a specific bigram is found in fiction from that decade.
-
-<h3>About Wordsworth in General</h3>
-<div class="faq">
-    <div class="question">
-        <h5>Where did you come up with the idea for this app?</h5>
+<div class="container">
+    <h4>About Wordsworth's Features</h4>
+    <div class="faq">
+        <div class="question"><h5>What is a bigram?</h5></div>
+        <div class="answer">
+            <p>A bigram (pronounced "BY-gram") is a linguistic term for a phrase of two words.</p>
+        </div>
     </div>
-    <div class="answer">
-        <p>Wordsworth is inspired by the work of <a href="http://benschmidt.org/">Ben Schmidt</a>, a digital-humanities professor who, in the early 2010s, <a href="https://www.theatlantic.com/entertainment/archive/2013/01/did-anyone-say-racial-equality-in-1865-the-language-of-i-lincoln-i/266990/">wrote about</a> trying to identify linguistic anachronisms in historical fiction screenplays by comparing them to texts written in the period they were set. Schmidt's program and corpus is not publicly available, so we decided to try to create an approximation of it.</p>
+    <br>
+    <div class="faq">
+        <div class="question"><h5>What are the Google Ngram charts and where do they come from?</h5></div>
+        <div class="answer">
+            <p>The <a href="https://books.google.com/ngrams">Google Books Ngram Viewer</a> is a Google feature that graphs word and phrase frequencies over time, based on the Google Books corpus. The Ngram charts can be embedded in other websites using iframes. Wordsworth's Google Ngram charts default to pulling from Google's "English Fiction" corpus.
+            </p>
+        </div>
     </div>
-</div>
-<br>
-<div class="faq">
-    <div class="question">
-        <h5>Why is your app called Wordsworth? It's not geared toward poets.</h5>
+    <br>
+    <div class="faq">
+        <div class="question"><h5>How does the Discount Words feature work?</h5></div>
+        <div class="answer">
+            <p>This feature allows you to tell the system to ignore certain words in your passage before analyzing it. It is most useful in situations when you already know that certain words are not found in the comparison corpus and you don't need the system to tell you that again. For instance, Mary Robinette Kowal's fantasy novel <span class="book-title">Shades of Milk and Honey</span> is heavily influenced by the works of Jane Austen, but it features a hero named "Mr. Vincent" and a magic system known as "glamour". The words "vincent" and "glamour" do not appear in our 1810s corpus, so Kowal might find it useful to tell the system to discount those words.</p>
+        </div>
     </div>
-    <div class="answer">
-        <p>We can't resist a literary pun and we told ourselves that no one else would overthink this.</p>
-    </div>
-</div>
-<br>
-<div class="faq">
-    <div class="question">
-        <h5>I have a question that isn't answered on this page / I think I've discovered a bug on Wordsworth. How can I get in touch with you?</h5>
-    </div>
-    <div class="answer">
-        <p>Email the app's creator at marissa dot skudlarek at gmail dot com, or submit an Issue on <a href="https://github.com/MarissaSkud/Wordsworth">Wordsworth's GitHub page</a>.</p>
-    </div>
-</div>
-<br>
-<h3>About Wordsworth's Features</h3>
-<div class="faq">
-    <div class="question"><h5>What is a bigram?</h5></div>
-    <div class="answer">
-        <p>A bigram (pronounced "BY-gram") is a linguistic term for a phrase of two words.</p>
+    <br>
+    <div class="faq">
+        <div class="question"><h5>What are the advantages of registering for an account?</h5></div>
+        <div class="answer">
+            <p>Most of Wordsworth's features are free to use without registering, but if you are frequently using the Discount Words feature, you may wish to create an account. With a free user account, you can maintain a list of words to ignore that Wordsworth will automatically leave out of search results. You will no longer need to input these Discount Words manually every time that you want to analyze a passage of your text.</p>
+        </div>
     </div>
 </div>
-<br>
-<div class="faq">
-    <div class="question"><h5>What are the Google Ngram charts and where do they come from?</h5></div>
-    <div class="answer">
-        <p>The <a href="https://books.google.com/ngrams">Google Books Ngram Viewer</a> is a Google feature that graphs word and phrase frequencies over time, based on the Google Books corpus. The Ngram charts can be embedded in other websites using iframes. Wordsworth's Google Ngram charts default to pulling from Google's "English Fiction" corpus.
-        </p>
+<div class="container">
+    <h4>About Wordsworth's Corpus</h4>
+    <div class="faq">
+        <div class="question"><h5>What novels are in the comparison corpus?</h5></div>
+        <div class="answer">
+            <p>You can view a list of all novels in the corpus <a href="/corpus">here</a>.</p>
+        </div>
+    </div>
+    <br>
+    <div class="faq">
+        <div class="question"><h5>Where have you sourced the texts for the comparison corpus?</h5></div>
+        <div class="answer">
+            <p>All texts come from <a href="https://www.gutenberg.org/">Project Gutenberg</a>.</p>
+        </div>
+    </div>
+    <br>
+    <div class="faq">
+        <div class="question"><h5>What qualifies a novel for your comparison corpus?</h5></div>
+        <div class="answer">
+            <p>All of the novels in our corpus were written in English between the years of 1800 and 1923. Additionally, the corpus focuses on novels that had a realistic, contemporary setting at the time they were published -- although we've waived that rule in order to include some influential works of genre fiction.</p>
+        </div>
+    </div>
+    <br>
+    <div class="faq">
+        <div class="question">
+            <h5>If Wordsworth's corpus focuses on realistic fiction, why does it include horror and mystery stories like <span class="book-title">Dracula</span> and <span class="book-title">A Study in Scarlet</span>?</h5>
+        </div>
+        <div class="answer">
+            <p>Although <span class="book-title">Dracula</span> is a fantasy/horror novel and <span class="book-title">A Study in Scarlet</span> is mystery fiction, they are recognizably set in late-Victorian England and offer much valuable information about language use in that era. They have also proved extremely influential in modern pop culture. Some of our users may be writing mystery or fantasy fiction themselves, and it therefore makes sense for our corpus to include some of the foundational works of the genre.</p>
+        </div>
+    </div>
+    <br>
+    <div class="faq">
+        <div class="question">
+            <h5>The bestselling American novel of the 1800s was <span class="book-title">Ben-Hur</span>. Why isn't it in your corpus? </h5>
+        </div>
+        <div class="answer">
+            <p><span class="book-title">Ben-Hur</span> is itself a work of historical fiction, taking place in Biblical times. Therefore, its language would likely skew our corpus results in a way that wouldn't be helpful to someone who's using Wordsworth to help them write a story that is <i>set</i> in the 1800s. This is also why we have avoided adding other popular historical novels like Walter Scott's <span class="book-title">Ivanhoe</span> (written 1820, set in the 1100s), Edith Wharton's <span class="book-title">The Age of Innocence</span> (written 1920, set in the 1870s), or Charles Dickens' <span class="book-title">A Tale of Two Cities</span> (written 1859, set in the late 1700s).
+        </div>
+    </div>
+    <br>
+    <div class="faq">
+        <div class="question">
+            <h5>I am writing a World War II novel. Why doesn't your corpus go up to the 1940s?
+            </h5>
+        </div>
+        <div class="answer">
+            <p>As of 2019, the public domain in the United States ends in 1923. Therefore, to avoid potential legal liability, we have avoided analyzing and storing word-frequency data from novels published in 1924 and beyond. As more 1920s novels enter the public domain in the years to come, we will try to add some of them to our corpus. If you feel that the current 95-year U.S. copyright term is ridiculously long, lobby your Congressional representatives.</p>
+        </div>
+    </div>
+    <br>
+    <div class="faq">
+        <div class="question">
+            <h5>I've thought of another text that isn't in your corpus, but it should be. How can I add it?
+            </h5>
+        </div>
+        <div class="answer">
+            <p>Email us at marissa skudlarek at gmail dot com and suggest it! If it fits the corpus parameters, we'll look into adding it in a subsequent release. However, we do not plan to develop a feature to allow users to update the corpus themselves.</p>
+        </div>
     </div>
 </div>
-<br>
-<div class="faq">
-    <div class="question"><h5>How does the Discount Words feature work?</h5></div>
-    <div class="answer">
-        <p>This feature allows you to tell the system to ignore certain words in your passage before analyzing it. It is most useful in situations when you already know that certain words are not found in the comparison corpus and you don't need the system to tell you that again. For instance, Mary Robinette Kowal's fantasy novel <span class="book-title">Shades of Milk and Honey</span> is heavily influenced by the works of Jane Austen, but it features a hero named "Mr. Vincent" and a magic system known as "glamour". The words "vincent" and "glamour" do not appear in our 1810s corpus, so Kowal might find it useful to tell the system to discount those words.</p>
+<div class="container">
+    <h4>About Wordsworth in General</h4>
+    <div class="faq">
+        <div class="question">
+            <h5>How did you come up with the idea for this app?</h5>
+        </div>
+        <div class="answer">
+            <p>Wordsworth is inspired by the work of <a href="http://benschmidt.org/">Ben Schmidt</a>, a digital-humanities professor who, in the early 2010s, <a href="https://www.theatlantic.com/entertainment/archive/2013/01/did-anyone-say-racial-equality-in-1865-the-language-of-i-lincoln-i/266990/">wrote about</a> trying to identify linguistic anachronisms in historical fiction screenplays by comparing them to texts written in the period they were set. Schmidt's program and corpus is not publicly available, so we decided to try to create an approximation of it.</p>
+        </div>
     </div>
-</div>
-<br>
-<div class="faq">
-    <div class="question"><h5>What are the advantages of registering for an account?</h5></div>
-    <div class="answer">
-        <p>Most of Wordsworth's features are free to use without registering, but if you are frequently using the Discount Words feature, you may wish to create an account. With a free user account, you can maintain a list of words to ignore that Wordsworth will automatically leave out of search results. You will no longer need to input these Discount Words manually every time that you want to analyze a passage of your text.</p>
+    <br>
+    <div class="faq">
+        <div class="question">
+            <h5>Why is your app called Wordsworth? It's not geared toward poets.</h5>
+        </div>
+        <div class="answer">
+            <p>We can't resist a literary pun and we told ourselves that no one else would overthink this.</p>
+        </div>
     </div>
-</div>
-<br>
-
-<h3>About Wordsworth's Corpus</h3>
-
-<div class="faq">
-    <div class="question"><h5>What novels are in the comparison corpus?</h5></div>
-    <div class="answer">
-        <p>You can view a list of all novels in the corpus <a href="/corpus">here</a>.</p>
+    <br>
+    <div class="faq">
+        <div class="question">
+            <h5>I have a question that isn't answered on this page / I think I've discovered a bug on Wordsworth. How can I contact you?</h5>
+        </div>
+        <div class="answer">
+            <p>Email the app's creator at marissa dot skudlarek at gmail dot com, or submit an Issue on <a href="https://github.com/MarissaSkud/Wordsworth">Wordsworth's GitHub page</a>.</p>
+        </div>
     </div>
-</div>
-<br>
-<div class="faq">
-    <div class="question"><h5>Where have you sourced the texts for the comparison corpus?</h5></div>
-    <div class="answer">
-        <p>All texts come from <a href="https://www.gutenberg.org/">Project Gutenberg</a>.</p>
-    </div>
-</div>
-<br>
-<div class="faq">
-    <div class="question"><h5>What qualifies a novel for your comparison corpus?</h5></div>
-    <div class="answer">
-        <p>All of the novels in our corpus were written in English between the years of 1800 and 1923. Additionally, the corpus focuses on novels that had a realistic, contemporary setting at the time they were published -- although we've waived that rule in order to include some influential works of genre fiction.</p>
-    </div>
-</div>
-<br>
-<div class="faq">
-    <div class="question">
-        <h5>If Wordsworth's corpus focuses on realistic fiction, why does it include horror and mystery stories like <span class="book-title">Dracula</span> and <span class="book-title">A Study in Scarlet</span>?</h5>
-    </div>
-    <div class="answer">
-        <p>Although <span class="book-title">Dracula</span> is a fantasy/horror novel and <span class="book-title">A Study in Scarlet</span> is mystery fiction, they are recognizably set in late-Victorian England and offer much valuable information about language use in that era. They have also proved extremely influential in modern pop culture. Some of our users may be writing mystery or fantasy fiction themselves, and it therefore makes sense for our corpus to include some of the foundational works of the genre.</p>
-    </div>
-</div>
-<br>
-<div class="faq">
-    <div class="question">
-        <h5>The bestselling American novel of the 1800s was <span class="book-title">Ben-Hur</span>. Why isn't it in your corpus? </h5>
-    </div>
-    <div class="answer">
-        <p><span class="book-title">Ben-Hur</span> is itself a work of historical fiction, taking place in Biblical times. Therefore, its language would likely skew our corpus results in a way that wouldn't be helpful to someone who's using Wordsworth to help them write a story that is <i>set</i> in the 1800s. This is also why we have avoided adding other popular historical novels like Walter Scott's <span class="book-title">Ivanhoe</span> (written 1820, set in the 1100s), Edith Wharton's <span class="book-title">The Age of Innocence</span> (written 1920, set in the 1870s), or Charles Dickens' <span class="book-title">A Tale of Two Cities</span> (written 1859, set in the late 1700s).
-    </div>
-</div>
-<br>
-<div class="faq">
-    <div class="question">
-        <h5>I am writing a World War II novel. Why doesn't your corpus go up to the 1940s?
-        </h5>
-    </div>
-    <div class="answer">
-        <p>As of 2019, the public domain in the United States ends in 1923. Therefore, to avoid potential legal liability, we have avoided analyzing and storing word-frequency data from novels published in 1924 and beyond. As more 1920s novels enter the public domain in the years to come, we will try to add some of them to our corpus. If you feel that the current 95-year U.S. copyright term is ridiculously long, lobby your Congressional representatives.</p>
-    </div>
-</div>
-<br>
-<div class="faq">
-    <div class="question">
-        <h5>I've thought of another text that isn't in your corpus, but it should be. How can I add it?
-        </h5>
-    </div>
-    <div class="answer">
-        <p>Email us at marissa skudlarek at gmail dot com and suggest it! If it fits the corpus parameters, we'll look into adding it in a subsequent release. However, we do not plan to develop a feature to allow users to update the corpus themselves.</p>
-    </div>
-</div>
-<br>
-
 </div>
 
 <script>
@@ -149,6 +147,5 @@ $(".question").on("click", function() {
 
 });
 </script>
-
 
 {% endblock %}

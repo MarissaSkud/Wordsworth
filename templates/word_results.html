@@ -2,23 +2,12 @@
 
 {% block content %}
 
-{% if books_from_decade == [] %}
-
 <div class="container">
-We could not find any books in our corpus from the {{ decade }}. Please check to make sure you have entered a valid decade and try again.
-</div>
-
-{% elif anachronistic_words == [] %}
-
-<div class="container">
-No anachronisms found. All words in your text appear in our corpus of texts from the {{ decade }}.
-</div>
-
-{% else %}
-
-<div class="container">
+    {% if anachronistic_words == [] %}
+        <p>No anachronisms found. All words in your text appear in our corpus of texts from the {{ decade }}.</p>
+    {% else %}
     <div class="row">
-        The following words in your text do not appear in our corpus of texts from the {{ decade }}:
+        <p>The following words in your text do not appear in our corpus of texts from the {{ decade }}:</p>
     </div>
     <div class="row">
         <div class="col">
@@ -34,7 +23,7 @@ No anachronisms found. All words in your text appear in our corpus of texts from
         </div>
     </div>
     <div class="row">
-        Clicking a word will load its Google Ngram chart so you can learn more about its usage between 1800 and 2000.
+        <p>Clicking a word will load its Google Ngram chart so you can learn more about its usage between 1800 and 2000.</p>
     </div>
 </div>
 

@@ -92,9 +92,10 @@ def show_login_form():
 
 
 @app.route("/logout")
-def reset_logged_in():
+def log_out():
     session["logged_in"] = False 
-    return jsonify("Logout confirmed")
+    flash("Logout confirmed.")
+    return redirect("/")
     
 
 @app.route("/login-process", methods=["POST"])
@@ -205,12 +206,15 @@ def analyze_words():
 
     decade = request.args["decade"]
     books_from_decade = Book.query.filter_by(decade=decade).all()
+    if books_from_decade == []:
+        flash(f"{decade} is not a valid decade input")
+        return redirect("/word-search")
 
     anachronistic_words = compare_single_words(textstring, books_from_decade, 
                                 words_to_ignore, user_ignore_words)
 
     return render_template("word_results.html", anachronistic_words=anachronistic_words, 
-                books_from_decade=books_from_decade, decade=decade)
+                            decade=decade)
 
 #libraries for logging exceptions & also usage stats. or does Flask have a logfile it's creating?
 #needs handling to avoid SQL injection on the decades table
@@ -241,6 +245,9 @@ def analyze_bigram():
 
     decade = request.args["decade"]
     books_from_decade = Book.query.filter_by(decade=decade).all()
+    if books_from_decade == []:
+        flash(f"{decade} is not a valid decade input")
+        return redirect("/bigram-search")
 
     comparison_dict = Counter({})
 
@@ -256,7 +263,7 @@ def analyze_bigram():
     #Will set corpus_appearances to 0 if bigram not in dictionary
 
     return render_template("bigram_results.html", decade=decade, 
-        corpus_appearances=corpus_appearances, corpus_total=corpus_total,
+        corpus_appearances=corpus_appearances, corpus_total=corpus_total, 
         bigram=bigram, corpus_unique_bigrams=corpus_unique_bigrams)
 
 
