@@ -12,13 +12,9 @@
 {% else %}
 
 <div class="container">
-    <h2><span class="cormorant">Log In</span></h2>
-
-Log in for access to your saved words.
-<br>
-Don't have an account? <a href="/register">Sign up here.</a>
-<br>
-<br>
+    <h2><div class="row cormorant">Log In</div></h2>
+    <div class="row">Log in for access to your saved words.</div>
+    <div class="row"><p>Don't have an account? <a href="/register">Sign up here.</a></p></div>
 <form action="/login-process" method="POST">
     <div class="form-group">
         <label for="email">Email</label>

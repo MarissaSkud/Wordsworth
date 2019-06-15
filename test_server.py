@@ -61,7 +61,6 @@ class TestFlaskRoutes(unittest.TestCase):
 
 
     def test_show_corpus(self):
-
         result = self.client.get("/corpus")
         self.assertIn(b"Glimpses", result.data)
 
@@ -70,6 +69,18 @@ class TestFlaskRoutes(unittest.TestCase):
 
         result = self.client.get("/faqs")
         self.assertIn(b"Kowal", result.data)
+
+
+    def test_login_page(self):
+
+        result = self.client.get("/login")
+        self.assertIn(b"access to", result.data)
+
+
+    def test_registration_page(self):
+
+        result = self.client.get("/register")
+        self.assertIn(b"need to register", result.data)
 
 
 if __name__ == '__main__':

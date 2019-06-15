@@ -23,8 +23,7 @@ a:hover {
 }
 
 footer {
-    background-color: #7964C4;
-    color: #F5F2DE;
+    background-color: #CFC7EA;
     position: relative;
     margin-top: -50px; /* negative value of footer height */
     height: 50px;
@@ -95,4 +94,5 @@ h5 {
 cream: #F5F2DE
 dk purple: #391BA6
 med purple: #7964C4
+lt purple: #CFC7EA;
 goldenrod: #BFB134*/
