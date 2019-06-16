@@ -1,12 +1,12 @@
 from jinja2 import StrictUndefined
 from flask import (Flask, render_template, redirect, request, flash,
                    session, jsonify)
-from flask_debugtoolbar import DebugToolbarExtension
 
 from model import Decade, Country, Book, User, connect_to_db, db
 
 import re
 import pickle
+import os
 
 from collections import Counter
 
@@ -15,7 +15,7 @@ from textprocessor import make_unique_word_set, unpickle_data
 
 app = Flask(__name__)
 
-app.secret_key = "P12f79xcearx8f"
+app.secret_key = os.environ["FlaskSecretKey"]
 app.jinja_env.undefined = StrictUndefined
 
 
@@ -268,10 +268,6 @@ def analyze_bigram():
 
 
 if __name__ == "__main__":
-    app.debug = True
-    app.jinja_env.auto_reload = app.debug
 
     connect_to_db(app)
-    DebugToolbarExtension(app)
-
     app.run(port=5000, host="0.0.0.0")
