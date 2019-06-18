@@ -24,4 +24,4 @@ You can submit issues/pull requests here on GitHub, or email me at marissa (dot)
 
 ### Use & Share!
 
-Please share Wordsworth with your writer friends _and_ your developer friends! I am a San Francisco-based developer and I'll be looking for a junior engineering position as of July 1, 2019 (you can get in touch with me here or on [my LinkedIn](https://www.linkedin.com/in/marissa-skudlarek/). 
+Please share Wordsworth with your writer friends _and_ your developer friends! I am a San Francisco-based developer and I'll be looking for a junior engineering position as of July 1, 2019 (you can get in touch with me here or on [my LinkedIn](https://www.linkedin.com/in/marissa-skudlarek/).)
