@@ -10,7 +10,7 @@ Wordsworth is inspired by the work of [Ben Schmidt](benschmidt.org), a digital-h
 
 There is no good API that allows you to search for words or phrases within books from a certain decade, so Wordsworth looks up words and phrases using its own proprietary corpus. This corpus consists of English-language novels written between 1800 and 1923, downloaded from [Project Gutenberg](gutenberg.org) and processed into word sets and bigram dictionaries using Python. When the user searches for a word or phrase, the app combines all of the word sets/bigram dictionaries from the selected decade into one large set/dictionary, then looks up the words/phrase in that decade-wide data set.
 
-### Usage
+### Features
 
 Site operation is fairly self-explanatory. Users can search for a [specific bigram](http://www.wordsworth.us/bigram-search) (two-word phrase) in fiction from a selected decade, or analyze [a passage of text](http://www.wordsworth.us/word-search) to see if any words in it do not appear in the selected decade. The results pages for both words and bigrams can load [Google Ngram](https://books.google.com/ngrams) charts in an iframe so that the user can learn more about that word/phrase's use over time.
 
