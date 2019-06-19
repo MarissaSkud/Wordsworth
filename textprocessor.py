@@ -79,4 +79,4 @@ def prepare_texts(startrange, endrange):
 
 
 if __name__ == "__main__":
-    prepare_texts(35, 36)
+    prepare_texts(38, 41)

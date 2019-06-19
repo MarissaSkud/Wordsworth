@@ -33,3 +33,8 @@ The Portrait of a Lady|Henry James|1881|USA|1880s|word_sets/book32_set.pickle|bi
 Precaution|James Fenimore Cooper|1820|USA|1820s|word_sets/book33_set.pickle|bigram_dicts/book33_dict.pickle
 Vivian Grey|Benjamin Disraeli|1827|UK|1820s|word_sets/book34_set.pickle|bigram_dicts/book34_dict.pickle
 The Glimpses of the Moon|Edith Wharton|1922|USA|1920s|word_sets/book35_set.pickle|bigram_dicts/book35_dict.pickle
+The Sign of the Four|Arthur Conan Doyle|1890|UK|1890s|word_sets/book36_set.pickle|bigram_dicts/book36_dict.pickle
+The Hound of the Baskervilles|Arthur Conan Doyle|1902|UK|1900s|word_sets/book37_set.pickle|bigram_dicts/book37_dict.pickle
+The Adventures of Sherlock Holmes|Arthur Conan Doyle|1892|UK|1890s|word_sets/book38_set.pickle|bigram_dicts/book38_dict.pickle
+The Memoirs of Sherlock Holmes|Arthur Conan Doyle|1894|UK|1890s|word_sets/book39_set.pickle|bigram_dicts/book39_dict.pickle
+The Return of Sherlock Holmes|Arthur Conan Doyle|1905|UK|1900s|word_sets/book40_set.pickle|bigram_dicts/book40_dict.pickle
