@@ -38,3 +38,6 @@ The Hound of the Baskervilles|Arthur Conan Doyle|1902|UK|1900s|word_sets/book37_
 The Adventures of Sherlock Holmes|Arthur Conan Doyle|1892|UK|1890s|word_sets/book38_set.pickle|bigram_dicts/book38_dict.pickle
 The Memoirs of Sherlock Holmes|Arthur Conan Doyle|1894|UK|1890s|word_sets/book39_set.pickle|bigram_dicts/book39_dict.pickle
 The Return of Sherlock Holmes|Arthur Conan Doyle|1905|UK|1900s|word_sets/book40_set.pickle|bigram_dicts/book40_dict.pickle
+The Mysterious Affair at Styles|Agatha Christie|1920|UK|1920s|word_sets/book41_set.pickle|bigram_dicts/book41_dict.pickle
+Whose Body?|Dorothy L. Sayers|1923|UK|1920s|word_sets/book42_set.pickle|bigram_dicts/book42_dict.pickle
+The Secret Adversary|Agatha Christie|1922|UK|1920s|word_sets/book43_set.pickle|bigram_dicts/book43_dict.pickle
