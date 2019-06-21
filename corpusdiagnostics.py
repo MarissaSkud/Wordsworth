@@ -1,15 +1,12 @@
-from server import app
+from server import app, format_decades
 from model import Decade, Country, Book, connect_to_db, db
 
 from textprocessor import unpickle_data
 
-
-DECADES = ["1800s", "1810s", "1820s", "1830s", "1840s", "1850s", "1860s",
-            "1870s", "1880s", "1890s", "1900s", "1910s", "1920s"]
-
 def measure_decade_sets():
     with app.app_context():
-        for decade in DECADES:
+        decades = format_decades()
+        for decade in decades:
             books_from_decade = Book.query.filter_by(decade=decade).all()
             num_books_from_decade = len(books_from_decade)
             decade_set = set()
