@@ -8,9 +8,10 @@ from textprocessor import (remove_irrelevant_characters, make_unique_word_set,
 class TestPythonFunctions(unittest.TestCase):
 
     def test_remove_irrelevant_characters(self):
-        self.assertEqual(remove_irrelevant_characters('a?b.c!d…e,f;g:h*i_j"k()l“”m‘n--op—q[r]s'),
-            'abcdefghijklmn op qrs')
-        self.assertEqual(remove_irrelevant_characters("‘I didn’t want the girl's shirt or the girls’ dresses,’"), 
+        self.assertEqual(remove_irrelevant_characters('a?b.c!d…e,f;g:h*i_j"k(l)m“n”o‘p[q]r'),
+            'abcdefghijklmnopqr')
+        self.assertEqual(remove_irrelevant_characters('s--t—u'), 's t u')
+        self.assertEqual(remove_irrelevant_characters("‘I didn’t want the girl’s shirt or the girls’ dresses.’"), 
             "I didn't want the girl's shirt or the girls dresses ")
 
 
