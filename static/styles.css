@@ -29,6 +29,7 @@ footer {
     height: 50px;
     clear:both;
     padding-top:20px;
+    display: inline-block;
 }
 
 select {
@@ -89,6 +90,7 @@ h5 {
 .container {
     padding-top: 20px;
 }
+
 
 /*dk brown: #453C04
 cream: #F5F2DE
