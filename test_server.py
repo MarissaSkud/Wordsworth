@@ -10,6 +10,7 @@ class TestPythonFunctions(unittest.TestCase):
     def test_remove_irrelevant_characters(self):
         self.assertEqual(remove_irrelevant_characters('a?b.c!d…e,f;g:h*i_j"k(l)m“n”o‘p[q]r'),
             'abcdefghijklmnopqr')
+        self.assertEqual(remove_irrelevant_characters('I...think... so'), 'I think  so')
         self.assertEqual(remove_irrelevant_characters('s--t—u'), 's t u')
         self.assertEqual(remove_irrelevant_characters("‘I didn’t want the girl’s shirt or the girls’ dresses.’"), 
             "I didn't want the girl's shirt or the girls dresses ")
