@@ -44,3 +44,7 @@ The Secret Adversary|Agatha Christie|1922|UK|1920s|word_sets/book43_set.pickle|b
 Memoirs of Carwin the Biloquist|Charles Brockden Brown|1805|USA|1800s|word_sets/book44_set.pickle|bigram_dicts/book44_dict.pickle
 Leonora|Maria Edgeworth|1806|Ireland|1800s|word_sets/book45_set.pickle|bigram_dicts/book45_dict.pickle
 Coelebs in Search of a Wife|Hannah More|1808|UK|1800s|word_sets/book46_set.pickle|bigram_dicts/book46_dict.pickle
+The Pickwick Papers|Charles Dickens|1837|UK|1830s|word_sets/book47_set.pickle|bigram_dicts/book47_dict.pickle
+Helen|Maria Edgeworth|1834|Ireland|1830s|word_sets/book48_set.pickle|bigram_dicts/book48_dict.pickle
+The Narrative of Arthur Gordon Pym|Edgar Allan Poe|1838|USA|1830s|word_sets/book49_set.pickle|bigram_dicts/book49_dict.pickle
+Nicholas Nickleby|Charles Dickens|1839|UK|1830s|word_sets/book50_set.pickle|bigram_dicts/book50_dict.pickle
