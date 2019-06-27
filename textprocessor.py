@@ -43,9 +43,19 @@ def make_unique_word_set(textstring):
 def make_bigrams(textstring):
     '''Use NLTK to divide text into bigrams'''
 
-    textstring = re.sub('_', "", textstring)
+    textstring = re.sub("\’", "'", textstring)
+    textstring = re.sub("_", "", textstring)
     textstring = re.sub("—|–", "--", textstring)
     text_tokens = nltk.word_tokenize(textstring)
+
+    #The below will re-combine contractions into a single word, because NLTK
+    #splits them into two tokens (e.g. "didn't" becomes ["did", "n't"])
+    # for i, token in enumerate(text_tokens):
+    #      if token == "n't":
+    #         combined_contraction = "".join([text_tokens[i-1], token])
+    #         text_tokens[i-1] = combined_contraction
+    #         text_tokens.remove(token)
+
     return list(nltk.bigrams(text_tokens))
 
 
@@ -77,4 +87,4 @@ def prepare_texts(startrange, endrange):
 
 
 if __name__ == "__main__":
-    prepare_texts(47, 51)
+    prepare_texts(51, 52)
