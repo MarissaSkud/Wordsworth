@@ -26,8 +26,8 @@ def remove_irrelevant_characters(textstring):
     '''Regular expressions to remove punctuation from string'''
     
     textstring = re.sub("\’", "'", textstring)
-    textstring = re.sub("'\W|'$|--|—|\.\.\.", " ", textstring)
-    return re.sub("\.|\?|\!|…|,|;|\*|_|\"|\(|\)|:|\”|\“|\‘|\[|\]", "", textstring)
+    textstring = re.sub("'\W|'$|--+|—|\.\.\.", " ", textstring)
+    return re.sub("^'|\.|\?|\!|…|,|;|\*|_|\"|\(|\)|:|\”|\“|\‘|\[|\]", "", textstring)
 
 
 def make_unique_word_set(textstring):
@@ -87,4 +87,4 @@ def prepare_texts(startrange, endrange):
 
 
 if __name__ == "__main__":
-    prepare_texts(51, 55)
+    prepare_texts(55, 56)
