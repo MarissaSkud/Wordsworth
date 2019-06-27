@@ -26,8 +26,8 @@ def remove_irrelevant_characters(textstring):
     '''Regular expressions to remove punctuation from string'''
     
     textstring = re.sub("\’", "'", textstring)
-    textstring = re.sub("'\W|'$|--+|—|\.\.\.", " ", textstring)
-    return re.sub("^'|\.|\?|\!|…|,|;|\*|_|\"|\(|\)|:|\”|\“|\‘|\[|\]", "", textstring)
+    textstring = re.sub("^'|\W'|'\W|'$|--+|—|\.\.\.", " ", textstring)
+    return re.sub("\.|\?|\!|…|,|;|\*|_|\"|\(|\)|:|\”|\“|\‘|\[|\]", "", textstring)
 
 
 def make_unique_word_set(textstring):
@@ -82,9 +82,9 @@ def prepare_texts(startrange, endrange):
         text = open_and_read_file(f"full_texts/book{i}_full.txt")
         pickle_data(f"word_sets/book{i}_set.pickle", make_unique_word_set(text))
         print(f"Made set for book {i}")
-        pickle_data(f"bigram_dicts/book{i}_dict.pickle", make_bigram_freq_dict(make_bigrams(text)))
-        print(f"Made dict for book {i}")
+        # pickle_data(f"bigram_dicts/book{i}_dict.pickle", make_bigram_freq_dict(make_bigrams(text)))
+        # print(f"Made dict for book {i}")
 
 
 if __name__ == "__main__":
-    prepare_texts(55, 56)
+    prepare_texts(1, 55)

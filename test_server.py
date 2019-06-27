@@ -14,7 +14,8 @@ class TestPythonFunctions(unittest.TestCase):
         self.assertEqual(remove_irrelevant_characters('s--t—u---v'), 's t u v')
         self.assertEqual(remove_irrelevant_characters("‘I didn’t want the girl’s shirt or the girls’ dresses.’"), 
             "I didn't want the girl's shirt or the girls dresses ")
-        self.assertEqual(remove_irrelevant_characters("'Shake hands'"), "Shake hands ")
+        self.assertEqual(remove_irrelevant_characters("'It's good,' I said; 'he's cool.'"), 
+            " It's good  I said he's cool ")
 
 
     def test_make_unique_word_set(self):

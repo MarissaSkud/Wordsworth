@@ -6,7 +6,7 @@ from textprocessor import unpickle_data
 from random import sample
 from collections import Counter
 
-def measure_and_sample_data(data_type, want_sample):
+def measure_and_sample_data(data_type, want_whole_set, want_sample):
     with app.app_context():
         decades = format_decades()
 
@@ -22,6 +22,9 @@ def measure_and_sample_data(data_type, want_sample):
 
                 words_from_decade = len(decade_set)
                 print(f"The {decade} corpus contains {num_books_from_decade} books and {words_from_decade} unique words")
+
+                if want_whole_set == True:
+                    print(sorted(decade_set))
 
                 if want_sample == True:
                     decade_sample = sample(decade_set, k=10)
@@ -45,5 +48,5 @@ def measure_and_sample_data(data_type, want_sample):
 
 if __name__ == "__main__":
     connect_to_db(app)
-    measure_and_sample_data("word_set", False)
-    #measure_and_sample_data("bigram_dict", False)
+    measure_and_sample_data("word_set", True, False)
+    #measure_and_sample_data("bigram_dict", False, False)
