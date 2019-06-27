@@ -48,3 +48,7 @@ The Pickwick Papers|Charles Dickens|1837|UK|1830s|word_sets/book47_set.pickle|bi
 Helen|Maria Edgeworth|1834|Ireland|1830s|word_sets/book48_set.pickle|bigram_dicts/book48_dict.pickle
 The Narrative of Arthur Gordon Pym|Edgar Allan Poe|1838|USA|1830s|word_sets/book49_set.pickle|bigram_dicts/book49_dict.pickle
 Nicholas Nickleby|Charles Dickens|1839|UK|1830s|word_sets/book50_set.pickle|bigram_dicts/book50_dict.pickle
+The Gilded Age|Mark Twain & Charles Dudley Warner|1873|USA|1870s|word_sets/book51_set.pickle|bigram_dicts/book51_dict.pickle
+Little Men|Louisa May Alcott|1871|USA|1870s|word_sets/book52_set.pickle|bigram_dicts/book52_dict.pickle
+Far from the Madding Crowd|Thomas Hardy|1874|UK|1870s|word_sets/book53_set.pickle|bigram_dicts/book53_dict.pickle
+Daniel Deronda|George Eliot|1876|UK|1870s|word_sets/book54_set.pickle|bigram_dicts/book54_dict.pickle
