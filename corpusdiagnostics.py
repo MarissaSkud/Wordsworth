@@ -48,5 +48,5 @@ def measure_and_sample_data(data_type, want_whole_set, want_sample):
 
 if __name__ == "__main__":
     connect_to_db(app)
-    measure_and_sample_data("word_set", True, False)
-    #measure_and_sample_data("bigram_dict", False, False)
+    measure_and_sample_data("word_set", False, True)
+    measure_and_sample_data("bigram_dict", False, False)
