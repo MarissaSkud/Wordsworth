@@ -56,3 +56,7 @@ The Strange Case of Dr. Jekyll and Mr. Hyde|Robert Louis Stevenson|1886|UK|1880s
 The Bostonians|Henry James|1886|USA|1880s|word_sets/book56_set.pickle|bigram_dicts/book56_dict.pickle
 Jo's Boys|Louisa May Alcott|1886|USA|1880s|word_sets/book57_set.pickle|bigram_dicts/book57_dict.pickle
 The Mystery of a Hansom Cab|Fergus Hume|1886|Australia|1880s|word_sets/book58_set.pickle|bigram_dicts/book58_dict.pickle
+My Brilliant Career|Miles Franklin|1901|Australia|1900s|word_sets/book59_set.pickle|bigram_dicts/book59_dict.pickle
+Mathilda|Mary Shelley|1820|UK|1820s|word_sets/book60_set.pickle|bigram_dicts/book60_dict.pickle
+David Copperfield|Charles Dickens|1850|UK|1850s|word_sets/book61_set.pickle|bigram_dicts/book61_dict.pickle
+Moby-Dick|Herman Melville|1851|USA|1850s|word_sets/book62_set.pickle|bigram_dicts/book62_dict.pickle

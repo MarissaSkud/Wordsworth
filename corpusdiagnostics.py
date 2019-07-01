@@ -6,6 +6,7 @@ from textprocessor import unpickle_data
 from random import sample
 from collections import Counter
 
+
 def measure_and_sample_corpus(data_type, want_sample):
     with app.app_context():
         decades = format_decades()
@@ -63,12 +64,12 @@ def print_whole_decade_set(data_type, decade):
                 book_bigrams = Counter(unpickle_data(book.bigram_dict))
                 decade_dict += book_bigrams
 
-            print(f"The {decade} bigram dictionary")
+            print(f"The {decade} bigram dictionary:")
             print(decade_dict)
 
 
 if __name__ == "__main__":
     connect_to_db(app)
-    measure_and_sample_corpus("word_set", False)
-    measure_and_sample_corpus("bigram_dict", False)
-    #print_whole_decade_set("bigram_dict", "1840s")
+    measure_and_sample_corpus("word_set", True)
+    #measure_and_sample_corpus("bigram_dict", False)
+    #print_whole_decade_set("word_set", "1920s")
