@@ -262,9 +262,27 @@ def analyze_bigram():
     corpus_appearances = comparison_dict.get(bigram, 0)
     #Will set corpus_appearances to 0 if bigram not in dictionary
 
-    return render_template("bigram_results.html", decade=decade, 
+    if corpus_appearances != 0:
+        return render_template("bigram_results.html", decade=decade, 
         corpus_appearances=corpus_appearances, corpus_total=corpus_total, 
         bigram=bigram, corpus_unique_bigrams=corpus_unique_bigrams)
+
+    else:
+        decade_set = set()
+        for book in books_from_decade:
+            book_words = unpickle_data(book.word_set)
+            decade_set.update(book_words)
+
+        hyphen_bigram = f"{bigram[0]}-{bigram[1]}"
+        smashed_bigram = f"{bigram[0]}{bigram[1]}"
+
+        hyphenated_found = hyphen_bigram in decade_set
+        smashed_found = smashed_bigram in decade_set
+
+        return render_template("bigram_results.html", decade=decade, bigram=bigram,
+            hyphen_bigram=hyphen_bigram, hyphenated_found=hyphenated_found, 
+            smashed_bigram=smashed_bigram, smashed_found=smashed_found, 
+            corpus_appearances=corpus_appearances)
 
 
 if __name__ == "__main__":

@@ -8,6 +8,20 @@
     <div class="row" id="alert">Possible anachronism alert!</div>
     <div class="row">The phrase "{{ bigram[0] }} {{ bigram[1] }}" does not appear in our corpus of texts from the {{ decade }}.</div>
 
+    {% if hyphenated_found == True and smashed_found == True %}
+
+    <div class="row">However, both the hyphenated and single-word versions of this phrase, "{{ hyphen_bigram }}" and "{{ smashed_bigram }}," do appear in our {{ decade }} word set. Consider using one of these spellings instead.</div>
+
+    {% elif smashed_found == True %}
+
+    <div class="row">However, the single-word version, "{{ smashed_bigram }}," does appear in our {{ decade }} word set. Consider using this spelling instead.</div>
+
+    {% elif hyphenated_found == True %}
+
+    <div class="row">However, the hyphenated version, "{{ hyphen_bigram }}," does appear in our {{ decade }} word set. Consider using this spelling instead.</div>
+
+    {% endif %}
+
     {% else %}
     <div class="row cormorant"><h4>Bigram found!</h4></div>
     <div class="row">The phrase "{{ bigram[0] }} {{ bigram[1] }}" appears {{ corpus_appearances }} times in our corpus of texts from the {{ decade }}, out of {{ corpus_unique_bigrams}} unique bigrams and {{ corpus_total }} total bigrams in that decade's corpus.</div>

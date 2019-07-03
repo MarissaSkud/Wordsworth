@@ -8,6 +8,8 @@ def open_and_read_file(file_path):
 
 
 def pickle_data(filename, dataset):
+    '''Save a Python set or dict as a pickled file'''
+
     outfile = open(filename, "wb")
     pickle.dump(dataset, outfile)
     outfile.close()
