@@ -268,8 +268,8 @@ def analyze_bigram():
             book_words = unpickle_data(book.word_set)
             decade_set.update(book_words)
 
-        word1 = bigram[0]
-        word2 = bigram[1]
+        word1 = bigram[0].lower()
+        word2 = bigram[1].lower()
 
         hyphen_bigram = f"{word1}-{word2}"
         smashed_bigram = f"{word1}{word2}"

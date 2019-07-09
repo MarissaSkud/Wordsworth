@@ -6,7 +6,7 @@
     {% if corpus_appearances == 0 %}
 
     <div class="row" id="alert">Possible anachronism alert!</div>
-    <div class="row">The phrase "{{ word1 }} {{ word2 }}" does not appear in our corpus of texts from the {{ decade }}.</div>
+    <div class="row">The phrase "{{ bigram[0] }} {{ bigram[1] }}" does not appear in our corpus of texts from the {{ decade }}.</div>
     <br>
 
     {% if hyphenated_found == True and smashed_found == True %}
