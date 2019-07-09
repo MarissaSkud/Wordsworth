@@ -6,7 +6,8 @@
     {% if corpus_appearances == 0 %}
 
     <div class="row" id="alert">Possible anachronism alert!</div>
-    <div class="row">The phrase "{{ bigram[0] }} {{ bigram[1] }}" does not appear in our corpus of texts from the {{ decade }}.</div>
+    <div class="row">The phrase "{{ word1 }} {{ word2 }}" does not appear in our corpus of texts from the {{ decade }}.</div>
+    <br>
 
     {% if hyphenated_found == True and smashed_found == True %}
 
@@ -14,11 +15,29 @@
 
     {% elif smashed_found == True %}
 
-    <div class="row">However, the single-word version, "{{ smashed_bigram }}," does appear in our {{ decade }} word set. Consider using this spelling instead.</div>
+    <div class="row">However, the single-word version of this phrase, "{{ smashed_bigram }}," does appear in our {{ decade }} word set. Consider using this spelling instead.</div>
 
     {% elif hyphenated_found == True %}
 
-    <div class="row">However, the hyphenated version, "{{ hyphen_bigram }}," does appear in our {{ decade }} word set. Consider using this spelling instead.</div>
+    <div class="row">However, the hyphenated version of this phrase, "{{ hyphen_bigram }}," does appear in our {{ decade }} word set. Consider using this spelling instead.</div>
+
+    {% else %}
+
+    <div class="row">We also checked for the spellings "{{ hyphen_bigram }}" and "{{ smashed_bigram }}", but they do not appear in our {{ decade }} word set either.</div>
+
+    {% if word1_found == False and word2_found == False %}
+
+    <div class="row">Furthermore, the words "{{ word1 }}" and "{{ word2 }}" never appear in the {{ decade }} word set as single words.</div>
+
+    {% elif word1_found == False %}
+
+    <div class="row">Furthermore, the word "{{ word1 }}" never appears in the {{ decade }} word set, though "{{ word2 }}" does.</div>
+
+    {% elif word2_found == False %}
+
+    <div class="row">Furthermore, the word "{{ word2 }}" never appears in the {{ decade }} word set, though "{{ word1 }}" does.</div>
+
+    {% endif %}
 
     {% endif %}
 

@@ -132,7 +132,6 @@ def search_for_words():
 
 @app.route("/bigram-search")
 def search_for_bigrams():
-
     return render_template("bigram_search.html", decades=format_decades())
 
 
@@ -216,17 +215,12 @@ def analyze_words():
     return render_template("word_results.html", anachronistic_words=anachronistic_words, 
                             decade=decade)
 
-#libraries for logging exceptions & also usage stats. or does Flask have a logfile it's creating?
-#needs handling to avoid SQL injection on the decades table
-#server-side validation to make sure people can't hack my API
-
 
 @app.route("/bigram-results")
 def analyze_bigram():
 
     bigram = request.args["bigram"]
 
-    #Check if bigram input contains < 100 characters
     if len(bigram) > 100:
         flash("Redirect: Input too long")
         return redirect("/bigram-search")
@@ -237,6 +231,7 @@ def analyze_bigram():
     if len(bigram) > 2:
         flash("REDIRECT: Bigrams must contain exactly 2 words")
         return redirect("/bigram-search")
+    
     try:
         bigram = (bigram[0], bigram[1])
     except IndexError:
@@ -273,15 +268,21 @@ def analyze_bigram():
             book_words = unpickle_data(book.word_set)
             decade_set.update(book_words)
 
-        hyphen_bigram = f"{bigram[0]}-{bigram[1]}"
-        smashed_bigram = f"{bigram[0]}{bigram[1]}"
+        word1 = bigram[0]
+        word2 = bigram[1]
+
+        hyphen_bigram = f"{word1}-{word2}"
+        smashed_bigram = f"{word1}{word2}"
 
         hyphenated_found = hyphen_bigram in decade_set
         smashed_found = smashed_bigram in decade_set
+        word1_found = word1 in decade_set
+        word2_found = word2 in decade_set
 
         return render_template("bigram_results.html", decade=decade, bigram=bigram,
-            hyphen_bigram=hyphen_bigram, hyphenated_found=hyphenated_found, 
-            smashed_bigram=smashed_bigram, smashed_found=smashed_found, 
+            hyphenated_found=hyphenated_found, smashed_found=smashed_found, 
+            word1_found=word1_found, word2_found = word2_found, word1=word1, 
+            word2=word2, hyphen_bigram=hyphen_bigram, smashed_bigram=smashed_bigram,
             corpus_appearances=corpus_appearances)
 
 

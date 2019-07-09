@@ -20,6 +20,14 @@
     </div>
     <br>
     <div class="faq">
+        <div class="question"><h5>How does the Bigram Search feature work? Does it take into account that spelling has changed over the last 200 years?</h5></div>
+        <div class="answer">
+            <p>The Bigram Search feature looks for a specific two-word phrase within a certain decade. If
+            the phrase is not found, it will also look for the hyphenated and single-word versions of that phrase. (Think "tea cup" vs. "tea-cup" vs. "teacup".) This is because English from 1800-1923 tended to use more hyphenated phrases than 2010s English does. For instance, the hyphenated word "dinner-parties" appears in the 1810s corpus, but the bigram "dinner parties" does not.</p>
+        </div>
+    </div>
+    <br>
+    <div class="faq">
         <div class="question"><h5>What are the Google Ngram charts and where do they come from?</h5></div>
         <div class="answer">
             <p>The <a href="https://books.google.com/ngrams">Google Books Ngram Viewer</a> is a Google feature that graphs word and phrase frequencies over time, based on the Google Books corpus. The Ngram charts can be embedded in other websites using iframes. Wordsworth's Google Ngram charts default to pulling from Google's "English Fiction" corpus.
