@@ -66,7 +66,7 @@ def print_whole_decade_set(data_type, decade):
 
             print(f"The {decade} bigram dictionary:")
             print(decade_dict)
-
+            
 
 if __name__ == "__main__":
     connect_to_db(app)

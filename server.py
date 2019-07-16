@@ -283,7 +283,7 @@ def analyze_bigram():
             hyphenated_found=hyphenated_found, smashed_found=smashed_found, 
             word1_found=word1_found, word2_found = word2_found, word1=word1, 
             word2=word2, hyphen_bigram=hyphen_bigram, smashed_bigram=smashed_bigram,
-            corpus_appearances=corpus_appearances)
+            corpus_appearances=0)
 
 
 if __name__ == "__main__":
