@@ -6,9 +6,9 @@ As of Bloomsday (June 16) 2019, Wordsworth is publicly deployed and running on h
 
 ### Inspiration & Methodology
 
-Wordsworth is inspired by the work of [Ben Schmidt](benschmidt.org), a digital-humanities professor who, in the early 2010s, [wrote about](https://www.theatlantic.com/entertainment/archive/2013/01/did-anyone-say-racial-equality-in-1865-the-language-of-i-lincoln-i/266990/) finding linguistic anachronisms in historical-fiction screenplays by comparing their language to texts written during the period when they were set. Schmidt's program and corpus is not publicly available; Wordsworth is an attempt to create a tool based on this principle that writers can freely use.
+Wordsworth is inspired by the work of [Ben Schmidt](https://benschmidt.org), a digital-humanities professor who, in the early 2010s, [wrote about](https://www.theatlantic.com/entertainment/archive/2013/01/did-anyone-say-racial-equality-in-1865-the-language-of-i-lincoln-i/266990/) finding linguistic anachronisms in historical-fiction screenplays by comparing their language to texts written during the period when they were set. Schmidt's program and corpus is not publicly available; Wordsworth is an attempt to create a tool based on this principle that writers can freely use.
 
-There is no good API that allows you to search for words or phrases within books from a certain decade, so Wordsworth looks up words and phrases within its own curated corpus. This corpus consists of English-language novels written between 1800 and 1923, downloaded from [Project Gutenberg](gutenberg.org) and processed into word sets and bigram dictionaries using Python. When the user searches for a word or phrase, the app combines all of the word sets/bigram dictionaries from the selected decade into one large set/dictionary, then looks up the words/phrase in that decade-wide data set.
+There is no good API that allows you to search for words or phrases within books from a certain decade, so Wordsworth looks up words and phrases within its own curated corpus. This corpus consists of English-language novels written between 1800 and 1923, downloaded from [Project Gutenberg](https://gutenberg.org) and processed into word sets and bigram dictionaries using Python. When the user searches for a word or phrase, the app combines all of the word sets/bigram dictionaries from the selected decade into one large set/dictionary, then looks up the words/phrase in that decade-wide data set.
 
 ### Features
 
@@ -32,8 +32,6 @@ Clone the Wordsworth repo onto your computer:
 Install required Python and Postgres packages:
 ```$ ubuntu-18.04-setup.bash```
 
-Optionally, create a Python virtual environment using ```virtualenv env```.
-
 Install the Python module requirements:
 ```$ pip3 install -r requirements.txt```
 
@@ -42,11 +40,11 @@ In the repo working directory, create a file called secrets.sh containing a sing
 where ```[YOUR SECRET KEY]``` could be 24 random bytes.
 
 Then, activate the secrets file: 
-```$ source secrets.sh.```
+```$ source secrets.sh```
 
 Establish yourself as a database superuser:
 ```$ sudo -u postgres createuser -s <your_userid>```
- 
+
 Create the Postgresql database for the app: 
 ```$ createdb anach_app```
 
